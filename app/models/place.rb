@@ -1,6 +1,4 @@
 class Place < ApplicationRecord
-
-  def show
-    # @place = Place.find(params[:id])
-  end
+  has_many :pins
+  has_many :reviews
 end
