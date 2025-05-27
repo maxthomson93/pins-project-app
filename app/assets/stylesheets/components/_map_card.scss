@@ -1,4 +1,4 @@
-.maps-card {
+.map-card {
   overflow: hidden;
   height: 80px;
   background: white;
@@ -7,20 +7,20 @@
   position: relative;
 }
 
-.maps-card img {
+.map-card img {
   padding: 12px;
   height: 100%;
   width: 80px;
   object-fit: cover;
 }
 
-.maps-card h2 {
+.map-card h2 {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
 }
 
-.maps-card p {
+.map-card p {
   font-size: 14px;
   line-height: 1;
   opacity: .7;
@@ -28,7 +28,7 @@
   margin-top: 4px;
 }
 
-.maps-card .maps-card-infos {
+.map-card .maps-card-infos {
 }
 
 .text-top {
