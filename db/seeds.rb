@@ -11,11 +11,13 @@ User.destroy_all
 
 puts "Creating users..."
 users = []
+i = 0
 5.times do
   users << User.create!(
-    email: Faker::Internet.email,
+    email: "test#{i}@gmail.com",
     password: "123456"
   )
+  i += 1
 end
 
 puts "Creating maps..."
@@ -24,7 +26,7 @@ users.each do |user|
   maps << Map.create!(
     name: Faker::Address.community,
     description: Faker::Lorem.sentence,
-    permission: ["public_access", "private_access"].sample,
+    permission: "public_access",
     user_id: user.id
   )
 end
@@ -34,10 +36,7 @@ places = []
 10.times do
   places << Place.create!(
     title: Faker::Restaurant.name,
-    category: ["Restaurant", "Park", "Museum", "Café", "Landmark"].sample,
-    longitude: Faker::Number.decimal(l_digits: 2, r_digits: 6).to_f + 139.65,
-    latitude: Faker::Number.decimal(l_digits: 2, r_digits: 6).to_f + 35.60,
-    address: "Tokyo, #{Faker::Address.street_address}",
+    address: "日本, 〒153-0063 東京都目黒区 目黒#{rand(1..3)}丁目#{rand(1..7)}番#{rand(1..3)}号"
   )
 end
 
