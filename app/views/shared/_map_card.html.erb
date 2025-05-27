@@ -1,10 +1,12 @@
-<div class="maps-card">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="maps-card-infos">
-    <h2>Map name</h2>
-    <p>Product description with <strong>relevant info</strong> only.</p>
+<div class="map-card">
+  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
+
+  <div class="map-info">
+    <h2><%= map.name %></h2>
+    <p class="description"><%= map.description %></p>
   </div>
-  <div class="text-top">
-    <p>399 members</p>
+
+  <div class="member-count">
+    <%= number_with_delimiter(map.users.count) %> members
   </div>
 </div>

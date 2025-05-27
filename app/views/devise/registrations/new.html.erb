@@ -1,27 +1,27 @@
 <div class="container">
-  <h2>Sign up</h2>
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <%= f.input :email,
-                required: true,
+  <div class="my-forms">
+    <h1>Sign up</h1>
+    <h3>Join our community of 80,000+ users sharing more than 140,000 pins worldwide</h3>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                required: false,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
-      <%= f.input :password,
+                input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
+        <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-      <div class="field">
-        <%= f.label :tag_list, "Tell us what you're looking for. For example, 'meditation, hip-hop, vegan' (comma separated)" %><br />
-        <%= f.text_field :tag_list %>
+        <%= f.input :tag_list,
+            label: "Tell us what you're looking for (comma separated)",
+            input_html: { value: f.object.tag_list.join(', ') } %>
       </div>
-    </div>
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-  <% end %>
-  <%= render "devise/shared/links" %>
-</div>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class: "button" %>
+      </div>
+    <% end %>
+  </div>
