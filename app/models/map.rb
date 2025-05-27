@@ -1,3 +1,5 @@
 class Map < ApplicationRecord
-  enum permission: { public_access: 0, shared_access: 1, private_access: 1 }
+  belongs_to :user
+  enum permission: { public_access: 0, shared: 1, private_access: 2 }
+  acts_as_taggable_on :tags
 end
