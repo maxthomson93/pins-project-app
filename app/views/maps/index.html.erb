@@ -1,0 +1,26 @@
+<div class="search-bar-container">
+  <%= form_with url: maps_path, method: :get, local: true do |form| %>
+    <div class="search-input">
+      <%= form.text_field :query, placeholder: "Co-working spaces", class: "form-control" %>
+    </div>
+    <%= form.submit "Find Maps", class: "btn btn-success" %>
+  <% end %>
+</div>
+
+<p><%= pluralize(@maps.count, "community") %> found</p>
+
+<div class="map-list">
+  <% @maps.each do |map| %>
+    <div class="map-card">
+      <%# Placeholder image, adjust logic if maps have images attached %>
+      <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
+      <div class="map-info">
+        <h2><%= map.name %></h2>
+        <p class="description"><%= map.description %></p>
+      </div>
+        <div class="member-count">
+          <%= number_with_delimiter(map.users.count) %> members
+        </div>
+    </div>
+  <% end %>
+</div>
