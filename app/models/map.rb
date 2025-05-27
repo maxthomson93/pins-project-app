@@ -1,4 +1,3 @@
 class Map < ApplicationRecord
-  belongs_to :user
-  enum permission: [ :public, :shared, :private ]
+  enum permission: { public_access: 0, shared_access: 1, private_access: 1 }
 end
