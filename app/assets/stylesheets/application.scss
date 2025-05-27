@@ -22,3 +22,22 @@ h1, h2, h3, h4, h5, h6 {
 
 @import "components/map_card";
 @import "components/search-input";
+
+h1 {
+  font-weight: bold;
+  color: black;
+  font-size: 2rem; // big for mobile (approx. 32px)
+}
+
+h2 {
+  font-weight: normal;
+  color: #52946B;
+  font-size: 1.5rem; // slightly smaller than h1
+}
+
+h3 {
+  font-weight: bold;
+  color: #52946B;
+  font-size: 0.8rem; // smaller for mobile (approx. 18px)
+  font-style: italic;
+}
