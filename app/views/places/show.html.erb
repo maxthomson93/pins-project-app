@@ -1,0 +1,35 @@
+<%= render "places/partials/show_carousel" %>
+<div class="row places-info mt-2">
+  <div class="col-10 offset-1">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel fuga cum nesciunt, quia libero molestias sint. Nemo tempore sequi hic accusantium blanditiis in odio qui excepturi rerum? Beatae, quibusdam quo?
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia hic aut numquam corrupti eius, iure officiis. Eos a magnam molestiae quisquam id. Expedita ut obcaecati officiis beatae vel laboriosam molestias.
+    </p>
+  </div>
+</div>
+<div class="reviews">
+  <div class="col-10 offset-1 d-flex gap-3 mb-3">
+    <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fa-solid fa-thumbs-up"></i>
+    </a>
+    <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fa-solid fa-thumbs-down"></i>
+    </a>
+  </div>
+  <div class="collapse" id="collapseExample">
+    <div class="col-10 offset-1">
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Add a comment</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <%= link_to "Submit", "#", class:"btn btn-primary"%>
+    </div>
+  </div>
+  <div class="comments col-10 offset-1">
+    <h2>Comments</h2>
+    <%= render "shared/comment_card" %>
+    <%= render "shared/comment_card" %>
+    <%= render "shared/comment_card" %>
+    <%= render "shared/comment_card" %>
+  </div>
+</div>
