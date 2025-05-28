@@ -1,0 +1,39 @@
+<!-- app/views/maps/show.html.erb -->
+
+<div data-controller="google-maps"
+     data-markers='<%= raw @markers.to_json %>'>
+
+  <!-- tu div del mapa sigue igual, pero ahora es hijo del controller -->
+  <div id="map" style="width:100%; height:50vh;"></div>
+
+  <div class="pins-list-section">
+    <h2>Pins in "<%= @map.name %>"</h2>
+
+    <% if @map.pins.any? %>
+      <ul class="pins-list">
+        <% @map.pins.each do |pin| %>
+          <% if pin.place.present? %>
+            <% place = pin.place %>
+            <li class="pin-card"
+                data-action="click->google-maps#focusOn"
+                data-lat="<%= place.latitude %>"
+                data-lng="<%= place.longitude %>">
+              <h3><%= place.title %></h3>
+              <p><%= place.description %></p>
+              <p>
+                <strong>Lat:</strong> <%= place.latitude %>,
+                <strong>Lng:</strong> <%= place.longitude %>
+              </p>
+            </li>
+          <% else %>
+            <li class="pin-card">
+              <em>Warning:</em> Este pin no tiene lugar asociado.
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No pins yet in this map.</p>
+    <% end %>
+  </div>
+</div>

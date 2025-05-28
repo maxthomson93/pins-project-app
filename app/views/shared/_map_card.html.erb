@@ -7,4 +7,9 @@
     </div>
     <p class="description"><%= map.description %></p>
   </div>
+
+  <div class="member-count">
+    <%= number_with_delimiter(map.users.count) %> members
+  </div>
+
 </div>
