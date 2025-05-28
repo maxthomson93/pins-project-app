@@ -5,18 +5,15 @@ import GMaps from "gmaps"
 export default class extends Controller {
   connect() {
     console.log("google-maps#connect")
-    // inicializa y guarda el mapa en this.map
     this.map = new GMaps({
       el: this.element.querySelector("#map"),
       lat: 0,
       lng: 0
     })
 
-    // carga los marcadores
     const markers = JSON.parse(this.element.dataset.markers)
     this.map.addMarkers(markers)
 
-    // ajusta zoom/bounds inicial
     if (markers.length === 0) {
       this.map.setZoom(2)
     } else if (markers.length === 1) {
@@ -27,7 +24,6 @@ export default class extends Controller {
     }
   }
 
-  // este método centra el mapa en las coords que le pasemos
   focusOn(event) {
     const lat = parseFloat(event.currentTarget.dataset.lat)
     const lng = parseFloat(event.currentTarget.dataset.lng)
