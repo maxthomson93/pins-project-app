@@ -42,11 +42,12 @@ end
 
 puts "Creating pins in Tokyo..."
 20.times do
+  user = users.sample
   Pin.create!(
     label: Faker::Lorem.word,
     place: places.sample,
-    map: maps.sample,
-    user: users.sample
+    map: user.maps[0],
+    user: user
   )
 end
 

@@ -1,0 +1,12 @@
+<div class="map-card">
+  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
+
+  <div class="map-info">
+    <h2><%= map.name %></h2>
+    <p class="description"><%= map.description %></p>
+  </div>
+
+  <div class="member-count">
+    <%= number_with_delimiter(map.users.count) %> members
+  </div>
+</div>

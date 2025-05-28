@@ -10,9 +10,7 @@
   </head>
   <body>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
     <%= yield %>
-    <%= render 'devise/shared/footer' %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
