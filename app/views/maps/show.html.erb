@@ -22,6 +22,9 @@
               <p><%= place.description %></p>
               <p><strong>Address:</strong> <%= place.address %></p>
               <p><strong>Opening Hours:</strong> <%= place.opening_hours %></p>
+              <%= link_to place_path(place) do %>
+                <i class="fa-solid fa-location-pin" style="color: #52946B; font-size: 2rem;"></i>
+              <% end %>
             </li>
           <% else %>
             <li class="pin-card">
