@@ -1,0 +1,17 @@
+<div class="map-card" data-controller="membership">
+  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
+  <div class="map-info">
+    <h2><%= map.name %></h2>
+    <div class="member-count">
+      <%= number_with_delimiter(map.users.count) %> members
+    </div>
+    <p class="description"><%= map.description %></p>
+  </div>
+  <div class="icon-container">
+    <%= link_to map_memberships_path(map), method: :post, class: "icon-button", data: {
+      action: "click->membership#join"
+    } do %>
+      <i data-membership-target="icon" class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+    <% end %>
+  </div>
+</div>
