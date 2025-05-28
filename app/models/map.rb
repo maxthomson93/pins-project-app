@@ -4,4 +4,5 @@ class Map < ApplicationRecord
   acts_as_taggable_on :tags
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
+  has_many :pins, dependent: :destroy
 end

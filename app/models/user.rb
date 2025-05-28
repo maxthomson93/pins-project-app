@@ -11,6 +11,6 @@ class User < ApplicationRecord
   has_many :pins_as_follower, through: :maps_as_follower, source: :pins
 
   def maps
-    Map.where(id: [maps_as_follower + maps_as_owner].uniq)
+    (maps_as_follower + maps_as_owner).uniq
   end
 end

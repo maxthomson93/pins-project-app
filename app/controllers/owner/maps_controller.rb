@@ -1,7 +1,8 @@
 class Owner::MapsController < ApplicationController
     def index
       @maps = current_user.maps
-      @places = Place.where.not(latitude: nil, longitude: nil)
+      @pins = @maps.map(&:pins).flatten
+      @places = @pins.map(&:place).uniq
 
       @markers = @places.map do |place|
         {
