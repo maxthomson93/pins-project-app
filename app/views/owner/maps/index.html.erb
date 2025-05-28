@@ -1,7 +1,12 @@
+<div class="search_place_container" data-controller="google-maps" data-markers="<%= @markers.to_json %>">
+<input type="text" id="place-search" data-google-maps-target="search" placeholder="Search for a place..." />
+<button id="search-btn" data-action="click->google-maps#search">Search</button>
+<div id="search-results">
 <div
   id="map"
-  data-controller="google-maps"
+  data-google-maps-target="map"
   style="width: 100%;
   height: 600px;"
-  data-markers="<%= @markers.to_json %>"
 ></div>
+</div>
+</div>

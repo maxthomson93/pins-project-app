@@ -6,7 +6,6 @@ class MapsController < ApplicationController
       @maps = Map.all
     end
   end
-
   def show
     @map = Map.find(params[:id])
   end

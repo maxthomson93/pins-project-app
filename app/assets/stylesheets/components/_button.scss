@@ -16,3 +16,14 @@
 .button:hover {
   background-color: #337354;
 }
+
+.icon-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-button:focus {
+  outline: none;
+}
