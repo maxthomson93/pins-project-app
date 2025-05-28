@@ -9,13 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <%= render 'layouts/navbar' %>     <!-- Navbar top (Bootstrap) -->
-
-    <%= yield %>                        <!-- Page content -->
-
-    <%= render 'layouts/footer' %>     <!-- Footer, if we haveone -->
-    <%= render 'shared/navbar' %>      <!-- Navbar btm (mobile icons) -->
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+    <%= render 'layouts/navbar' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

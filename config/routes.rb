@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :memberships, only: [:create]
     resources :pins, only: [:create]
   end
-  resources :places, only: [:show] do
+  resources :places, only: [:index, :show] do
     resources :reviews, only: [:create]
   end
   resources :reviews, only: [:update]
