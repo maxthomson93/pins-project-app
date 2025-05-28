@@ -12,18 +12,16 @@
     <% if @map.pins.any? %>
       <ul class="pins-list">
         <% @map.pins.each do |pin| %>
-          <% if pin.place.present? %>
-            <% place = pin.place %>
+        <% place = pin.place %>
+          <% if place.present? %>
             <li class="pin-card"
                 data-action="click->google-maps#focusOn"
                 data-lat="<%= place.latitude %>"
                 data-lng="<%= place.longitude %>">
               <h3><%= place.title %></h3>
               <p><%= place.description %></p>
-              <p>
-                <strong>Lat:</strong> <%= place.latitude %>,
-                <strong>Lng:</strong> <%= place.longitude %>
-              </p>
+              <p><strong>Address:</strong> <%= place.address %></p>
+              <p><strong>Opening Hours:</strong> <%= place.opening_hours %></p>
             </li>
           <% else %>
             <li class="pin-card">

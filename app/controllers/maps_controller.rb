@@ -8,5 +8,19 @@ class MapsController < ApplicationController
   end
   def show
     @map = Map.find(params[:id])
+    @pins = @map.pins
+    @places = @pins.map(&:place).uniq
+    @markers = @places.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude,
+        icon: {
+          url: helpers.asset_url("pins_logo.png"),
+          size: { width: 32, height: 32 },
+          scaledSize: { width: 32, height: 32 }
+        },
+        infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) }
+      }
+    end
   end
 end

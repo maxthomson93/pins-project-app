@@ -7,10 +7,13 @@ class Owner::MapsController < ApplicationController
       @markers = @places.map do |place|
         {
           lat: place.latitude,
-          lng: place.longitude
-          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-          # Uncomment the above line if you want each of your markers to display a info window when clicked
-          # (you will also need to create the partial "/flats/map_box")
+          lng: place.longitude,
+          icon: {
+            url: helpers.asset_url("pins_logo.png"),
+            size: { width: 32, height: 32 },
+            scaledSize: { width: 32, height: 32 }
+          },
+          infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) }
         }
       end
   end
