@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <%= render 'layouts/navbar' %>
-  <%= render 'layouts/footer' %>
-  <%= yield %>
-</body>
+
+  <body>
+    <%= render 'layouts/navbar' %>     <!-- Navbar top (Bootstrap) -->
+
+    <%= yield %>                        <!-- Page content -->
+
+    <%= render 'layouts/footer' %>     <!-- Footer, if we haveone -->
+    <%= render 'shared/navbar' %>      <!-- Navbar btm (mobile icons) -->
+  </body>
 </html>
