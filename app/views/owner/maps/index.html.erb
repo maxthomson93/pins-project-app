@@ -1,7 +1,31 @@
-<div
+<div data-controller="filter-map">
+  <div
   id="map"
   data-controller="google-maps"
+  data-filter-map-target="map"
   style="width: 100%;
   height: 600px;"
   data-markers="<%= @markers.to_json %>"
 ></div>
+  <div class="search-bar-container" class="map-list";>
+    <%= form_with url: maps_path, method: :get, local: true do |form| %>
+      <div class="search-input">
+        <%= form.text_field :query, placeholder: "Communities", class: "form-control" %>
+      </div>
+      <%= form.submit "Find Communities", class: "button" %>
+    <% end %>
+  </div>
+  <p><%= pluralize(@maps.count, "community") %> found</p>
+  <div class="map-list">
+    <% @maps.each_with_index do |map, i| %>
+      <input
+        type="checkbox"
+        class="map-filter filter-map-toggle" data-action="filter-map#toggle"  data-filter-map-target="checkboxes" data-map-index="<%= i %>"
+        id="map_<%=i%>"
+        checked
+        >
+        <label for="map_<%=i%>" ><%= map.name %></label>
+        <%= render "shared/map_card", map: map %>
+      <% end %>
+    </div>
+  </div>
