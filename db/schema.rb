@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_27_045910) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_27_074538) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,17 +82,18 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_045910) do
     t.string "opening_hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "content"
     t.string "title"
     t.integer "recommended", default: 0
-    t.bigint "pin_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pin_id"], name: "index_reviews_on_pin_id"
+    t.bigint "place_id", null: false
+    t.index ["place_id"], name: "index_reviews_on_place_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -147,7 +148,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_045910) do
   add_foreign_key "pins", "maps"
   add_foreign_key "pins", "places"
   add_foreign_key "pins", "users"
-  add_foreign_key "reviews", "pins"
+  add_foreign_key "reviews", "places"
   add_foreign_key "reviews", "users"
   add_foreign_key "taggings", "tags"
 end

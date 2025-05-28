@@ -1,4 +1,4 @@
-<%= render "places/partials/show_carousel" %>
+<%= render "places/partials/show_carousel", place: @place %>
 <div class="row places-info mt-2">
   <div class="col-10 offset-1">
     <p>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="comments col-10 offset-1">
-    <h2>Comments</h2>
+    <h1>Comments</h1>
     <%= render "shared/comment_card" %>
     <%= render "shared/comment_card" %>
     <%= render "shared/comment_card" %>
