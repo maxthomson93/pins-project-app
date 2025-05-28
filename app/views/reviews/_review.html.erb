@@ -1,0 +1,10 @@
+<div class="comment-card">
+  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+  <div class="comment-card-infos">
+    <div class="d-flex gap-3 align-items-center">
+      <h2><%= review.user&.email || "Anonymous" %></h2>
+      <h3><%= time_ago_in_words(review.created_at) %> ago</h3>
+    </div>
+    <p><%= review.content %></p>
+  </div>
+</div>
