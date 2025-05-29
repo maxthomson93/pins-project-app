@@ -12,6 +12,12 @@ class Owner::MapsController < ApplicationController
         {
           lat: place.latitude,
           lng: place.longitude,
+          # icon: {
+          #   url: helpers.asset_url("pins_logo.png"),
+          #   size: { width: 32, height: 32 },
+          #   scaledSize: { width: 32, height: 32 }
+          # },
+          infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) },
           color: color,
           map_index: map_index
           # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }

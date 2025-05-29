@@ -3,8 +3,16 @@
   height: 80px;
   background: white;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
+  padding-right: 5px; /* add padding on the right for icon */
+}
+
+.map-card i.fa-solid.fa-bookmark {
+  margin-left: auto;   /* push icon to the right */
+  padding: 5px;
+  font-size: 1rem;
+  color: #52946B;
 }
 
 .map-card img {
@@ -35,4 +43,11 @@
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.map-card .member-count {
+  font-size: 14px;
+  opacity: 0.7;
+  margin: 2px 0; /* small margin top and bottom */
+  font-style: italic;
 }

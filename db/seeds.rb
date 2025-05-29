@@ -16,8 +16,10 @@ puts "Creating maps..."
 map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: user1)
 map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: user2)
 map3 = Map.create!(name: "foodie", description: "The best in Tokyo", user: user3)
+map4 = Map.create!(name: "Vintage Heaven", description: "A collection of my favorite vintage stores", user: user2)
+map5 = Map.create!(name: "Vintage Koenji", description: "Vintage stores in Koenji are the best!", user: user3)
 
-puts "Creating pins..."
+puts "Creating places..."
 Meguro_cantonese = Place.create!(
   title: "目黒菜館",
   address: "〒153-0064 東京都目黒区下目黒１丁目５−１６ 目黒サンライズマンション 102",
@@ -75,6 +77,65 @@ FamilyMart = Place.create!(
   opening_hours: "11:00 - 22:00"
 )
 
+vintage1 = Place.create!(
+  title: "Atlantis Vintage Tokyo",
+  address: "〒166-0003 東京都杉並区高円寺南４丁目-２５-３高南ビル1F",
+  category: "Vintage Store",
+  latitude: 35.70446145689981,
+  longitude: 139.64891872858115,
+  opening_hours: "11:00 - 22:00"
+)
+vintage2 = Place.create!(
+  title: "BIG TIME 高円寺",
+  address: "〒166-0003 東京都杉並区高円寺南４丁目２５−３ 1F 2F・3F",
+  category: "Vintage Store",
+  latitude: 35.7043307734428,
+  longitude: 139.64903674577116,
+  opening_hours: "11:00 - 22:00"
+)
+vintage3 = Place.create!(
+  title: "アンスティッチ",
+  address: "〒166-0003 東京都杉並区高円寺南３丁目４５−１３",
+  category: "Vintage Store",
+  latitude: 35.703555380524925,
+  longitude: 139.64816771009936,
+  opening_hours: "11:00 - 22:00"
+)
+vintage4 = Place.create!(
+  title: "Trip 高円寺店",
+  address: "〒166-0003 東京都杉並区高円寺南３丁目３７−１",
+  category: "Vintage Store",
+  latitude: 35.70266055919996,
+  longitude: 139.64772373387387,
+  opening_hours: "11:00 - 22:00"
+)
+
+vintage_tokyo1 = Place.create!(
+  title: "NUIR VINTAGE",
+  address: "〒150-0042 東京都渋谷区宇田川町３−５ Spark Shibuya, 5階",
+  category: "Vintage Store",
+  latitude: 35.668639241432075,
+  longitude: 139.70044013320344,
+  opening_hours: "11:00 - 22:00"
+)
+vintage_tokyo2 = Place.create!(
+  title: "RAGTAG 渋谷店",
+  address: "〒150-0042 東京都渋谷区宇田川町２８−６ 渋谷パルコ 3F",
+  category: "Vintage Store",
+  latitude: 35.661123,
+  longitude: 139.698194,
+  opening_hours: "11:00 - 22:00"
+)
+vintage_tokyo3 = Place.create!(
+  title: "RAGTAG 原宿店",
+  address: "〒150-0001 東京都渋谷区神宮前６丁目２８−９",
+  category: "Vintage Store",
+  latitude: 35.670164,
+  longitude: 139.703056,
+  opening_hours: "11:00 - 22:00"
+)
+
+
 
 puts "Creating pins"
 # Pins for map1
@@ -126,6 +187,50 @@ pin3 = Pin.create!(
   map: map3
 )
 
+# Pins for map4
+pin1 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage_tokyo1,
+  user: user2,
+  map: map4
+)
+pin2 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage_tokyo2,
+  user: user2,
+  map: map4
+)
+pin3 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage_tokyo3,
+  user: user2,
+  map: map4
+)
+# Pins for map5
+pin1 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage1,
+  user: user3,
+  map: map5
+)
+pin2 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage2,
+  user: user3,
+  map: map5
+)
+pin3 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage3,
+  user: user3,
+  map: map5
+)
+pin4 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage4,
+  user: user3,
+  map: map5
+)
 # puts "Creating reviews..."
 # Review.create!(content: "Delicious food and great service!", title: "Amazing Experience", recommended: 1, pin: pin1, user: user1)
 # Review.create!(content: "The pasta was overcooked.", title: "Not Impressed", recommended: 0, pin: pin2, user: user2)
@@ -137,10 +242,10 @@ Membership.create!(user: user1, map: map3)
 Membership.create!(user: user2, map: map1)
 Membership.create!(user: user2, map: map2)
 Membership.create!(user: user2, map: map3)
+Membership.create!(user: user2, map: map4)
 Membership.create!(user: user3, map: map1)
 Membership.create!(user: user3, map: map2)
 Membership.create!(user: user3, map: map3)
-
-
+Membership.create!(user: user3, map: map5)
 
 puts "✅ Seeding complete!"
