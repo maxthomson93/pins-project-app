@@ -1,17 +1,14 @@
-<footer class="mobile-footer">
-  <%= link_to root_path, class: "footer-link" do %>
-    <i class="fa-solid fa-map-location-dot"></i>
+<div class="bottom-navbar">
+  <%= link_to(maps_path, class: "nav-icon") do %>
+    <i class="fa-solid fa-map" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%= link_to "#", class: "footer-link" do %>
-    <i class="fa-solid fa-filter"></i>
+  <%= link_to(new_map_path, class: "nav-icon") do %>
+    <i class="fa-solid fa-plus" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%= link_to "#", class: "footer-link" do %>
-    <i class="fa-solid fa-plus"></i>
+  <%= link_to(maps_path, class: "nav-icon") do %>
+    <i class="fa-solid fa-bell" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%= link_to "#", class: "footer-link" do %>
-    <i class="fa-solid fa-bell"></i>
+  <%= link_to((current_user ? user_path(current_user) : new_user_session_path), class: "nav-icon") do %>
+    <i class="fa-solid fa-user" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%= link_to "#", class: "footer-link" do %>
-    <i class="fa-solid fa-user"></i>
-  <% end %>
-</footer>
+</div>
