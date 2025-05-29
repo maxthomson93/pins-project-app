@@ -9,12 +9,17 @@
     </div>
   </div>
   <div class="reviews">
-    <div class="col-10 offset-1 d-flex gap-3 mb-3">
+    <div class="col-10 offset-1 d-flex gap-3 mb-3 justify-content-between">
       <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         <i class="fa-solid fa-thumbs-up"></i>
       </a>
-      <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <i class="fa-solid fa-thumbs-down"></i>
+      <a
+        href="https://www.google.com/maps/dir/?api=1&destination=<%= @place.latitude %>,<%= @place.longitude %>"
+        target="_blank"
+        rel="noopener"
+        title="Get directions with Google Maps"
+      >
+        <i class="fa-solid fa-route" style="color: #52946B; font-size: 2rem;"></i>
       </a>
     </div>
     <div class="collapse" id="collapseExample">
@@ -24,13 +29,15 @@
             <%= f.label :content, "Add a review", class: "form-label" %>
             <%= f.text_area :content, rows: 3, class: "form-control" %>
           </div>
-          <%= f.submit "Submit Review", class: "btn btn-primary" %>
+          <%= f.submit "submit", class: "button" %>
         <% end %>
       </div>
     </div>
+    
     <div class="reviews col-10 offset-1 mt-4">
       <h1>Reviews:</h1>
       <%= render @reviews %>
     </div>
   </div>
+  
 </div>
