@@ -141,6 +141,4 @@ Membership.create!(user: user3, map: map1)
 Membership.create!(user: user3, map: map2)
 Membership.create!(user: user3, map: map3)
 
-
-
 puts "✅ Seeding complete!"
