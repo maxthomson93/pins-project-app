@@ -1,0 +1,33 @@
+.map-show-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.map-show-header .text-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.map-show-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.map-show-header .member-count {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.map-show-header .description {
+  font-size: 1rem;
+  color: #333;
+}
+
+.map-show-header [data-membership-target="icon"],
+.map-show-header .icon-button {
+  flex-shrink: 0;
+}
