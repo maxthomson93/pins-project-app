@@ -1,0 +1,74 @@
+.toggle-wrapper {
+  display: flex;
+  align-items: center; // vertical centering
+  justify-content: center; // horizontal centering (optional)
+  height: 100%;
+}
+
+.filter-map-toggle {
+  position: absolute;
+  transform: scale(0);
+}
+
+.filter-map-toggle + label {
+  position: relative;
+  display: inline-block;
+  padding-left: 50px;
+
+}
+
+.filter-map-toggle + label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  width: 36px;
+  height: 20px;
+  top: -10px;
+  left: 0;
+  background-color: #EAEAEA;
+  border-radius: 50rem;
+}
+
+.filter-map-toggle + label::after {
+  content: '';
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  top: -8px;
+  left: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: left 0.2s ease;
+}
+
+.filter-map-toggle:checked + label::after {
+  left: 18px;
+}
+
+.filter-map-toggle.red-toggle:checked + label::before {
+  background-color: #d9534f;
+}
+.filter-map-toggle.blue-toggle:checked + label::before {
+  background-color: #0275d8;
+}
+.filter-map-toggle.green-toggle:checked + label::before {
+  background-color: #5cb85c;
+}
+.filter-map-toggle.orange-toggle:checked + label::before {
+  background-color: #f0ad4e;
+}
+.filter-map-toggle.purple-toggle:checked + label::before {
+  background-color: #613d7c;
+}
+.filter-map-toggle.pink-toggle:checked + label::before {
+  background-color: #e83e8c;
+}
+.filter-map-toggle.yellow-toggle:checked + label::before {
+  background-color: #ffd600;
+}
+.filter-map-toggle.ltblue-toggle:checked + label::before {
+  background-color: #5bc0de;
+}
