@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-// Don't forget to import GMaps!
-// import GMaps from 'gmaps/gmaps.js';
 import GMaps from "gmaps"
+
 // Connects to data-controller="google-maps"
 export default class extends Controller {
   static targets = ["search", "map"]
@@ -42,5 +41,13 @@ export default class extends Controller {
     } else {
       this.map.fitLatLngBounds(this.markers);
     }
+  }
+
+  focusOn(event) {
+    const lat = parseFloat(event.currentTarget.dataset.lat)
+    const lng = parseFloat(event.currentTarget.dataset.lng)
+
+    this.map.setCenter(lat, lng)
+    this.map.setZoom(14)
   }
 }

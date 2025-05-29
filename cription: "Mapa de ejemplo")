@@ -1,0 +1,62 @@
+=> 
+[[32m#<Map:0x00007f18c3cabbf0[0m
+  id: [34m[1m6[0m,
+  name: [31m[1m"[0m[31mEagle Oaks[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mMagni quia ut voluptatem.[0m[31m[1m"[0m,
+  permission: [31m[1m"[0m[31mshared[0m[31m[1m"[0m,
+  user_id: [34m[1m21[0m,
+  created_at:
+   Tue, 27 May 2025 03:03:19.559177000 UTC +00:00,
+  updated_at:
+   Tue, 27 May 2025 03:03:19.559177000 UTC +00:00,
+  tag_list: [36m[1mnil[0m[32m>[0m,
+ [32m#<Map:0x00007f18c3e73708[0m
+  id: [34m[1m7[0m,
+  name: [31m[1m"[0m[31mSummer Estates[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mEos temporibus ut rerum.[0m[31m[1m"[0m,
+  permission: [31m[1m"[0m[31mshared[0m[31m[1m"[0m,
+  user_id: [34m[1m22[0m,
+  created_at:
+   Tue, 27 May 2025 03:03:19.567290000 UTC +00:00,
+  updated_at:
+   Tue, 27 May 2025 03:03:19.567290000 UTC +00:00,
+  tag_list: [36m[1mnil[0m[32m>[0m,
+ [32m#<Map:0x00007f18c3e73488[0m
+  id: [34m[1m8[0m,
+  name: [31m[1m"[0m[31mPine Gardens[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mSapiente expedita aliquam qui.[0m[31m[1m"[0m,
+  permission:
+   [31m[1m"[0m[31mpublic_access[0m[31m[1m"[0m,
+  user_id: [34m[1m23[0m,
+  created_at:
+   Tue, 27 May 2025 03:03:19.578184000 UTC +00:00,
+  updated_at:
+   Tue, 27 May 2025 03:03:19.578184000 UTC +00:00,
+  tag_list: [36m[1mnil[0m[32m>[0m,
+ [32m#<Map:0x00007f18c3e73348[0m
+  id: [34m[1m9[0m,
+  name: [31m[1m"[0m[31mUniversity Square[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mSint libero voluptas vero.[0m[31m[1m"[0m,
+  permission: [31m[1m"[0m[31mshared[0m[31m[1m"[0m,
+  user_id: [34m[1m24[0m,
+  created_at:
+   Tue, 27 May 2025 03:03:19.589221000 UTC +00:00,
+  updated_at:
+   Tue, 27 May 2025 03:03:19.589221000 UTC +00:00,
+  tag_list: [36m[1mnil[0m[32m>[0m,
+ [32m#<Map:0x00007f18c3e73208[0m
+  id: [34m[1m10[0m,
+  name: [31m[1m"[0m[31mParadise Place[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mEt magnam dignissimos sapiente.[0m[31m[1m"[0m,
+  permission: [31m[1m"[0m[31mshared[0m[31m[1m"[0m,
+  user_id: [34m[1m25[0m,
+  created_at:
+   Tue, 27 May 2025 03:03:19.597655000 UTC +00:00,
+  updated_at:
+   Tue, 27 May 2025 03:03:19.597655000 UTC +00:00,
+  tag_list: [36m[1mnil[0m[32m>[0m]
