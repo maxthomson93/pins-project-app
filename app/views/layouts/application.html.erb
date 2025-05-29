@@ -10,9 +10,9 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
     <%= render 'layouts/navbar' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   </body>
 </html>
