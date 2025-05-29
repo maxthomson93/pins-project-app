@@ -1,4 +1,5 @@
 <div class="search_place_container search-bar-container-mb" data-controller="google-maps" data-markers="<%= @markers.to_json %>">
+
   <%# <input type="text" id="place-search" data-google-maps-target="search" placeholder="Search for a place..." />
   <button id="search-btn" data-action="click->google-maps#search">Search</button> %>
   <div id="search-results">
@@ -16,12 +17,3 @@
         <%= form.submit "Find Communities", class: "button" %>
       <% end %>
     </div>
-    <!--<p class="p-0"><%#= pluralize(@maps.count, "community") %> found</p> -->
-    <div class="map-list container">
-      <% @maps.each_with_index do |map, i| %>
-        <% color = @colors[i % @colors.length ] %>
-        <%= render "maps_filter_card", map: map, i: i, color: color %>
-      <% end %>
-    </div>
-  </div>
-</div>

@@ -3,13 +3,12 @@ class Owner::MapsController < ApplicationController
       @maps = current_user.maps
       @pins = @maps.map(&:pins).flatten
       @places = @pins.map(&:place).uniq
-      @colors = %w[red blue green orange purple pink yellow ltblue]
 
 
       @markers = @places.map do |place|
         map = place.pins.first.map
         map_index = @maps.index(map)
-        color = @colors[map_index % @colors.length]
+
         {
           lat: place.latitude,
           lng: place.longitude,

@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 
+# gem 'acts_as_favoritor'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
 
@@ -58,7 +60,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'geocoder'
 gem 'google_places'
-# gem 'acts_as_votable'
+gem 'acts_as_votable'
 
 group :development, :test do
   gem "dotenv-rails"
