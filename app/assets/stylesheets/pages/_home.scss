@@ -1,1 +1,45 @@
 // Specific CSS for your home-page
+.home-hero {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), image-url("pins_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+
+  .hero-content {
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .explore-btn {
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border-radius: 25px;
+      background-color: #52946B;
+      color: white;
+      border: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: white;
+        color: #52946B;
+        border: 2px solid #52946B;
+      }
+    }
+  }
+}
