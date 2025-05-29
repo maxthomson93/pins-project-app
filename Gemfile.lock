@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 898dbd8e5378eae8333887192d096acbdeb8bd11
+  branch: main
+  specs:
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
+
+GIT
   remote: https://github.com/heartcombo/simple_form.git
   revision: c2c7faf3e532072e1ef511a97d677ae0e7c38957
   specs:
@@ -144,8 +152,6 @@ GEM
     erb (5.0.1)
     erubi (1.13.1)
     execjs (2.10.0)
-    faker (3.5.1)
-      i18n (>= 1.8.11, < 2)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -371,7 +377,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
-  faker
+  faker!
   font-awesome-sass (~> 6.1)
   geocoder
   google_places

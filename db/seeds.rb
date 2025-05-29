@@ -12,6 +12,8 @@ user1 = User.create!(email: "test1@example.com", password: "123456")
 user2 = User.create!(email: "test2@example.com", password: "123456")
 user3 = User.create!(email: "test3@example.com", password: "123456")
 
+
+
 puts "Creating maps..."
 map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: user1)
 map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: user2)
@@ -134,8 +136,6 @@ vintage_tokyo3 = Place.create!(
   longitude: 139.703056,
   opening_hours: "11:00 - 22:00"
 )
-
-
 
 puts "Creating pins"
 # Pins for map1

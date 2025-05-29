@@ -84,5 +84,5 @@ group :test do
 end
 
 group :development do
-  gem 'faker'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 end
