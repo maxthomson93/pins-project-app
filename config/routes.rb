@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
   resources :places, only: [:show] do
     resources :reviews, only: [:create]
+    member do
+      post 'upvote'
+    end
   end
   resources :reviews, only: [:create]
   resources :users, only: [:show]

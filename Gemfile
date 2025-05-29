@@ -58,7 +58,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'geocoder'
 gem 'google_places'
-# gem 'acts_as_votable'
+gem 'acts_as_votable'
 
 group :development, :test do
   gem "dotenv-rails"

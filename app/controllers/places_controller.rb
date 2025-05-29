@@ -25,4 +25,13 @@ class PlacesController < ApplicationController
       format.json { render json: @results }
     end
   end
+
+  def upvote
+    @place = Place.find(params[:id])
+    @place.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_to @place }
+      format.json { render json: { votes: @place.get_upvotes.size } }
+    end
+  end
 end
