@@ -4,6 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 import GMaps from "gmaps"
 // Connects to data-controller="google-maps"
 export default class extends Controller {
+  static targets = ["search", "map", "checkboxes"]
   static values = { markers: Array }
 
   connect() {
@@ -32,5 +33,13 @@ export default class extends Controller {
     } else {
       this.map.fitLatLngBounds(markers);
     }
+  }
+
+
+  filterToggle() {
+    const checkedIndexes = this.checkboxesTargets.filter(cb => cb.checked).map(cb => parseInt(cb.dataset.mapIndex, 10) );
+    const filteredMarkers = this.allMarkers.filter(marker => checkedIndexes.includes(marker.map_index));
+
+    this.showMarkers(filteredMarkers);
   }
 }
