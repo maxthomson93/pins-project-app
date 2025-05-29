@@ -1,12 +1,9 @@
 <div class="map-filter-card">
   <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
   <div class="map-filter-card-infos">
-    <div class="d-flex gap-3 align-items-center">
-      <h2><%= map.name %></h2>
-      <h3><%= "#{number_with_delimiter(map.users.count)}  " %> <i class="fa-solid fa-user"></i></h3>
-    </div>
+    <h2><%= map.name %></h2>
     <p class="description"><%= map.description %></p>
-    <p></p>
+    <!--<p><i class="fa-solid fa-user"></i><%#= "#{number_with_delimiter(map.users.count)}  " %></p> -->
   </div>
   <div class="toggle-wrapper">
     <input
