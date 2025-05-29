@@ -1,34 +1,40 @@
-.map-card {
+.map-filter-card {
   overflow: hidden;
   height: 80px;
   background: white;
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   padding-right: 5px; /* add padding on the right for icon */
 }
 
-.map-card i.fa-solid.fa-bookmark {
+.map-filter-card i.fa-solid.fa-bookmark {
   margin-left: auto;   /* push icon to the right */
   padding: 5px;
   font-size: 1rem;
   color: #52946B;
 }
 
-.map-card img {
+.map-filter-card img {
   padding: 12px;
   height: 100%;
   width: 80px;
   object-fit: cover;
 }
 
-.map-card h2 {
+.map-filter-card h2 {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
 }
 
-.map-card p {
+.map-filter-card h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.map-filter-card p {
   font-size: 14px;
   line-height: 1;
   opacity: .7;
@@ -36,7 +42,8 @@
   margin-top: 4px;
 }
 
-.map-card .maps-card-infos {
+.map-filter-card-infos {
+  flex-grow: 2;
 }
 
 .text-top {
@@ -45,7 +52,7 @@
   right: 0px;
 }
 
-.map-card .member-count {
+.map-filter-card .member-count {
   font-size: 14px;
   opacity: 0.7;
   margin: 2px 0; /* small margin top and bottom */
