@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, only: [:upvote]
   def show
     @place = Place.find(params[:id])
-    @reviews = @place.reviews
+    @reviews = @place.reviews.order(created_at: :desc)
   end
 
   def search
