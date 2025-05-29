@@ -17,9 +17,9 @@ export default class extends Controller {
     })
 
     if (response.ok) {
-      const icon = this.iconTarget
-      icon.classList.toggle("fa-bookmark")
-      icon.classList.toggle("fa-thumbs-up")
+      const iconContainer = this.iconTarget
+      iconContainer.innerHTML = '<i data-membership-target="icon" class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>'
+
     } else {
       console.error("Membership creation failed.")
     }
