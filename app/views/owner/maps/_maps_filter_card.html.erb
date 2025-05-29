@@ -1,7 +1,9 @@
 <div class="map-filter-card">
   <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
   <div class="map-filter-card-infos">
-    <h2><%= map.name %></h2>
+    <%= link_to map_path(map), class:"text-decoration-none" do  %>
+      <h2><%= map.name %></h2>
+    <% end %>
     <p class="description"><%= map.description %></p>
     <!--<p><i class="fa-solid fa-user"></i><%#= "#{number_with_delimiter(map.users.count)}  " %></p> -->
   </div>

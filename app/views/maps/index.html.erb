@@ -1,2 +1,14 @@
-
+<div class="search-bar-container container" class="map-list";>
+  <%= form_with url: maps_path, method: :get, local: true do |form| %>
+    <div class="search-input">
+      <%= form.text_field :query, placeholder: "Communities", class: "form-control" %>
+    </div>
+    <%= form.submit "Find Communities", class: "button" %>
+  <% end %>
+</div>
+<p><%= pluralize(@maps.count, "community") %> found</p>
+<div class="map-list">
+  <% @maps.each do |map| %>
+    <%= render "maps/maps_index_card", map: map %>
+  <% end %>
 </div>

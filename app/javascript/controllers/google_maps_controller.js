@@ -9,11 +9,10 @@ export default class extends Controller {
   connect() {
     console.log("connected")
     this.map = new GMaps({ el: '#map', lat: 0, lng: 0 });
-    window.map = this.map.map;
     this.markers = JSON.parse(this.element.dataset.markers);
-    console.log(this.markers)
+
     this.displayedMarkers = [];
-    this.showMarkers(this.markers)
+    this.showMarkers(this.markers);
     // this.pins = this.map.addMarkers(this.markers);
   }
 
