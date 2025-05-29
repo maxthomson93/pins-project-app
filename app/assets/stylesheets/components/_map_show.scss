@@ -1,25 +1,48 @@
-.pins-list-section {
-  background-color: #f9f9f9;
-  padding: 1rem;
-  height: 50vh;
-  overflow-y: auto;
+.home-hero {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), image-url("pins_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
 
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
+  .hero-content {
+    color: #FFD700; // texto amarillo suave
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
 
-  .pins-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
 
-    .pin-card {
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1rem;
+    p {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .explore-btn {
+      padding: 14px 36px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 30px;
+      background-color: #00FFAE;
+      color: #1a1a1a;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: white;
+        color: #00FFAE;
+        border: 2px solid #00FFAE;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      }
     }
   }
 }
