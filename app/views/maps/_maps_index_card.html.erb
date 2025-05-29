@@ -8,10 +8,16 @@
     <p class="description"><%= map.description %></p>
   </div>
   <div class="icon-container">
-    <%= link_to map_memberships_path(map), method: :post, class: "icon-button", data: {
-      action: "click->membership#join"
-    } do %>
-      <i data-membership-target="icon" class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+    <% if current_user.maps.include?(map) %>
+      <div data-membership-target="icon">
+        <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+      </div>
+    <% else %>
+      <%= link_to map_memberships_path(map), method: :post, class: "icon-button", data: { action: "click->membership#join" } do %>
+        <div data-membership-target="icon">
+          <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
