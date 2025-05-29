@@ -1,0 +1,22 @@
+<div class="map-filter-card">
+  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
+  <div class="map-filter-card-infos">
+    <div class="d-flex gap-3 align-items-center">
+      <h2><%= map.name %></h2>
+      <h3><%= "#{number_with_delimiter(map.users.count)}  " %> <i class="fa-solid fa-user"></i></h3>
+    </div>
+    <p class="description"><%= map.description %></p>
+    <p></p>
+  </div>
+  <div class="toggle-wrapper">
+    <input
+    type="checkbox"
+    class="map-filter filter-map-toggle <%= color %>-toggle" data-action="google-maps#filterToggle"  data-google-maps-target="checkboxes" data-map-index="<%= i %>"
+    id="map_<%=i%>"
+    checked
+   >
+      <label for="map_<%=i%>"></label>
+    </div>
+    <div class="member-count text-top">
+    </div>
+  </div>
