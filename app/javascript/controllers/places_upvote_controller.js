@@ -19,9 +19,17 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(data => {
-        data.votes = data.votes + 1
         this.countTarget.innerText = data.votes
         console.log("Upvote successful:", data.votes)
+        console.log("Upvote URL:", this.upvoteUrl)
+        const icon = this.element.querySelector("i.fa-thumbs-up")
+        if (data.liked) {
+          icon.classList.remove("fa-regular")
+          icon.classList.add("fa-solid")
+        } else {
+          icon.classList.remove("fa-solid")
+          icon.classList.add("fa-regular")
+        }
       })
   }
 

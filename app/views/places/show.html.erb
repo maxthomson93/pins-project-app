@@ -13,7 +13,7 @@
 
     <div data-controller="places-upvote">
       <a href="<%= upvote_place_path(@place) %>" data-action="click->places-upvote#upvote" id="upvote-link" class="text-decoration-none text-black d-flex align-items-center gap-2">
-        <i class="fa-solid fa-thumbs-up"></i>
+        <i class="<%= current_user.voted_up_on?(@place) ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
         <span data-places-upvote-target="count"><%= @place.get_upvotes.size %></span>
       </a>
     </div>
