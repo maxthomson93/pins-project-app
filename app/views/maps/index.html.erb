@@ -1,9 +1,9 @@
 <div class="search-bar-container container" class="map-list";>
   <%= form_with url: maps_path, method: :get, local: true do |form| %>
     <div class="search-input">
-      <%= form.text_field :query, placeholder: "Communities", class: "form-control" %>
+      <%= form.text_field :query, placeholder: "Find Communities", class: "form-control" %>
     </div>
-    <%= form.submit "Find Communities", class: "button" %>
+    <%= form.submit "search", class: "button" %>
   <% end %>
 </div>
 <p><%= pluralize(@maps.count, "community") %> found</p>
