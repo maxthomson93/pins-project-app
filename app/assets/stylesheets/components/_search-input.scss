@@ -1,4 +1,7 @@
 .search-bar-container {
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
   width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
