@@ -1,5 +1,6 @@
 puts "Cleaning database..."
 
+ActsAsVotable::Vote.destroy_all
 Review.destroy_all
 Pin.destroy_all
 Place.destroy_all
@@ -8,16 +9,37 @@ Map.destroy_all
 User.destroy_all
 
 puts "Creating users..."
-user1 = User.create!(email: "test1@example.com", password: "123456")
-user2 = User.create!(email: "test2@example.com", password: "123456")
-user3 = User.create!(email: "test3@example.com", password: "123456")
+users = []
+30.times do |i|
+  users << User.create!(
+    email: "test#{i+1}@example.com",
+    password: "123456"
+  )
+end
+
 
 puts "Creating maps..."
-map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: user1)
-map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: user2)
-map3 = Map.create!(name: "foodie", description: "The best in Tokyo", user: user3)
-map4 = Map.create!(name: "Vintage Heaven", description: "A collection of my favorite vintage stores", user: user2)
-map5 = Map.create!(name: "Vintage Koenji", description: "Vintage stores in Koenji are the best!", user: user3)
+map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: users[0])
+map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: users[1])
+map3 = Map.create!(name: "foodie", description: "The best in Tokyo", user: users[2])
+map4 = Map.create!(name: "Vintage Heaven", description: "A collection of my favorite vintage stores", user: users[1])
+map5 = Map.create!(name: "Vintage Lover", description: "Vintage stores in Koenji are the best!", user: users[2])
+map_names = [
+  "Cozy Bookstores",
+  "Vegan Eats",
+  "Craft Beer Tour",
+  "Tokyo Dessert Map",
+  "Budget Bites",
+  "Luxury Dining"
+]
+maps = []
+map_names.each_with_index do |name, i|
+  maps << Map.create!(
+    name: name,
+    description: "Explore #{name} in Tokyo!",
+    user: users.first
+  )
+end
 
 puts "Creating places..."
 Meguro_cantonese = Place.create!(
@@ -109,6 +131,14 @@ vintage4 = Place.create!(
   longitude: 139.64772373387387,
   opening_hours: "11:00 - 22:00"
 )
+vintage5 = Place.create!(
+  title: "ガソリン",
+  address: "〒166-0003 東京都杉並区高円寺南３丁目３７−１",
+  category: "Vintage Store",
+  latitude: 35.70462840760907,
+  longitude: 139.6510305985925,
+  opening_hours: "11:00 - 22:00"
+)
 
 vintage_tokyo1 = Place.create!(
   title: "NUIR VINTAGE",
@@ -134,6 +164,22 @@ vintage_tokyo3 = Place.create!(
   longitude: 139.703056,
   opening_hours: "11:00 - 22:00"
 )
+vintage_tokyo4 = Place.create!(
+  title: "RAGTAG 新宿店",
+  address: "〒160-0022 東京都新宿区新宿３丁目３２−１０ T&Tビル 4F",
+  category: "Vintage Store",
+  latitude: 35.690389359861015,
+  longitude: 139.70422535731856,
+  opening_hours: "11:00 - 22:00"
+)
+vintage_tokyo5 = Place.create!(
+  title: "VINTAGE QOO TOKYO",
+  address: "〒150-0001 東京都渋谷区神宮前５丁目２−６ コロネード神宮前 B1F-2F",
+  category: "Vintage Store",
+  latitude: 35.66607347030242,
+  longitude: 139.7094239846591,
+  opening_hours: "11:00 - 22:00"
+)
 
 
 
@@ -142,19 +188,19 @@ puts "Creating pins"
 pin1 = Pin.create!(
   label: "British Pub",
   place: British_pub,
-  user: user1,
+  user: users[0],
   map: map1
 )
 pin2 = Pin.create!(
   label: "Irish Pub",
   place: Irish_pub,
-  user: user1,
+  user: users[0],
   map: map1
 )
 pin3 = Pin.create!(
   label: "Traditional Pub",
   place: Old_arrow,
-  user: user1,
+  user: users[0],
   map: map1
 )
 
@@ -162,7 +208,7 @@ pin3 = Pin.create!(
 pin1 = Pin.create!(
   label: "Convenience Store",
   place: FamilyMart,
-  user: user2,
+  user: users[1],
   map: map2
 )
 
@@ -171,19 +217,19 @@ pin1 = Pin.create!(
 pin1 = Pin.create!(
   label: "Cantonese Cuisine",
   place: Meguro_cantonese,
-  user: user3,
+  user: users[2],
   map: map3
 )
 pin2 = Pin.create!(
   label: "Italian Cuisine",
   place: Shibuya_italian,
-  user: user3,
+  user: users[2],
   map: map3
 )
 pin3 = Pin.create!(
   label: "Japanese Cuisine",
   place: Shinjuku_japanese,
-  user: user3,
+  user: users[2],
   map: map3
 )
 
@@ -191,44 +237,62 @@ pin3 = Pin.create!(
 pin1 = Pin.create!(
   label: "Vintage Store",
   place: vintage_tokyo1,
-  user: user2,
+  user: users[1],
   map: map4
 )
 pin2 = Pin.create!(
   label: "Vintage Store",
   place: vintage_tokyo2,
-  user: user2,
+  user: users[1],
   map: map4
 )
 pin3 = Pin.create!(
   label: "Vintage Store",
   place: vintage_tokyo3,
-  user: user2,
+  user: users[1],
+  map: map4
+)
+pin4 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage_tokyo4,
+  user: users[1],
+  map: map4
+)
+pin5 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage_tokyo5,
+  user: users[1],
   map: map4
 )
 # Pins for map5
 pin1 = Pin.create!(
   label: "Vintage Store",
   place: vintage1,
-  user: user3,
+  user: users[2],
   map: map5
 )
 pin2 = Pin.create!(
   label: "Vintage Store",
   place: vintage2,
-  user: user3,
+  user: users[2],
   map: map5
 )
 pin3 = Pin.create!(
   label: "Vintage Store",
   place: vintage3,
-  user: user3,
+  user: users[2],
   map: map5
 )
 pin4 = Pin.create!(
   label: "Vintage Store",
   place: vintage4,
-  user: user3,
+  user: users[2],
+  map: map5
+)
+pin5 = Pin.create!(
+  label: "Vintage Store",
+  place: vintage5,
+  user: users[2],
   map: map5
 )
 # puts "Creating reviews..."
@@ -236,16 +300,28 @@ pin4 = Pin.create!(
 # Review.create!(content: "The pasta was overcooked.", title: "Not Impressed", recommended: 0, pin: pin2, user: user2)
 # Review.create!(content: "Authentic Japanese flavors!", title: "A Taste of Japan", recommended: 1, pin: pin3, user: user1)
 puts "Creating memberships..."
-Membership.create!(user: user1, map: map1)
-Membership.create!(user: user1, map: map2)
-Membership.create!(user: user1, map: map3)
-Membership.create!(user: user2, map: map1)
-Membership.create!(user: user2, map: map2)
-Membership.create!(user: user2, map: map3)
-Membership.create!(user: user2, map: map4)
-Membership.create!(user: user3, map: map1)
-Membership.create!(user: user3, map: map2)
-Membership.create!(user: user3, map: map3)
-Membership.create!(user: user3, map: map5)
+Membership.create!(user: users[0], map: map1)
+Membership.create!(user: users[0], map: map2)
+Membership.create!(user: users[0], map: map3)
+Membership.create!(user: users[1], map: map1)
+Membership.create!(user: users[1], map: map2)
+Membership.create!(user: users[1], map: map3)
+Membership.create!(user: users[1], map: map4)
+Membership.create!(user: users[2], map: map1)
+Membership.create!(user: users[2], map: map2)
+Membership.create!(user: users[2], map: map3)
+Membership.create!(user: users[2], map: map5)
+# Fake votes for places
+puts "Creating fake votes..."
+
+users = User.all
+places = Place.all
+
+places.each do |place|
+  # Randomly pick 5-15 users to upvote each place
+  users.sample(rand(5..25)).each do |user|
+    place.liked_by(user)
+  end
+end
 
 puts "✅ Seeding complete!"
