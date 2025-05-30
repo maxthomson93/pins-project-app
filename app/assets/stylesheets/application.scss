@@ -14,6 +14,7 @@
 
 body {
   font-family: $body-font;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,4 +46,14 @@ h3 {
   color: #52946B;
   font-size: 0.8rem; // smaller for mobile (approx. 18px)
   font-style: italic;
+}
+
+.fa-arrow-left {
+  color: #a7c4b2;
+  font-size: 2rem;
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1000;
 }
