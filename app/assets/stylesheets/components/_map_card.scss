@@ -2,6 +2,7 @@
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
+  align-items: flex-start;
 
   .map-avatar {
     width: 60px;
@@ -17,9 +18,17 @@
     width: 100%;
   }
 
-  .map-info {
+  .map-info-link {
+    text-decoration: none;
+    color: inherit;
     flex-grow: 1;
 
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  .map-info {
     h2 {
       font-size: 1.1rem;
       margin: 0;

@@ -2,13 +2,15 @@
   <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
 
   <div class="map-card-content">
-    <div class="map-info">
-      <h2><%= map.name %></h2>
-      <div class="member-count">
-        <%= number_with_delimiter(map.users.count) %> members
+    <%= link_to map_path(map), class: "map-info-link" do %>
+      <div class="map-info">
+        <h2><%= map.name %></h2>
+        <div class="member-count">
+          <%= number_with_delimiter(map.users.count) %> members
+        </div>
+        <p class="description"><%= map.description %></p>
       </div>
-      <p class="description"><%= map.description %></p>
-    </div>
+    <% end %>
 
     <div class="icon-container">
       <% if current_user.maps.include?(map) %>
