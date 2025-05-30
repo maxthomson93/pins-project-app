@@ -10,9 +10,13 @@
   </div>
   <div class="reviews">
     <div class="col-10 offset-1 d-flex gap-3 mb-3 justify-content-between">
-      <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <i class="fa-solid fa-thumbs-up"></i>
+
+    <div data-controller="places-upvote">
+      <a href="<%= upvote_place_path(@place) %>" data-action="click->places-upvote#upvote" id="upvote-link" class="text-decoration-none text-black d-flex align-items-center gap-2">
+        <i class="<%= current_user.voted_up_on?(@place) ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
+        <span data-places-upvote-target="count"><%= @place.get_upvotes.size %></span>
       </a>
+    </div>
       <a
         href="https://www.google.com/maps/dir/?api=1&destination=<%= @place.latitude %>,<%= @place.longitude %>"
         target="_blank"
@@ -22,21 +26,27 @@
         <i class="fa-solid fa-route" style="color: #52946B; font-size: 2rem;"></i>
       </a>
     </div>
-    <div class="collapse" id="collapseExample">
-      <div class="col-10 offset-1">
-        <%= form_with model: [@place, Review.new], local: true do |f| %>
-          <div class="mb-3">
-            <%= f.label :content, "Add a review", class: "form-label" %>
-            <%= f.text_area :content, rows: 3, class: "form-control" %>
-          </div>
-          <%= f.submit "submit", class: "button" %>
-        <% end %>
-      </div>
-    </div>
+    
     
     <div class="reviews col-10 offset-1 mt-4">
       <h1>Reviews:</h1>
-      <%= render @reviews %>
+      <a class="text-decoration-none text-black" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <h3>Add a review?</h3>
+        
+      </a>
+      <div class="collapse" id="collapseExample">
+        <div class="col-10">
+          <%= form_with model: [@place, Review.new], local: true do |f| %>
+            <div class="mb-3">
+              <%= f.text_area :content, rows: 3, class: "form-control" %>
+            </div>
+            <%= f.submit "submit", class: "button" %>
+          <% end %>
+        </div>
+      </div>
+      <% @reviews.each do |review| %>
+        <%= render 'reviews/review', review: review %>
+      <% end %>
     </div>
   </div>
   
