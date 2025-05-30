@@ -1,11 +1,13 @@
 class MapsController < ApplicationController
+
   def index
     if params[:query].present?
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%")
     else
-      @maps = Map.all
+      @maps = current_user.maps
     end
   end
+
   def show
     @map = Map.find(params[:id])
     @pins = @map.pins
