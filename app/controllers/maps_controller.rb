@@ -1,10 +1,10 @@
 class MapsController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     if params[:query].present?
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%")
     else
-      @maps = current_user.maps
+      @maps = Map.all
     end
   end
 

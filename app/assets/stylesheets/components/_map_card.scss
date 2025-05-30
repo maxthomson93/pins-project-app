@@ -1,53 +1,61 @@
 .map-card {
-  overflow: hidden;
-  height: 80px;
-  background: white;
   display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
   align-items: flex-start;
-  position: relative;
-  padding-right: 5px; /* add padding on the right for icon */
-}
 
-.map-card i.fa-solid.fa-bookmark {
-  margin-left: auto;   /* push icon to the right */
-  padding: 5px;
-  font-size: 1rem;
-  color: #52946B;
-}
+  .map-avatar {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
 
-.map-card img {
-  padding: 12px;
-  height: 100%;
-  width: 80px;
-  object-fit: cover;
-}
+  .map-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
 
-.map-card h2 {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0;
-}
+  .map-info-link {
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
 
-.map-card p {
-  font-size: 14px;
-  line-height: 1;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 4px;
-}
+    &:hover {
+      opacity: 0.85;
+    }
+  }
 
-.map-card .maps-card-infos {
-}
+  .map-info {
+    h2 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
 
-.text-top {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
+    .member-count {
+      font-style: italic;
+      font-size: 0.9rem;
+    }
 
-.map-card .member-count {
-  font-size: 14px;
-  opacity: 0.7;
-  margin: 2px 0; /* small margin top and bottom */
-  font-style: italic;
+    .description {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #555;
+    }
+  }
+
+  .icon-container {
+    margin-left: 12px;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-button {
+    border: none;
+    background: none;
+    padding: 0;
+  }
 }
