@@ -46,8 +46,8 @@
                   data-lng="<%= place.longitude %>">
                   <div class="pincard-text">
                     <h2><%= place.title %></h2>
-                    <p><strong>Address:</strong> <%= place.address %></p>
-                    <p><strong>Opening Hours:</strong> <%= place.opening_hours %></p>
+                    <p><%= place.address %></p>
+                    <p>Opening Hours: <%= place.opening_hours %></p>
                   </div>
                   <%= link_to place_path(place), class: "btn-location-pin" do %>
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
@@ -66,4 +66,3 @@
       </div>
     </div>
   </div>
-</div>
