@@ -21,9 +21,11 @@
   <div class="overflow-scroll-list search-bar-container-mb">
     <!--<p class="p-0"><%#= pluralize(@maps.count, "community") %> found</p> -->
     <div class="container">
+      <% if current_user && current_user.maps %>
       <% @maps.each_with_index do |map, i| %>
         <% color = @colors[i % @colors.length ] %>
         <%= render "maps_filter_card", map: map, i: i, color: color %>
+      <% end %>
       <% end %>
     </div>
   </div>

@@ -176,9 +176,30 @@ export default class extends Controller {
     }];
 
   connect() {
-    console.log("connected")
+    // Default location (e.g., Tokyo)
+    let lat = 35.6895;
+    let lng = 139.6917;
     const styles = this.#snazzyStyle;
-    this.map = new GMaps({ el: '#map', lat: 0, lng: 0 });
+
+    if (!document.body.dataset.signedIn) {
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+            this.initMap(lat, lng);
+        }, () => {
+            // If denied, fallback to default
+            this.initMap(lat, lng);
+        });
+        } else {
+        this.initMap(lat, lng);
+        }
+    } else {
+        this.initMap(lat, lng);
+    }
+}
+  initMap(lat, lng) {
+    this.map = new GMaps({ el: '#map', lat: lat, lng: lng }); // Default to Tokyo coordinates
     this.markers = JSON.parse(this.element.dataset.markers);
 
     this.displayedMarkers = [];
