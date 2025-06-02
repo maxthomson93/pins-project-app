@@ -29,9 +29,6 @@ class Owner::MapsController < ApplicationController
           # (you will also need to create the partial "/flats/map_box")
         }
       end
-    # else
-    #   @markers = []
     end
-
   end
 end
