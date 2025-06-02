@@ -5,17 +5,12 @@
       <h2><%= map.name %></h2>
     <% end %>
     <p class="description"><%= map.description %></p>
-    <!--<p><i class="fa-solid fa-user"></i><%#= "#{number_with_delimiter(map.users.count)}  " %></p> -->
   </div>
-  <div class="toggle-wrapper">
-    <input
-    type="checkbox"
-    class="map-filter filter-map-toggle <%= color %>-toggle" data-action="google-maps#filterToggle"  data-google-maps-target="checkboxes" data-map-index="<%= i %>"
-    id="map_<%=i%>"
-    checked
-   >
-      <label for="map_<%=i%>"></label>
-    </div>
-    <div class="member-count text-top">
-    </div>
+  <div class="pin-toggle checked <%= color %>-pin" data-action="click->google-maps#filterToggle" data-google-maps-target="pinsToggle" data-map-index="<%= i %>"
+    id="map_<%=i%>" >
+    <i class="fa-solid fa-location-dot map-filter-icon "></i>
+    <%# <i class="fa-regular fa-eye map-filter-icon"></i> %>
   </div>
+  <div class="member-count text-top">
+  </div>
+</div>

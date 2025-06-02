@@ -6,7 +6,8 @@ class Owner::MapsController < ApplicationController
       @maps = current_user.maps
       @pins = @maps.map(&:pins).flatten
       @places = @pins.map(&:place).uniq
-      @colors = %w[red blue green orange purple pink yellow ltblue]
+      @colors = %w[red blue green orange purple brown]
+
 
       @markers = @places.map do |place|
         map = place.pins.first.map
@@ -15,11 +16,11 @@ class Owner::MapsController < ApplicationController
         {
           lat: place.latitude,
           lng: place.longitude,
-          # icon: {
-          #   url: helpers.asset_url("pins_logo.png"),
-          #   size: { width: 32, height: 32 },
-          #   scaledSize: { width: 32, height: 32 }
-          # },
+          icon: {
+            url: helpers.asset_url("pins/pin_#{color}.png"),
+            size: { width: 32, height: 32 },
+            scaledSize: { width: 32, height: 32 }
+          },
           infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) },
           color: color,
           map_index: map_index
