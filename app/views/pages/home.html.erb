@@ -7,8 +7,8 @@
   <h2>Hidden Tokyo</h2>
   <div class="swiper mySwiper"> <%# Consider giving this a unique ID or class if you have multiple Swipers %>
     <div class="swiper-wrapper">
-      <% [1, 2, 3, 3, 4, 5].each do |map_id| %>
-        <% map = Map.find(map_id) %>
+      <% @maps = Map.where(permission: "public_access") %>
+      <% @maps.limit(5).each do |map| %>
         <div class="swiper-slide">
           <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('shibuya.jpg')})" do %>
             <%= map.name %>
@@ -22,8 +22,8 @@
   <h2>Pins Team Recommendations!</h2>
   <div class="swiper mySwiper2"> <%# Give this one a different ID or class %>
     <div class="swiper-wrapper">
-      <% [7, 8, 6].each do |map_id| %>
-        <% map = Map.find(map_id) %>
+    <% @maps = Map.where(permission: "public_access") %>
+      <% @maps.limit(3).each do |map| %>
         <div class="swiper-slide">
           <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('tokyo_tower.jpeg')})" do %>
             <%= map.name %>

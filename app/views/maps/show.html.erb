@@ -52,8 +52,14 @@
                     <p><%= place.address %></p>
                     <p>Opening Hours: <%= place.opening_hours %></p>
                   </div>
-                  <%= link_to place_path(place), class: "btn-location-pin" do %>
-                    <i class="fa-solid fa-circle-info"></i>
+                  <% if current_user %>
+                    <%= link_to place_path(place), class: "btn-location-pin" do %>
+                      <i class="fa-solid fa-circle-info"></i>
+                    <% end %>
+                  <% else %>
+                    <div class="btn-location-pin disabled">
+                      <i class="fa-solid fa-circle-info"></i>
+                    </div>
                   <% end %>
                 </li>
               <% else %>
