@@ -1,38 +1,46 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('<%= asset_path("pins_background.png") %>');">
-  <div class="container">
-    <h1>Create. Share. Pin.</h1>
-    <p>Create, share and follow social maps to find the spots that make your city home.</p>
-    <%= link_to "Start Discovering", owner_maps_path, class:"button "%>
-  </div>
-  <h2>Hidden Tokyo</h2>
-  <div class="swiper mySwiper"> <%# Consider giving this a unique ID or class if you have multiple Swipers %>
-    <div class="swiper-wrapper">
-      <% @maps = Map.where(permission: "public_access") %>
-      <% @maps.limit(5).each do |map| %>
-        <div class="swiper-slide">
-          <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('shibuya.jpg')})" do %>
-            <%= map.name %>
-          <% end %>
-        </div>
-      <% end %>
+<div class="body-wrap" style="position: relative;
+  background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('<%= asset_path("pins_background.png") %>');
+  background-size: cover;
+  background-position: center;
+  ">
+  <div class="white-overlay" style="
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255,255,255,0.9);
+    z-index: 1;
+  "></div>
+  <div class="banner" style="position: relative; z-index: 2;">
+    <div class="container">
+      <h1>Create. Share. Pin.</h1>
+      <p>Create, share and follow social maps to find the spots that make your city home.</p>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
-  <%# Pins Team Recommendations! Category %>
-  <h2>Pins Team Recommendations!</h2>
-  <div class="swiper mySwiper2"> <%# Give this one a different ID or class %>
-    <div class="swiper-wrapper">
-    <% @maps = Map.where(permission: "public_access") %>
-      <% @maps.limit(3).each do |map| %>
-        <div class="swiper-slide">
-          <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('tokyo_tower.jpeg')})" do %>
-            <%= map.name %>
-          <% end %>
-        </div>
-      <% end %>
+    <p>Hidden Tokyo</p>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <% @maps = Map.where(permission: "public_access") %>
+        <% @maps.limit(5).each do |map| %>
+          <div class="swiper-slide">
+            <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('shibuya.jpg')})" do %>
+              <%= map.name %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
-    <%# If you need pagination/navigation for this Swiper, add them here %>
-    <div class="swiper-pagination"></div>
+    <p>Pins Team Recommendations!</p>
+    <div class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        <% @maps = Map.where(permission: "public_access") %>
+        <% @maps.limit(3).each do |map| %>
+          <div class="swiper-slide">
+            <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('tokyo_tower.jpeg')})" do %>
+              <%= map.name %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
   </div>
-</div>
 </div>
