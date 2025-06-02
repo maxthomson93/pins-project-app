@@ -16,9 +16,6 @@
         <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-        <%= f.input :tag_list,
-            label: "Tell us what you're looking for (comma separated)",
-            input_html: { value: f.object.tag_list.join(', ') } %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "Sign up", class: "button" %>
