@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,7 +20,13 @@ Rails.application.routes.draw do
     end
   end
   resources :reviews, only: [:create]
-  resources :users, only: [:show]
+  
+  resources :users do
+    member do
+      get 'tags'
+      patch 'tags'
+    end
+  end
   resources :pins, only: [:destroy]
   namespace :owner do
     resources :maps, only: :index

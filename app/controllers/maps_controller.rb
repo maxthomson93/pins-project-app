@@ -2,9 +2,9 @@ class MapsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     if params[:query].present?
-      @maps = Map.where("name ILIKE ?", "%#{params[:query]}%")
+      @maps = Map.where("name ILIKE ? AND permission = ?", "%#{params[:query]}%", "public_access")
     else
-      @maps = Map.all
+      @maps = Map.where(permission: "public_access")
     end
   end
 

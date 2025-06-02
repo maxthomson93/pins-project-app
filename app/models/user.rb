@@ -25,7 +25,7 @@ class User < ApplicationRecord
   private
 
   def create_favorite_map
-    favorite_map = maps_as_owner.create!(name: "Favorite", description: "My favorite places")
+    favorite_map = maps_as_owner.create!(name: "Favorite", description: "My favorite places", permission: 2)
     memberships.find_or_create_by!(map: favorite_map)
   end
 end

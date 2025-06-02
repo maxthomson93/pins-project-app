@@ -18,11 +18,11 @@ users = []
 end
 
 puts "Creating maps..."
-map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: users[0])
-map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: users[1])
-map3 = Map.create!(name: "foodie", description: "The best in Tokyo", user: users[2])
-map4 = Map.create!(name: "Vintage Heaven", description: "A collection of my favorite vintage stores", user: users[1])
-map5 = Map.create!(name: "Vintage Lover", description: "Vintage stores in Koenji are the best!", user: users[2])
+map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: users[0], permission: 0)
+map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: users[1], permission: 0)
+map3 = Map.create!(name: "foodie", description: "The best in Tokyo", user: users[2], permission: 0)
+map4 = Map.create!(name: "Vintage Heaven", description: "A collection of my favorite vintage stores", user: users[1], permission: 0)
+map5 = Map.create!(name: "Vintage Lover", description: "Vintage stores in Koenji are the best!", user: users[2], permission: 0)
 map_names = [
   "Cozy Bookstores",
   "Vegan Eats",
@@ -36,7 +36,8 @@ map_names.each_with_index do |name, i|
   maps << Map.create!(
     name: name,
     description: "Explore #{name} in Tokyo!",
-    user: users.first
+    user: users.first,
+    permission: 0
   )
 end
 
