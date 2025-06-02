@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   acts_as_taggable_on :tags
   has_one_attached :photo
+  has_many :maps, dependent: :destroy
   acts_as_voter
 
   has_many :reviews, dependent: :destroy

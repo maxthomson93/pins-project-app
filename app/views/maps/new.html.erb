@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Bring a new map into the world!</h1>
+  <!-- Title Field -->
+  <%= form_with model: @map, local: true do |form| %>
+    <div class="mb-3">
+      <label for="map_name" class="form-label">
+        <h2>Give your map a funky name</h2>
+      </label>
+      <%= form.text_field :name, class: "form-control", required: true %>
+    </div>
+    <div class="mb-3">
+      <label for="map_description" class="form-label">
+        <h2>Tell us about your map</h2>
+      </label>
+      <%= form.text_area :description, class: "form-control", rows: 4, maxlength: 300, required: true %>
+      <div class="form-text" id="charCount">
+        <h3>0 / 300</h3>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">
+        <h2>Sharing Preference</h2>
+      </label>
+      <div>
+        <label>
+          <input type="radio" name="map[permission]" value="public_access" required>
+          🔒 Keep it private
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="map[permission]" value="shared">
+          👥 Share it with friends
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="map[permission]" value="private_access">
+          🌍 Collaborate with the world
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="button">Create!</button>
+  <% end %>
+</div>
