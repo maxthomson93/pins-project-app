@@ -20,4 +20,25 @@ class MapsController < ApplicationController
       }
     end
   end
+
+  def new
+    @map = Map.new
+  end
+def create
+  @map = Map.new(map_params)
+  @map.user = current_user  # assign user manually
+
+  if @map.save
+    redirect_to @map
+  else
+    render :new, status: :unprocessable_entity
+  end
+end
+
+
+  private
+
+  def map_params
+    params.require(:map).permit(:name, :description, :permission)
+  end
 end
