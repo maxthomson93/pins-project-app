@@ -7,28 +7,31 @@ export default class extends Controller {
   static values = { markers: Array }
 
   connect() {
-    console.log("connected")
+    this.initMap();
+  }
+
+  initMap() {
     const styles = this.#snazzyStyle;
     this.map = new GMaps({
       el: '#map',
       lat: 0,
       lng: 0,
       mapTypeControl: false,
-      fullscreenControl: false,
-      cameraControl: false
-     });
+      cameraControl: false,
+      fullscreenControl: false
+    }); // Default to Tokyo coordinates
     this.markers = JSON.parse(this.element.dataset.markers);
+
     this.displayedMarkers = [];
     this.showMarkers(this.markers);
     // this.pins = this.map.addMarkers(this.markers);
-
-
     this.map.addStyle({
       styles: styles,
       mapTypeId: 'map_style'
     });
     this.map.setStyle('map_style');
   }
+
 
   search(event) {
     event.preventDefault()
@@ -56,9 +59,28 @@ export default class extends Controller {
   }
 
   reframe(markers = this.displayedMarkers) {
-    if (!markers) markers = [];
-    if (markers.length === 0) {
-      this.map.setZoom(2);
+    if (!markers || markers.length === 0) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            // Use lat and lng (e.g., center your map)
+            this.map.setCenter(lat, lng);
+            this.map.setZoom(14);
+          },
+          (error) => {
+            // Handle error or fallback
+            console.warn("Geolocation failed or denied:", error);
+            this.map.setCenter(35.6895, 139.6917); // fallback to Tokyo
+            this.map.setZoom(14);
+          }
+        );
+      } else {
+        // Geolocation not supported
+        this.map.setCenter(35.6895, 139.6917);
+        this.map.setZoom(14);
+      }
     } else if (markers.length === 1) {
       this.map.setCenter(markers[0].lat, markers[0].lng);
       this.map.setZoom(14);
@@ -76,6 +98,7 @@ export default class extends Controller {
     this.map.setZoom(20)
   }
 
+
   filterToggle(event) {
     // const checkedIndexes = this.checkboxesTargets.filter(cb => cb.checked).map(cb => parseInt(cb.dataset.mapIndex, 10) );
     event.currentTarget.classList.toggle("checked")
@@ -84,17 +107,6 @@ export default class extends Controller {
 
     this.showMarkers(filteredMarkers);
   }
-
-  filterPins(event) {
-    this.pinsToggleTargets.forEach( pin => pin.classList.remove("checked") );
-    event.currentTarget.classList.add("checked");
-    const filteredPins = this.markers.filter(marker => marker.map_index ==  event.currentTarget.dataset.mapIndex);
-    this.showMarkers(filteredPins);
-  }
-
-
-
-
 
   #snazzyStyle = [{
         "featureType": "all",
@@ -264,5 +276,4 @@ export default class extends Controller {
             }
         ]
     }];
-
 }
