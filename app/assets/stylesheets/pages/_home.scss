@@ -1,45 +1,73 @@
-// Specific CSS for your home-page
-.home-hero {
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), image-url("pins_background.png");
+/* Swiper container styles */
+.swiper {
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.swiper-wrapper {
+  display: flex;
+  gap: 16px;
+  overflow-x: scroll;;
+}
+
+.swiper-slide {
+  flex: 0 0 auto;
+  width: 140px; /* card width */
+}
+
+/* card styling */
+.card-category {
+  height: 140px;
+  border-radius: 12px;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  user-select: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+a {
+  text-decoration: none;  /* no underline */
+  color: inherit;         /* keep font color the same */
+  font-weight: normal;    /* keep font weight normal */
+}
+
+/* 3. Center all text */
+body, div, p, h1, h2, h3, h4, h5, h6, span, a {
   text-align: center;
-  padding: 20px;
+}
 
-  .hero-content {
-    color: white;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 
-    h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-    }
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 48px;
+  font-weight: bold;
+}
 
-    .explore-btn {
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      border-radius: 25px;
-      background-color: #52946B;
-      color: white;
-      border: none;
-      transition: all 0.3s ease;
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
 
-      &:hover {
-        background-color: white;
-        color: #52946B;
-        border: 2px solid #52946B;
-      }
-    }
-  }
+.banner h2 {
+  font-size: 24px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
