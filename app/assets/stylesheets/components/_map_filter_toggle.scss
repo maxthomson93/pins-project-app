@@ -72,3 +72,39 @@
 .filter-map-toggle.ltblue-toggle:checked + label::before {
   background-color: #5bc0de;
 }
+
+
+.pin-toggle {
+  margin-right: 10px;
+  color: gray;
+  transition: 0.3s;
+}
+
+.map-filter-icon {
+  font-size: 24px;
+}
+
+
+.red-pin.checked {
+  color: red;
+}
+
+.blue-pin.checked {
+  color: #266DD3;
+}
+
+.green-pin.checked {
+  color: #11270B;
+}
+
+.purple-pin.checked {
+  color: #8789C0;
+}
+
+.bronw-pin.checked {
+  color: #8789C0;
+}
+
+.orange-pin.checked {
+  color: #FF8C42;
+}

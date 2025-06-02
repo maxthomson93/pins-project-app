@@ -1,12 +1,11 @@
 <!-- app/views/maps/show.html.erb -->
-
 <div data-controller="google-maps"
      data-markers='<%= raw @markers.to_json %>'>
   <div class="g-map-sticky">
     <div id="map" style="width:100%; height:50vh;"></div>
     <%= link_to maps_path, class:"button-left-abs" do  %>
-<i class="fa-solid fa-arrow-left"></i>
-<% end %>
+      <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
   </div>
   <div class="container">
     <div class="pins-list-section">
@@ -54,7 +53,7 @@
                     <p>Opening Hours: <%= place.opening_hours %></p>
                   </div>
                   <%= link_to place_path(place), class: "btn-location-pin" do %>
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <i class="fa-solid fa-circle-info"></i>
                   <% end %>
                 </li>
               <% else %>

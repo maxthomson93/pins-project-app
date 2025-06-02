@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Bring a new map into the world!</h1>
+  <!-- Title Field -->
+  <%= form_with model: @map, local: true do |form| %>
+    <div class="mb-3">
+      <label for="map_name" class="form-label">
+        <h2>Give your map a funky name</h2>
+      </label>
+      <%= form.text_field :name, class: "form-control", required: true %>
+    </div>
+    <div data-controller="char-counter">
+      <h2>Describe your map</h2>
+      <%= form.text_area :description,
+        class: "form-control", rows: 4, maxlength: 300, required: true,
+        data: { char_counter_target: "textarea", action: "input->char-counter#onInput" } %>
+      <div class="form-text" id="charCount" data-char-counter-target="count">
+        0 / 300
+      </div>
+    </div>
+    <div data-controller="sharing">
+      <%= form.hidden_field :permission, value: "private_access", data: { sharing_target: "input" } %>
+      <div class="d-grid gap-2">
+        <button type="button"
+            class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
+            data-sharing-target="option"
+            data-value="private_access"
+            data-action="click->sharing#select">
+          <i class="fa-solid fa-lock"></i> Keep it private
+        </button>
+        <button type="button"
+            class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
+            data-sharing-target="option"
+            data-value="shared"
+            data-action="click->sharing#select">
+          <i class="fa-solid fa-people-group"></i> Share it with friends
+        </button>
+        <button type="button"
+            class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
+            data-sharing-target="option"
+            data-value="public_access"
+            data-action="click->sharing#select">
+          <i class="fa-solid fa-earth-asia"></i> Collaborate with the world
+        </button>
+      </div>
+      <div>
+        <div class="mt-4">
+          <button type="submit" class="button">Create!</button>
+        </div>
+      <% end %>
+    </div>

@@ -17,7 +17,6 @@ users = []
   )
 end
 
-
 puts "Creating maps..."
 map1 = Map.create!(name: "Real British Grub", description: "The best of British in Japan", user: users[0], permission: 0)
 map2 = Map.create!(name: "My fav conbini", description: "obsessed with conbini", user: users[1], permission: 0)

@@ -8,7 +8,6 @@
   border: none;
   border-radius: 8px;
   text-align: center;
-  cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -21,7 +20,6 @@
   background: transparent;
   border: none;
   padding: 0;
-  cursor: pointer;
 }
 
 .icon-button:focus {
