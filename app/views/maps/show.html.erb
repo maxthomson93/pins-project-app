@@ -1,82 +1,47 @@
 <!-- app/views/maps/show.html.erb -->
-<div data-controller="google-maps"
-     data-markers='<%= raw @markers.to_json %>'>
-  <div class="g-map-sticky">
+
+<%= render "shared/navbar" %>
+
+<div class="map-and-list">
+  <!-- Aquí va tu div para el mapa -->
+  <div data-controller="google-maps"
+       data-markers='<%= raw @markers.to_json %>'>
     <div id="map" style="width:100%; height:50vh;"></div>
-    <%= link_to maps_path, class:"button-left-abs" do  %>
+    <%= link_to maps_path, class: "button-left-abs" do %>
       <i class="fa-solid fa-arrow-left"></i>
     <% end %>
   </div>
-  <div class="container">
-    <div class="pins-list-section">
-      <div class="map-show-header">
-        <div class="text-info">
-          <h2><%= @map.name %></h2>
-          <p class="description"><%= @map.description %></p>
-        </div>
-        <% if current_user && current_user.maps.include?(@map) %>
-          <div class="icon-column">
-            <div data-membership-target="icon">
-              <i class="fa-solid fa-bookmark"
-                 style="color: #52946B; font-size: 1rem;"></i>
-            </div>
-            <div class="member-count">
-              <%= number_with_delimiter(@map.users.count) %> members
-            </div>
-          </div>
-        <% elsif current_user %>
-          <%= link_to map_memberships_path(@map),
-                      class: "icon-button",
-                      data: { turbo_method: :post, action: "click->membership#join" } do %>
-            <div class="icon-column">
-              <div data-membership-target="icon">
-                <i class="fa-regular fa-bookmark"
-                   style="color: #52946B; font-size: 1rem;"></i>
-              </div>
-              <div class="member-count">
-                <%= number_with_delimiter(@map.users.count) %> members
-              </div>
+
+  <!-- Lista de pines debajo del mapa: -->
+  <ul class="pins-list">
+    <% @map.pins.each do |pin| %>
+      <% place = pin.place %>
+      <% if place.present? %>
+        <li class="pin-card"
+            data-action="click->google-maps#focusOn"
+            data-lat="<%= place.latitude %>"
+            data-lng="<%= place.longitude %>">
+          <%= link_to place_path(place) do %>
+            <div class="pincard-text">
+              <h2><%= place.title %></h2>
+              <p><%= place.address %></p>
+              <p>Opening Hours: <%= place.opening_hours %></p>
             </div>
           <% end %>
-        <% end %>
-      </div>
 
-      <div class="overflow-scroll-list">
-        <% if @map.pins.any? %>
-          <ul class="pins-list">
-            <% @map.pins.each do |pin| %>
-              <% place = pin.place %>
-              <% if place.present? %>
-                <li class="pin-card"
-                    data-action="click->google-maps#focusOn"
-                    data-lat="<%= place.latitude %>"
-                    data-lng="<%= place.longitude %>">
-                  <div class="pincard-text">
-                    <h2><%= place.title %></h2>
-                    <p><%= place.address %></p>
-                    <p>Opening Hours: <%= place.opening_hours %></p>
-                  </div>
-                  <% if current_user %>
-                    <%= link_to place_path(place), class: "btn-location-pin" do %>
-                      <i class="fa-solid fa-circle-info"></i>
-                    <% end %>
-                  <% else %>
-                    <div class="btn-location-pin disabled">
-                      <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                  <% end %>
-                </li>
-              <% else %>
-                <li class="pin-card">
-                  <em>No place found.</em>
-                </li>
-              <% end %>
+          <% if current_user %>
+            <%= link_to place_path(place), class: "btn-location-pin" do %>
+              <i class="fa-solid fa-circle-info"></i>
             <% end %>
-          </ul>
-        <% else %>
-          <p>No pins yet in this map.</p>
-        <% end %>
-      </div>
-    </div>
-  </div>
+          <% else %>
+            <div class="btn-location-pin disabled">
+              <i class="fa-solid fa-circle-info"></i>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 </div>
+
+<!-- Aquí seguiría el resto de tu vista, si tienes más secciones abajo -->
