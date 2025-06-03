@@ -4,33 +4,31 @@ class MapsController < ApplicationController
 
   # GET /maps
   def index
-    # Si quieres mostrar **todos** los mapas (comunidades), descomenta la siguiente línea:
-    @maps = Map.all
+    status = params[:status] || "communities"
+    @status = status
+    if params[:query].present?
+      @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
+      client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
+      # You can use params[:lat] and params[:lng] for map center, or set defaults
+      spots = client.spots_by_query(params[:query])
 
-    # Si en cambio quieres que el índice muestre solamente los mapas del usuario logueado,
-    # usa esta otra línea y comenta la de arriba:
-    # @maps = user_signed_in? ? current_user.maps : Map.none
+      @places = spots.map do |spot|
+        Place.new(title: spot.name, latitude: spot.lat, longitude: spot.lng, address: spot.formatted_address, photo_url: spot.photos[0].fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
+      end
 
-    # Ahora @maps nunca será nil, así que en la vista index.html.erb podrás usar:
-    #   pluralize(@maps.count, "community")
-    # sin que lance error.
+    else
+      @maps = Map.where(permission: "public_access")
+      @places = []
+    end
   end
 
-  # GET /maps/:id
   def show
     @map    = Map.find(params[:id])
     @pins   = @map.pins
     @places = @pins.map(&:place).uniq
-
-    # Si el usuario está logueado, tomamos sus mapas para algún uso en la vista
     @maps = current_user.maps if user_signed_in?
-
-    # Preparamos un nuevo pin en caso de que la vista lo necesite (por formulario, etc.)
     @pin = Pin.new
-    # Si vienen parámetros como params[:pin][:map_id], los asignamos automáticamente
-    @pin.map_id = params[:pin][:map_id] if params[:pin]&.dig(:map_id).present?
-
-    # Construimos el array de marcadores para Google Maps (latitudes, longitudes, contentHTML)
+    @pin.map_id = params[:pin][:map_id] if params[:pin] && params[:pin][:map_id].present?
     @markers = @places.map do |place|
       {
         lat: place.latitude,
@@ -55,12 +53,12 @@ class MapsController < ApplicationController
     @map = Map.new(map_params)
     @map.user = current_user
 
-    if @map.save
-      redirect_to map_path(@map), notice: "Mapa creado correctamente."
-    else
-      render :new, status: :unprocessable_entity
-    end
+  if @map.save
+    redirect_to @map
+  else
+    render :new, status: :unprocessable_entity
   end
+end
 
   # GET /maps/:id/edit
   def edit

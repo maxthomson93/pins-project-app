@@ -7,15 +7,26 @@ export default class extends Controller {
     console.log("PlaceSearchController connected")
   }
 
-  search(event) {
-    event.preventDefault()
+  search() {
     const query = this.searchTarget.value.trim()
     if (query.length > 0) {
     fetch(`/places/search?query=${encodeURIComponent(query)}`)
       .then(response => response.json())
-      .then(data => {
+      .then(places => {
+        console.log(places);
         // Handle the search results here
-        console.log(data)
+        const container = document.getElementById('places-cards');
+        container.innerHTML = ""; // Clear previous results
+
+        places.forEach(place => {
+          const card = document.createElement('div');
+          card.className = 'place-card';
+          card.innerHTML = `
+            <h3>${place.name}</h3>
+            <p>${place.address}</p>
+          `;
+          container.appendChild(card);
+        });
       })
       .catch(error => {
         console.error('Error fetching search results:', error)

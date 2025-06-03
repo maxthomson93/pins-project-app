@@ -21,24 +21,42 @@ export default class extends Controller {
       mapTypeControl: false,
       zoom: 14,
       fullscreenControl: false
-    })
+    }); // Default to Tokyo coordinates
+    this.markers = JSON.parse(this.element.dataset.markers);
 
-
-    this.markers = JSON.parse(this.element.dataset.markers)
-
-
-    this.showMarkers(this.markers)
+    this.displayedMarkers = [];
+    this.showMarkers(this.markers);
+    // this.pins = this.map.addMarkers(this.markers);
+    this.map.addStyle({
+      styles: styles,
+      mapTypeId: 'map_style'
+    });
+    this.map.setStyle('map_style');
   }
 
-  showMarkers(markersArray) {
 
-    this.map.removeMarkers()
+  search(event) {
+    event.preventDefault()
+    const query = this.searchTarget.value.trim()
+    if (query.length > 0) {
+    fetch(`/places/search?query=${encodeURIComponent(query)}`)
+      .then(response => response.json())
+      .then(data => {
+        // Handle the search results here
+        console.log(data);
+        this.markers = data
+        this.showMarkers(data);
+      })
+      .catch(error => {
+        console.error('Error fetching search results:', error)
+      })
+    }
+  }
 
-
-    this.map.addMarkers(markersArray)
-
-
-    this.reframe(markersArray)
+  showMarkers(markers) {
+    this.map.removeMarkers();
+    this.map.addMarkers(markers);
+    this.reframe(markers);
   }
 
   reframe(markersArray) {

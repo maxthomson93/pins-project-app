@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :pins, only: [:create]
   resources :maps, only: [:index, :show, :new, :create] do
     resources :memberships, only: [:create]
     resources :pins, only: [:create]
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create]
     member do
       post 'upvote'
+    end
+    collection do
+      get :search
     end
   end
   resources :reviews, only: [:create]
@@ -31,4 +35,5 @@ Rails.application.routes.draw do
   namespace :owner do
     resources :maps, only: :index
   end
+
 end
