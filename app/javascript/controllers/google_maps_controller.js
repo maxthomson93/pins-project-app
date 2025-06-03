@@ -23,6 +23,38 @@ export default class extends Controller {
     this.markers = JSON.parse(this.element.dataset.markers);
 	@@ -57,222 +59,42 @@ export default class extends Controller {
     this.reframe(markers);
+        this.displayedMarkers = [];
+    this.showMarkers(this.markers);
+    // this.pins = this.map.addMarkers(this.markers);
+    this.map.addStyle({
+      styles: styles,
+      mapTypeId: 'map_style'
+    });
+    this.map.setStyle('map_style');
+  }
+
+
+  search(event) {
+    event.preventDefault()
+    const query = this.searchTarget.value.trim()
+    if (query.length > 0) {
+    fetch(`/places/search?query=${encodeURIComponent(query)}`)
+      .then(response => response.json())
+      .then(data => {
+        // Handle the search results here
+        console.log(data);
+        this.markers = data
+        this.showMarkers(data);
+      })
+      .catch(error => {
+        console.error('Error fetching search results:', error)
+      })
+    }
+  }
+
+  showMarkers(markers) {
+    this.map.removeMarkers();
+    this.map.addMarkers(markers);
   }
 
   reframe(markers = this.displayedMarkers) {
