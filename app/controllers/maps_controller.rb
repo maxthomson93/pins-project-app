@@ -24,16 +24,18 @@ class MapsController < ApplicationController
   def new
     @map = Map.new
   end
-def create
-  @map = Map.new(map_params)
-  @map.user = current_user  # assign user manually
 
-  if @map.save
-    redirect_to @map
-  else
-    render :new, status: :unprocessable_entity
+  def create
+    @map = Map.new(map_params)
+    @map.user = current_user  # assign user manually
+
+    if @map.save
+      Membership.create(user: current_user, map: @map)  # create membership for the user
+      redirect_to @map
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
-end
 
 
   private
