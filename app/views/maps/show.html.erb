@@ -17,17 +17,21 @@
         <% if current_user && current_user.maps.include?(@map) %>
           <div class="icon-column">
             <div data-membership-target="icon">
-              <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+              <i class="fa-solid fa-bookmark"
+                 style="color: #52946B; font-size: 1rem;"></i>
             </div>
             <div class="member-count">
               <%= number_with_delimiter(@map.users.count) %> members
             </div>
           </div>
         <% elsif current_user %>
-          <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
+          <%= link_to map_memberships_path(@map),
+                      class: "icon-button",
+                      data: { turbo_method: :post, action: "click->membership#join" } do %>
             <div class="icon-column">
               <div data-membership-target="icon">
-                <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+                <i class="fa-regular fa-bookmark"
+                   style="color: #52946B; font-size: 1rem;"></i>
               </div>
               <div class="member-count">
                 <%= number_with_delimiter(@map.users.count) %> members
@@ -36,7 +40,7 @@
           <% end %>
         <% end %>
       </div>
-      <%# # cards %>
+
       <div class="overflow-scroll-list">
         <% if @map.pins.any? %>
           <ul class="pins-list">
@@ -44,9 +48,9 @@
               <% place = pin.place %>
               <% if place.present? %>
                 <li class="pin-card"
-            data-action="click->google-maps#focusOn"
-                  data-lat="<%= place.latitude %>"
-                  data-lng="<%= place.longitude %>">
+                    data-action="click->google-maps#focusOn"
+                    data-lat="<%= place.latitude %>"
+                    data-lng="<%= place.longitude %>">
                   <div class="pincard-text">
                     <h2><%= place.title %></h2>
                     <p><%= place.address %></p>
@@ -75,3 +79,4 @@
       </div>
     </div>
   </div>
+</div>
