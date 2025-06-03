@@ -23,6 +23,7 @@ class MapsController < ApplicationController
 
   def new
     @map = Map.new
+    @given_tags = 
   end
 
   def create
