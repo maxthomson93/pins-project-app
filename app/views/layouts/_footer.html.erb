@@ -1,17 +1,27 @@
 <div class="bottom-navbar">
-  <%# 🗺️  %>
+  <%= link_to(root_path, class: "nav-icon") do %>
+    <i class="fa-solid fa-house" style="color: #52946B; font-size: 1.4rem;"></i>
+  <% end %>
   <%= link_to(owner_maps_path, class: "nav-icon") do %>
     <i class="fa-solid fa-map" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%# ➕  %>
   <%= link_to new_map_path, class: "nav-icon" do %>
     <i class="fa-solid fa-plus" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%= link_to((current_user ? maps_path : new_user_session_path), class: "nav-icon") do %>
+  <%= link_to maps_path, class: "nav-icon" do %>
     <i class="fa-solid fa-magnifying-glass" style="color: #52946B; font-size: 1.4rem;"></i>
   <% end %>
-  <%# 👤%>
   <%= link_to((current_user ? edit_user_registration_path : new_user_session_path), class: "nav-icon") do %>
-    <i class="fa-solid fa-user" style="color: #52946B; font-size: 1.4rem;"></i>
+    <% if current_user %>
+      <i class="fa-solid fa-user" style="color: #52946B; font-size: 1.4rem;"></i>
+    <% else %>
+      <i class="fa-solid fa-user-plus" style="color: #52946B; font-size: 1.4rem;"></i>
+    <% end %>
   <% end %>
 </div>
+<%# once notifications are created, this block will put a red dot over the icon %>
+<%# <%= link_to((current_user ? maps_path : new_user_session_path), class: "nav-icon", style: "position: relative; display: inline-block;") do %>
+  <%# <i class="fa-solid fa-magnifying-glass" style="color: #52946B; font-size: 1.4rem;"></i> %>
+  <%# <% if current_user && has_new_notifications? %>
+  <%# <i class="fa-solid fa-circle" style="color: red; font-size: 0.5rem; position: absolute; top: 0; right: 0;"></i> %>
+  <%# <% end %>
