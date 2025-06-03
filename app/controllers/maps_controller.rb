@@ -12,6 +12,9 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
     @pins = @map.pins
     @places = @pins.map(&:place).uniq
+    @maps = current_user.maps if user_signed_in?
+    @pin = Pin.new
+    @pin.map_id = params[:pin][:map_id] if params[:pin] && params[:pin][:map_id].present?
     @markers = @places.map do |place|
       {
         lat: place.latitude,
