@@ -37,7 +37,6 @@
           <% end %>
         <% end %>
       </div>
-      <%# # cards %>
       <div class="overflow-scroll-list">
         <% if @map.pins.any? %>
           <ul class="pins-list">
@@ -52,47 +51,75 @@
                     </div>
                   <% end %>
                   <div class="icon-container">
-                    <div class="btn-location-pin", data-action="click->google-maps#focusOn"
-                          data-lat="<%= place.latitude %>"
-                          data-lng="<%= place.longitude %>">
+                    <div class="btn-location-pin" data-action="click->google-maps#focusOn"
+                      data-lat="<%= place.latitude %>"
+                      data-lng="<%= place.longitude %>">
                       <i class="fa-solid fa-arrows-to-circle"></i>
                     </div>
                     <div>
                       <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus"></i></button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">which map do you want to add in?</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <%= simple_form_for @pin, url: pins_path do |f| %>
-                                <div class="modal-body">
-                                  <%= f.input :map_id, collection: current_user.maps, label: "Choose a map", as: :select, value_method: :id, label_method: :name, input_html: { class: "form-select" } %>
-                                  <%= f.hidden_field :place_id, value: place.id %>
-                                  <%= f.hidden_field :redirect_map_id, value: @map.id %>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <%= f.submit "Add Pin", class: 'btn btn-success' %>
-                                </div>
-                              <% end %>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">which map do you want to add in?</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <%= simple_form_for @pin, url: pins_path do |f| %>
+                              <div class="modal-body">
+                                <%= f.input :map_id, collection: current_user.maps, label: "Choose a map", as: :select, value_method: :id, label_method: :name, input_html: { class: "form-select" } %>
+                                <%= f.hidden_field :place_id, value: place.id %>
+                                <%= f.hidden_field :redirect_map_id, value: @map.id %>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <%= f.submit "Add Pin", class: 'btn btn-success' %>
+                              </div>
+                            <% end %>
                           </div>
                         </div>
+                      </div>
                     </div>
                   </div>
                 </li>
               <% else %>
-                <li class="pin-card">
-                  <em>No place found.</em>
-                </li>
+                <li class="pin-card"><em>No place found.</em></li>
               <% end %>
             <% end %>
           </ul>
         <% else %>
-          <p>No pins yet in this map.</p>
+          <div class="no-pins">
+            <%= link_to "No pins yet in this map. Start Searching", maps_path, class: "btn btn-primary" %>
+          </div>
+        <% end %>
+        <% if @map.pins.count < 6 %>
+          <div class="map-show-header">
+            <h2>Our Recommendations</h2>
+          </div>
+          <ul class="pins-list">
+            <% Place.all.each do |place| %>
+              <li class="pin-card" data-action="click->google-maps#focusOn"
+                data-lat="<%= place.latitude %>"
+                data-lng="<%= place.longitude %>">
+                <div class="pincard-text">
+                  <h2><%= place.title %></h2>
+                  <p><%= place.address %></p>
+                </div>
+                <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
+                  <%= f.hidden_field :map_id, value: @map.id %>
+                  <%= f.hidden_field :place_id, value: place.id %>
+                  <%= f.hidden_field :redirect_map_id, value: @map.id %>
+                  <div class="icon-container">
+                    <button type="submit" class="btn-add-pin">
+                      <i class="fa-solid fa-square-plus"></i>
+                    </button>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
       </div>
     </div>
   </div>
+</div>
