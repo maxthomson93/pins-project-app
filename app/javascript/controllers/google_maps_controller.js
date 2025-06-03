@@ -21,7 +21,6 @@ export default class extends Controller {
       fullscreenControl: false
     }); // Default to Tokyo coordinates
     this.markers = JSON.parse(this.element.dataset.markers);
-	@@ -57,222 +59,42 @@ export default class extends Controller {
     this.reframe(markers);
         this.displayedMarkers = [];
     this.showMarkers(this.markers);
@@ -55,6 +54,7 @@ export default class extends Controller {
   showMarkers(markers) {
     this.map.removeMarkers();
     this.map.addMarkers(markers);
+    this.reframe(markers);
   }
 
   reframe(markers = this.displayedMarkers) {
