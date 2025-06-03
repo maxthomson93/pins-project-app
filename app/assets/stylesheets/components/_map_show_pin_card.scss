@@ -36,19 +36,18 @@
 .icon-container {
   display: flex;
   align-items: center;
-  
+
   .btn-location-pin {
     font-size: 16px;
     color: #52946B;
     flex-shrink: 0;
   }
-  
+
   .btn-add-pin {
-    font-size: 16px;
+    font-size: 24px;
     color: #52946B;
     flex-shrink: 0;
     border: none;
     background: none;
   }
 }
-
