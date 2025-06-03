@@ -10,7 +10,7 @@ class MapsController < ApplicationController
       spots = client.spots_by_query(params[:query])
 
       @places = spots.map do |spot|
-        Place.new(title: spot.name, latitude: spot.lat, longitude: spot.lng, address: spot.formatted_address, photo_url: spot.photos[0].fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
+        Place.new(title: spot.name, latitude: spot.lat, longitude: spot.lng, address: spot.formatted_address, photo_url: spot.photos[0]&.fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
       end
 
     else
