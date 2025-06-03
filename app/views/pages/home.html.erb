@@ -12,9 +12,8 @@
   <div class="banner" style="position: relative; z-index: 2;">
     <div class="container">
       <h1>Create. Share. Pin.</h1>
-      <p>Create, share and follow social maps to find the spots that make your city home.</p>
     </div>
-    <p>Hidden Tokyo</p>
+    <h2>Trending Community Maps</h2>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <% @maps = Map.where(permission: "public_access") %>
@@ -28,7 +27,7 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-    <p>Pins Team Recommendations!</p>
+    <h2>Weekly Finds</h2>
     <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
         <% @maps = Map.where(permission: "public_access") %>
