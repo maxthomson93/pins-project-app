@@ -44,7 +44,7 @@
               <% place = pin.place %>
               <% if place.present? %>
                 <li class="pin-card"
-            data-action="click->google-maps#focusOn"
+              data-action="click->google-maps#focusOn"
                   data-lat="<%= place.latitude %>"
                   data-lng="<%= place.longitude %>">
                   <div class="pincard-text">
@@ -70,8 +70,24 @@
             <% end %>
           </ul>
         <% else %>
-          <p>No pins yet in this map.</p>
-        <% end %>
+          <div class="no-pins">
+            <%= link_to "No pins yet in this map. Start Searching", maps_path, class: "btn btn-primary" %>
+            <h2>Recommended Pins</h2>
+            <% Place.all.each do |place| %>
+              <li class="pin-card"
+      data-action="click->google-maps#focusOn"
+                data-lat="<%= place.latitude %>"
+                data-lng="<%= place.longitude %>">
+                <div class="pincard-text">
+                  <h2><%= place.title %></h2>
+                  <p><%= place.address %></p>
+                </div>
+                <%= link_to place_path(place), class: "btn-location-pin" do %>
+                  <i class="fa-regular fa-square-plus"></i>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
