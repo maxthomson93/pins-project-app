@@ -20,7 +20,7 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   </head>
-  <body data-signed-in="<%= user_signed_in? %>">
+  <body>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

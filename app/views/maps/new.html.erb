@@ -18,33 +18,35 @@
       </div>
     </div>
     <div data-controller="sharing">
-      <%= form.hidden_field :permission, value: "private_access", data: { sharing_target: "input" } %>
+      <%= form.hidden_field :permission, value: "public_access", data: { sharing_target: "input" } %>
       <div class="d-grid gap-2">
         <button type="button"
             class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
             data-sharing-target="option"
-            data-value="private_access"
+            data-sharing-value="public_access"
             data-action="click->sharing#select">
-          <i class="fa-solid fa-lock"></i> Keep it private
+          <i class="fa-solid fa-earth-asia"></i> Collaborate with the world
         </button>
         <button type="button"
             class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
             data-sharing-target="option"
-            data-value="shared"
+            data-sharing-value="shared"
             data-action="click->sharing#select">
           <i class="fa-solid fa-people-group"></i> Share it with friends
         </button>
         <button type="button"
             class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
             data-sharing-target="option"
-            data-value="public_access"
+            data-sharing-value="private_access"
             data-action="click->sharing#select">
-          <i class="fa-solid fa-earth-asia"></i> Collaborate with the world
+          <i class="fa-solid fa-lock"></i> Keep it private
         </button>
+        
+        
       </div>
-      <div>
         <div class="mt-4">
           <button type="submit" class="button">Create!</button>
         </div>
+      </div>
       <% end %>
-    </div>
+</div>
