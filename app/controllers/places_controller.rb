@@ -9,14 +9,17 @@ class PlacesController < ApplicationController
     if params[:query].present?
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
       # You can use params[:lat] and params[:lng] for map center, or set defaults
-      spots = client.spots_by_query(params[:query])
 
+      spots = client.spots_by_query(params[:query]);
       @results = spots.map do |spot|
         {
+          name: spot.name,
           lat: spot.lat,
           lng: spot.lng,
+          address: spot.formatted_address
         }
       end
+
     else
       @results = []
     end

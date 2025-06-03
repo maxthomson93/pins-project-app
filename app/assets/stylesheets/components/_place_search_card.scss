@@ -1,0 +1,60 @@
+.place-search-card {
+  overflow: hidden;
+  height: 104px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-right: 5px; /* add padding on the right for icon */
+}
+
+.place-search-card i.fa-solid.fa-bookmark {
+  margin-left: auto;   /* push icon to the right */
+  padding: 5px;
+  font-size: 1rem;
+  color: #52946B;
+}
+
+.place-search-card img {
+  padding: 12px;
+  height: 100%;
+  width: 104px;
+  object-fit: cover;
+}
+
+.place-search-card h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.place-search-card h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.place-search-card p {
+  font-size: 14px;
+  line-height: 1;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 4px;
+}
+
+.place-search-card-infos {
+  flex-grow: 2;
+}
+
+.text-top {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.place-search-card .member-count {
+  font-size: 14px;
+  opacity: 0.7;
+  margin: 2px 0; /* small margin top and bottom */
+  font-style: italic;
+}

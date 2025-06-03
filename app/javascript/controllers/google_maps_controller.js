@@ -41,10 +41,9 @@ export default class extends Controller {
       .then(response => response.json())
       .then(data => {
         // Handle the search results here
+        console.log(data);
         this.markers = data
-        this.map.removeMarkers();
-        this.map.addMarkers(data)
-        this.reframe();
+        this.showMarkers(data);
       })
       .catch(error => {
         console.error('Error fetching search results:', error)
