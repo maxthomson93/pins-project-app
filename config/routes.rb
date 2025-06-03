@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     member do
       post 'upvote'
     end
+    collection do
+      get :search
+    end
   end
   resources :reviews, only: [:create]
   
@@ -32,4 +35,5 @@ Rails.application.routes.draw do
   namespace :owner do
     resources :maps, only: :index
   end
+
 end
