@@ -12,13 +12,12 @@
 
 .swiper-slide {
   flex: 0 0 auto;
-  width: 140px; /* card width */
+  width: 140px;
 }
 
 /* card styling */
 .card-category {
   height: 140px;
-  border-radius: 12px;
   background-size: cover;
   background-position: center;
   color: white;
@@ -31,6 +30,7 @@
   user-select: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.3s ease;
+  border-radius: 16px;
 }
 
 a {
@@ -39,11 +39,9 @@ a {
   font-weight: normal;    /* keep font weight normal */
 }
 
-/* 3. Center all text */
 .banner * {
   text-align: center;
 }
-
 
 .banner {
   background-size: cover;
@@ -52,13 +50,13 @@ a {
 }
 
 .banner h1 {
-  margin: 0;
-  color: #D62839;
-  font-size: 48px;
+  color: #CB0404;
+  font-size: 90px;
   font-weight: bold;
 }
 
 .banner p {
   font-size: 24px;
-  color: #52946B;
+  color: #ffffff;
+  font-weight: bold;
 }
