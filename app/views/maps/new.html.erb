@@ -17,25 +17,23 @@
         0 / 300
       </div>
     </div>
-    <div>
+    <div class="my-3">
       <h2>Choose your tags</h2>
-      <div class="tag-pills">
+      <div id="selected-tags" class="mt-3 d-flex flex-wrap"></div>
+      <div class="tag-pills" id="tag-pills">
         <div data-controller="map-tags">
-          <% %w[
-            bars beaches beauty cafes cinemas education fashion halal
-            hikes hobby kosher lgbtq museums miscellaneous nature nightlife
-            parks pet-friendly religious restaurants scenic sightseeing tradition
-            vegan vegetarian wildlife yoga zen
-          ].each do |tag| %>
+          <% @tags.each do |tag| %>
             <span
-              data-action="click->badge#toggle"
-              data-badge-target="badge"
-              class="badge badge-primary m-1"
+              data-action="click->map-tags#toggle"
+              class="badge rounded-pill text-bg-secondary text-white"
               >
               <%= tag %>
             </span>
           <% end %>
+        </div>
+      </div>
     </div>
+
     <div data-controller="sharing">
       <%= form.hidden_field :permission, value: "public_access", data: { sharing_target: "input" } %>
       <div class="d-grid gap-2">

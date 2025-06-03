@@ -26,7 +26,7 @@ class MapsController < ApplicationController
 
   def new
     @map = Map.new
-    @given_tags = 
+    @tags = given_tags
   end
 
   def create
@@ -46,5 +46,9 @@ class MapsController < ApplicationController
 
   def map_params
     params.require(:map).permit(:name, :description, :permission)
+  end
+
+  def given_tags
+      %w[bars beaches beauty cafes cinemas  education fashion halal hikes hobby kosher lgbtq museums miscellaneous nature nightlife parks pet-friendly religious restaurants scenic sightseeing tradition vegan vegetarian wildlife yoga zen]
   end
 end
