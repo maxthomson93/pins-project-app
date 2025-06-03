@@ -26,4 +26,15 @@
       <%= short_address %>
     </p>
   </div>
+
+  <div class="place-info" style="flex: 1; display: flex; flex-direction: column;">
+    <h3 style="margin: 0 0 4px 0; font-size: 16px; color: #2a6244; line-height: 1.2;">
+      <%= place.title %>
+    </h3>
+    <% parts = place.address.to_s.split(",") %>
+    <% short_address = parts.length >= 2 ? parts.last(2).join(", ").strip : place.address %>
+    <p style="margin: 0; font-size: 14px; color: #555; line-height: 1.2;">
+      <%= short_address %>
+    </p>
+  </div>
 </div>

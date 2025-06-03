@@ -3,7 +3,8 @@ class MapsController < ApplicationController
   def index
     status = params[:status] || "communities"
     @status = status
-    if params[:query].present?
+	@@ -20,8 +23,8 @@ def index
+     if params[:query].present?
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
       # You can use params[:lat] and params[:lng] for map center, or set defaults
@@ -27,6 +28,8 @@ class MapsController < ApplicationController
     @pin = Pin.new
     @pin.map_id = params[:pin][:map_id] if params[:pin] && params[:pin][:map_id].present?
     @markers = @places.map do |place|
+	@@ -30,18 +33,25 @@ def show
+
       {
         lat: place.latitude,
         lng: place.longitude,
@@ -43,10 +46,10 @@ class MapsController < ApplicationController
   def create
     @map = Map.new(map_params)
     @map.user = current_user  # assign user manually
-
   if @map.save
     Membership.create!(user: current_user, map: @map)
     redirect_to @map
+	@@ -50,10 +60,34 @@ def create
   else
     render :new, status: :unprocessable_entity
   end

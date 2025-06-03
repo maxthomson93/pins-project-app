@@ -162,6 +162,7 @@ GEM
       csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    gmaps4rails (2.1.2)
     google_places (2.0.0)
       httparty (>= 0.13.1)
     http-accept (1.7.0)
@@ -374,6 +375,7 @@ DEPENDENCIES
   faker
   font-awesome-sass (~> 6.1)
   geocoder
+  gmaps4rails (~> 2.1)
   google_places
   importmap-rails
   jbuilder
@@ -384,6 +386,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form!
   sprockets-rails
+  swiper-rails
   stimulus-rails
   turbo-rails
   tzinfo-data

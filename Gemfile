@@ -61,6 +61,8 @@ gem "sassc-rails"
 gem 'geocoder'
 gem 'google_places'
 gem 'acts_as_votable'
+gem "gmaps4rails", "~> 2.1"
+
 
 group :development, :test do
   gem "dotenv-rails"
