@@ -8,5 +8,4 @@ class ApplicationRecord < ActiveRecord::Base
   class Map < ApplicationRecord
     acts_as_taggable_on :tags  # same context
   end
-
 end

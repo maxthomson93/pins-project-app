@@ -2,9 +2,10 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["option", "input"]
+  static values = { value: String }
 
   select(event) {
-    const selectedValue = event.currentTarget.dataset.value;
+    const selectedValue = event.currentTarget.dataset.sharingValue;
 
     this.inputTarget.value = selectedValue;
 

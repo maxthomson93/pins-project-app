@@ -1,45 +1,62 @@
-// Specific CSS for your home-page
-.home-hero {
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), image-url("pins_background.png");
+/* Swiper container styles */
+.swiper {
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.swiper-wrapper {
+  display: flex;
+  gap: 16px;
+  overflow-x: scroll;;
+}
+
+.swiper-slide {
+  flex: 0 0 auto;
+  width: 140px;
+}
+
+/* card styling */
+.card-category {
+  height: 140px;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  user-select: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  border-radius: 16px;
+}
+
+a {
+  text-decoration: none;  /* no underline */
+  color: inherit;         /* keep font color the same */
+  font-weight: normal;    /* keep font weight normal */
+}
+
+.banner * {
   text-align: center;
-  padding: 20px;
+}
 
-  .hero-content {
-    color: white;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
 
-    h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.banner h1 {
+  color: #CB0404;
+  font-size: 90px;
+  font-weight: bold;
+}
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-    }
-
-    .explore-btn {
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      border-radius: 25px;
-      background-color: #52946B;
-      color: white;
-      border: none;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: white;
-        color: #52946B;
-        border: 2px solid #52946B;
-      }
-    }
-  }
+.banner p {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
 }

@@ -2,6 +2,10 @@
 <html>
   <head>
     <%# pwa set up metadata %>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
@@ -11,10 +15,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="path/to/jquery.svg3dtagcloud.min.js"></script>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   </head>
-  <body data-signed-in="<%= user_signed_in? %>">
+  <body>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

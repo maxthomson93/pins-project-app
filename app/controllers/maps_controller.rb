@@ -4,7 +4,7 @@ class MapsController < ApplicationController
     status = params[:status] || "communities"
     @status = status
     if params[:query].present?
-      @maps = Map.where("name ILIKE ?", "%#{params[:query]}%")
+      @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
       # You can use params[:lat] and params[:lng] for map center, or set defaults
       spots = client.spots_by_query(params[:query])
@@ -14,7 +14,7 @@ class MapsController < ApplicationController
       end
 
     else
-      @maps = []
+      @maps = Map.where(permission: "public_access")
       @places = []
     end
   end
@@ -23,6 +23,9 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
     @pins = @map.pins
     @places = @pins.map(&:place).uniq
+    @maps = current_user.maps if user_signed_in?
+    @pin = Pin.new
+    @pin.map_id = params[:pin][:map_id] if params[:pin] && params[:pin][:map_id].present?
     @markers = @places.map do |place|
       {
         lat: place.latitude,
@@ -40,12 +43,12 @@ class MapsController < ApplicationController
     @map = Map.new(map_params)
     @map.user = current_user  # assign user manually
 
-    if @map.save
-      redirect_to @map
-    else
-      render :new, status: :unprocessable_entity
-    end
+  if @map.save
+    redirect_to @map
+  else
+    render :new, status: :unprocessable_entity
   end
+end
 
 
   private
