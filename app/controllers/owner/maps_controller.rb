@@ -12,7 +12,7 @@ class Owner::MapsController < ApplicationController
         @markers = @places.map do |place|
           map = place.pins.first.map
           map_index = @maps.index(map)
-          color = @colors[map_index % @colors.length]
+          color = @colors[map_index % 6]
           {
             lat: place.latitude,
             lng: place.longitude,
