@@ -45,7 +45,7 @@ class MapsController < ApplicationController
   private
 
   def map_params
-    params.require(:map).permit(:name, :description, :permission)
+    params.require(:map).permit(:name, :description, :permission, :tag_list)
   end
 
   def given_tags
