@@ -45,6 +45,7 @@ class MapsController < ApplicationController
     @map.user = current_user  # assign user manually
 
   if @map.save
+    Membership.create!(user: current_user, map: @map)
     redirect_to @map
   else
     render :new, status: :unprocessable_entity
