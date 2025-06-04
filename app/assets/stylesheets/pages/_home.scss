@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   user-select: none;
-  border-radius: 50px;
+  border-radius: 25px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); // 3D shadow
   border: 3px solid #ff416c;
   background: linear-gradient(to right, #ffffff, #e6dbdb);
@@ -85,4 +85,12 @@ a {
   border-radius: 999px;
   box-shadow: 0 6px 14px rgba(0,0,0,0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-category .truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;   /* number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
