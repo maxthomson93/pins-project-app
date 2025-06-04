@@ -1,29 +1,44 @@
-<div class="map-card" data-controller="membership">
-  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
-
-  <div class="map-card-content">
-    <%= link_to map_path(map), class: "map-info-link" do %>
-      <div class="map-info">
+<div class="map-index-card" data-controller="membership">
+  <div class="index-img-container d-flex justify-content-center align-items-center h-100">
+    <%= image_tag("thebeach.jpeg", class: "map-index-avatar") %>
+  </div>
+  <div class="map-index-card-content">
+    <div class="map-index-info">
+      <%= link_to map_path(map), class: "map-index-info-link" do %>
         <h2><%= map.name %></h2>
-        <div class="member-count">
-          <%= number_with_delimiter(map.users.count) %> members
+      <% end %>
+      <p class="description"><%= map.description %></p>
+      <div class="map-index-icons-div">
+        <div>
+          <i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(map.users.count) %>
         </div>
-        <p class="description"><%= map.description %></p>
+        <div>
+          <i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(map.pins.count) %>
+        </div>
       </div>
-    <% end %>
-
-    <div class="icon-container">
-      <% if current_user && current_user.maps.include?(map) %>
+    </div>
+  </div>
+  <div class="icon-container">
+    <% if current_user && current_user.maps.include?(map) %>
+      <div class="d-flex gap-3 justify-content-center align-items-center">
+        <div class="" data-markers="<%= markers %>" data-map-id="<%= map.id %>" data-action="click->google-maps#showOneMap">
+          <i class="fa-solid fa-arrows-to-circle"></i>
+        </div>
         <div data-membership-target="icon">
           <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
         </div>
-      <% elsif current_user %>
+      </div>
+    <% elsif current_user %>
+      <div class="d-flex gap-3 justify-content-center align-items-center">
+        <div class="" data-markers="<%= markers %>" data-map-id="<%= map.id %>" data-action="click->google-maps#showOneMap">
+          <i class="fa-solid fa-arrows-to-circle"></i>
+        </div>
         <%= link_to map_memberships_path(map), method: :post, class: "icon-button", data: { action: "click->membership#join" } do %>
           <div data-membership-target="icon">
             <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
           </div>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

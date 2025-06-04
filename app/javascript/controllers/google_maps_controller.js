@@ -107,6 +107,12 @@ export default class extends Controller {
     this.showMarkers(filteredMarkers);
   }
 
+  showOneMap(event) {
+    console.log();
+    const markers = JSON.parse(event.currentTarget.dataset.markers);
+    this.showMarkers(markers);
+  }
+
   #snazzyStyle = [{
         "featureType": "all",
         "elementType": "geometry.fill",
