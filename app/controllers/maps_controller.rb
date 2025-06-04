@@ -6,8 +6,27 @@ class MapsController < ApplicationController
     @place = Place.new
     if params[:query].present?
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
+      @markers_by_map = {}
+      @maps.each_with_index do |map, i|
+        pins = map.pins.includes(:place)
+        @markers_by_map[map.id] = pins.map do |pin|
+          place = pin.place
+          {
+            lat: place.latitude,
+            lng: place.longitude,
+            infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) },
+            map_index: i,
+            icon: {
+              url: helpers.asset_url("pins/pin_main.png"),
+              size: { width: 32, height: 32 },
+              scaledSize: { width: 32, height: 32 }
+            }
+          }
+        end
+      end
+
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
-      # You can use params[:lat] and params[:lng] for map center, or set defaults
+
       spots = client.spots(35.6895, 139.6917, name: params[:query], radius: 20_000)
 
       @places = spots.map do |spot|
@@ -23,6 +42,24 @@ class MapsController < ApplicationController
 
     else
       @maps = Map.where(permission: "public_access")
+      @markers_by_map = {}
+      @maps.each_with_index do |map, i|
+        pins = map.pins.includes(:place)
+        @markers_by_map[map.id] = pins.map do |pin|
+          place = pin.place
+          {
+            lat: place.latitude,
+            lng: place.longitude,
+            infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) },
+            map_index: i,
+            icon: {
+              url: helpers.asset_url("pins/pin_main.png"),
+              size: { width: 32, height: 32 },
+              scaledSize: { width: 32, height: 32 }
+            }
+          }
+        end
+      end
       @places = []
     end
   end
@@ -52,13 +89,13 @@ class MapsController < ApplicationController
     @map = Map.new(map_params)
     @map.user = current_user  # assign user manually
 
-  if @map.save
-    Membership.create!(user: current_user, map: @map)
-    redirect_to @map
-  else
-    render :new, status: :unprocessable_entity
+    if @map.save
+      Membership.create!(user: current_user, map: @map)
+      redirect_to @map
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
-end
 
 
   private
