@@ -11,7 +11,7 @@ class MapsController < ApplicationController
       spots = client.spots(35.6895, 139.6917, name: params[:query], radius: 20_000)
 
       @places = spots.map do |spot|
-        photo_url = spot.photos&.first&.fetch_url(400, { api_key: ENV['GOOGLE_API_SERVER_KEY'] }) || image_path("thebeach.jpg")
+        photo_url = spot.photos&.first&.fetch_url(400, { api_key: ENV['GOOGLE_API_SERVER_KEY'] }) || view_context.image_path("thebeach.jpg")
         Place.new(
           title: spot.name,
           latitude: spot.json_result_object["geometry"]["location"]["lat"],
