@@ -32,29 +32,19 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-weight: bold;
-  color: black;
-  font-size: 2rem; // big for mobile (approx. 32px)
+  color: rgb(29, 29, 29);
+  font-size: 24px;
 }
 
 h2 {
-  font-weight: normal;
+  font-weight: regular;
   color: #52946B;
-  font-size: 1.5rem; // slightly smaller than h1
+  font-size: 21px;
 }
 
 h3 {
-  font-weight: bold;
+  font-weight: regular;
   color: #52946B;
-  font-size: 0.8rem; // smaller for mobile (approx. 18px)
+  font-size: 18px;
   font-style: italic;
-}
-
-.place-back-arrow {
-  color: #a7c4b2;
-  font-size: 2rem;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  cursor: pointer;
-  z-index: 1000;
 }

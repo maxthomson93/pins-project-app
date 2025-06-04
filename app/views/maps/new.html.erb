@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Bring a new map into the world!</h1>
+  <div class="mt-5"><h1>Bring a new map into the world!</h1></div>
   <!-- Title Field -->
   <%= form_with model: @map, local: true do |form| %>
-    <div class="mb-3">
+    <div class="my-3">
       <label for="map_name" class="form-label">
         <h2>Give your map a funky name</h2>
       </label>
@@ -25,7 +25,7 @@
           <% @tags.each do |tag| %>
             <span
               data-action="click->map-tags#toggle"
-              class="badge rounded-pill text-bg-secondary text-white"
+              class="badge rounded-pill text-bg-secondary text-white text-center m-1 p-2"
               >
               <%= tag %>
             </span>
@@ -62,7 +62,7 @@
         
         
       </div>
-        <div class="my-4">
+        <div class="my-3">
           <button type="submit" class="button">Create!</button>
         </div>
       </div>
