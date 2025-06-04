@@ -1,5 +1,15 @@
+<% images = [
+  "fake_user1.jpeg",
+  "fake_user2.jpeg",
+  "fake_user3.jpeg",
+  "fake_user4.jpeg",
+  "fake_user6.jpeg",
+  "fake_user8.jpeg",
+  "fake_user9.jpeg",
+] %>
+<% random_image = images.sample %>
 <div class="comment-card">
-  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+  <img src="<%= asset_path(random_image) %>" class="card-trip-user avatar-bordered" />
   <div class="comment-card-infos">
     <h3><%= review.content %></h3>
     <div class="d-flex gap-3 align-items-center">
