@@ -9,10 +9,6 @@
       </div>
       <div class="container search-bar-container-index ">
         <%= form_with url: maps_path, method: :get, local: true do |form| %>
-          <div class="search-input">
-            <%= form.text_field :query, placeholder: "Communities", class: "form-control" %>
-          </div>
-          <%= form.submit "Search", class: "button" %>
         <% end %>
       </div>
     </div>

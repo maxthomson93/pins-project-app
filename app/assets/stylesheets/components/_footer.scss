@@ -1,20 +1,72 @@
+/* app/assets/stylesheets/_footer.scss */
 
-.mobile-footer {
+.bottom-navbar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
-  background-color: white;
+
+  /* Aumentamos a 110px para más espacio vertical debajo de los íconos */
+  height: calc(110px + env(safe-area-inset-bottom));
+
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 100;
 }
 
-.footer-link {
-  text-align: center;
+.bottom-navbar .nav-icon {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding-top: 10px;  /* Separamos el ícono de la línea activa */
+  padding-bottom: calc(34px + env(safe-area-inset-bottom));
+
+  margin: 0;
+  text-decoration: none;
   color: #52946B;
-  font-size: 1.2rem;
+  background-color: transparent;
+  border-top: 3px solid transparent;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.bottom-navbar .nav-icon i {
+  font-size: 1.6rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.bottom-navbar .nav-icon span {
+  font-size: 0.75rem;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+.bottom-navbar .nav-icon:hover {
+  background-color: rgba(82, 148, 107, 0.05);
+}
+.bottom-navbar .nav-icon:hover i {
+  transform: scale(1.15);
+  color: #3f7d4a;
+}
+
+.bottom-navbar .nav-icon.active {
+  color: #2e7d32;
+  border-top-color: #2e7d32;
+}
+.bottom-navbar .nav-icon.active i {
+  color: #2e7d32;
+}
+
+@media (max-width: 350px) {
+  .bottom-navbar .nav-icon i {
+    font-size: 1.4rem;
+  }
+  .bottom-navbar .nav-icon span {
+    font-size: 0.7rem;
+  }
 }
