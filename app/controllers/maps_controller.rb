@@ -3,14 +3,14 @@ class MapsController < ApplicationController
   def index
     status = params[:status] || "communities"
     @status = status
+    @place = Place.new
     if params[:query].present?
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
       # You can use params[:lat] and params[:lng] for map center, or set defaults
-      spots = client.spots_by_query(params[:query])
-
+      spots = client.spots(35.6895, 139.6917,name: params[:query], radius: 20000)
       @places = spots.map do |spot|
-        Place.new(title: spot.name, latitude: spot.lat, longitude: spot.lng, address: spot.formatted_address, photo_url: spot.photos[0].fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
+        Place.new(title: spot.name, latitude: spot.json_result_object["geometry"]["location"]["lat"], longitude: spot.json_result_object["geometry"]["location"]["lng"], address: spot.json_result_object["vicinity"], photo_url: spot.photos[0].fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
       end
 
     else
@@ -43,17 +43,21 @@ class MapsController < ApplicationController
     @map = Map.new(map_params)
     @map.user = current_user  # assign user manually
 
-  if @map.save
-    redirect_to @map
-  else
-    render :new, status: :unprocessable_entity
+    if @map.save
+      redirect_to @map
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
-end
 
 
   private
 
   def map_params
     params.require(:map).permit(:name, :description, :permission)
+  end
+
+  def given_tags
+      %w[bars beaches beauty cafes cinemas  education fashion halal hikes hobby kosher lgbtq museums miscellaneous nature nightlife parks pet-friendly religious restaurants scenic sightseeing tradition vegan vegetarian wildlife yoga zen]
   end
 end

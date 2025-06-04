@@ -1,0 +1,11 @@
+<%= simple_form_for @place, url: places_path do |f| %>
+  <%= f.hidden_field :title, value: place.title %>
+  <%= f.hidden_field :address, value: place.address %>
+  <%= f.hidden_field :latitude, value: place.latitude %>
+  <%= f.hidden_field :longitude, value: place.longitude %>
+  <%= f.hidden_field :photo_url, value: place.photo_url %>
+  <%= select_tag :map_id,
+              options_from_collection_for_select(current_user.maps, :id, :name),
+              class: "form-select" %>
+  <%= f.submit "Add Place & Pin", class: "btn btn-success" %>
+<% end %>

@@ -5,30 +5,6 @@ class PlacesController < ApplicationController
     @reviews = @place.reviews.order(created_at: :desc)
   end
 
-  def search
-    if params[:query].present?
-      client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
-      # You can use params[:lat] and params[:lng] for map center, or set defaults
-
-      spots = client.spots_by_query(params[:query]);
-      @results = spots.map do |spot|
-        {
-          name: spot.name,
-          lat: spot.lat,
-          lng: spot.lng,
-          address: spot.formatted_address
-        }
-      end
-
-    else
-      @results = []
-    end
-
-    respond_to do |format|
-      format.json { render json: @results }
-    end
-  end
-
   def upvote
     @place = Place.find(params[:id])
     if current_user.liked?(@place)
@@ -41,4 +17,27 @@ class PlacesController < ApplicationController
       format.json { render json: { votes: @place.get_upvotes.size, liked: current_user.liked?(@place) } }
     end
   end
+
+  def create
+    @place = Place.new(place_params)
+
+    if @place.save
+      Pin.create!(
+        user: current_user,
+        place: @place,
+        map_id: params[:map_id]
+      )
+      redirect_to map_path(params[:map_id]), notice: "Place and Pin created!"
+    else
+      redirect_to maps_path, alert: "Failed to create place: #{@place.errors.full_messages.join(', ')}"
+    end
+  end
+
+
+private
+
+def place_params
+  params.require(:place).permit(:title, :address, :latitude, :longitude, :photo_url)
+end
+
 end

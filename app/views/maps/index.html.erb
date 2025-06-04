@@ -31,6 +31,7 @@
     <div id="places-cards">
       <% @places.each do |place| %>
         <%= render "place_search_card", place: place %>
+        <%#= render "place_search_card", place: place, pin: Pin.new.tap(&:build_place) %>
       <% end %>
     </div>
   </div>

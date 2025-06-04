@@ -6,6 +6,34 @@
     <h2><%= place.title %></h2>
     <p class="description"><%= place.address %></p>
   </div>
-  <div class="member-count text-top">
+  <!-- Button to trigger modal -->
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= place.title.parameterize %>">
+    Pin this Place
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="modal-<%= place.title.parameterize %>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Place & Pin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <%= simple_form_for @place, url: places_path, html: { data: { turbo_frame: "_top" } } do |f| %>
+          <div class="modal-body">
+            <%= f.hidden_field :title, value: place.title %>
+            <%= f.hidden_field :address, value: place.address %>
+            <%= f.hidden_field :latitude, value: place.latitude %>
+            <%= f.hidden_field :longitude, value: place.longitude %>
+            <%= f.hidden_field :photo_url, value: place.photo_url %>
+            <%= select_tag :map_id,
+                options_from_collection_for_select(current_user.maps, :id, :name),
+                class: "form-select" %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Add Place & Pin", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
