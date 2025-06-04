@@ -59,31 +59,39 @@
   <!-- Home -->
   <%= link_to root_path, class: "nav-icon #{'active' if current_page?(root_path)}" do %>
     <i class="fa-solid fa-house"></i>
+    <span class="nav-label">Home</span>
   <% end %>
 
-  <!-- Mis mapas (propietario) -->
+  <!-- My Maps (propietario) -->
   <%= link_to owner_maps_path, class: "nav-icon #{'active' if current_page?(owner_maps_path)}" do %>
     <i class="fa-solid fa-map"></i>
+    <span class="nav-label">My Maps</span>
   <% end %>
 
-  <!-- New mapa -->
+  <!-- Add a Map -->
   <%= link_to new_map_path, class: "nav-icon #{'active' if current_page?(new_map_path)}" do %>
     <i class="fa-solid fa-plus"></i>
+    <span class="nav-label">Add Map</span>
   <% end %>
 
-  <!-- search mapas/comunidades -->
+  <!-- Search Maps/Communities -->
   <%= link_to maps_path, class: "nav-icon #{'active' if current_page?(maps_path)}" do %>
     <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="nav-label">Search</span>
   <% end %>
 
-  <!--usuario o login/registro -->
-  <%= link_to((current_user ? edit_user_registration_path : new_user_session_path),
-              class: "nav-icon #{'active' if (current_user && current_page?(edit_user_registration_path)) ||
-                                            (!current_user && current_page?(new_user_session_path))}") do %>
+  <!-- User (o login/registro) -->
+  <%= link_to(
+        (current_user ? edit_user_registration_path : new_user_session_path),
+        class: "nav-icon #{'active' if (current_user && current_page?(edit_user_registration_path)) || (!current_user && current_page?(new_user_session_path))}"
+      ) do %>
+
     <% if current_user %>
       <i class="fa-solid fa-user"></i>
+      <span class="nav-label">Profile</span>
     <% else %>
       <i class="fa-solid fa-user-plus"></i>
+      <span class="nav-label">Login</span>
     <% end %>
   <% end %>
 </div>
