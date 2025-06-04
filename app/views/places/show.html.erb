@@ -2,36 +2,52 @@
   <%= render "places/partials/show_carousel", place: @place %>
   <div class="row places-info mt-2">
     <div class="col-10 offset-1">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel fuga cum nesciunt, quia libero molestias sint. Nemo tempore sequi hic accusantium blanditiis in odio qui excepturi rerum? Beatae, quibusdam quo?
-      </p>
     </div>
   </div>
   <div class="reviews">
-    <div class="col-10 offset-1 d-flex gap-3 mb-3 justify-content-between">
-
-    <div data-controller="places-upvote">
-      <a href="<%= upvote_place_path(@place) %>" data-action="click->places-upvote#upvote" id="upvote-link" class="text-decoration-none text-black d-flex align-items-center gap-2">
-        <i class="<%= current_user.voted_up_on?(@place) ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
-        <span data-places-upvote-target="count"><%= @place.get_upvotes.size %></span>
-      </a>
-    </div>
+    <div class="places-icons-container">
+      <div data-controller="places-upvote">
+        <a href="<%= upvote_place_path(@place) %>" data-action="click->places-upvote#upvote" id="upvote-link" class="text-decoration-none text-black d-flex align-items-center gap-2">
+          <i class="<%= current_user.voted_up_on?(@place) ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
+          <span data-places-upvote-target="count"><%= @place.get_upvotes.size %></span>
+        </a>
+      </div>
+      <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus"></i></button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <%= simple_form_for @pin, url: pins_path do |f| %>
+              <div class="modal-body">
+                <%= f.select :map_id,
+                    options_from_collection_for_select(current_user.maps, :id, :name),
+                    {}, class: "form-select" %>
+                <%= f.hidden_field :place_id, value: @place.id %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <%= f.submit "Add Pin", class: 'button' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <a
         href="https://www.google.com/maps/dir/?api=1&destination=<%= @place.latitude %>,<%= @place.longitude %>"
         target="_blank"
         rel="noopener"
         title="Get directions with Google Maps"
       >
-        <i class="fa-solid fa-route" style="color: #52946B; font-size: 2rem;"></i>
+        <i class="fa-solid fa-route"></i>
       </a>
     </div>
-
-
-    <div class="reviews col-10 offset-1 mt-4">
-      <h1>Reviews:</h1>
+    <div class="reviews col-10 mt-4">
+      <h2>Community Reviews:</h2>
       <a class="text-decoration-none text-black" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         <h3>Add a review?</h3>
-
       </a>
       <div class="collapse" id="collapseExample">
         <div class="col-10">
@@ -48,5 +64,4 @@
       <% end %>
     </div>
   </div>
-
 </div>

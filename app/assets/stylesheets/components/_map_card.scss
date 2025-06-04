@@ -1,9 +1,3 @@
-.map-card {
-  display: flex;
-  gap: 12px;
-  margin: 0 5px 20px 5px;
-  align-items: flex-start;
-
 
   .map-avatar {
     width: 60px;
@@ -29,16 +23,7 @@
     }
   }
 
-  .map-info {
-    h2 {
-      font-size: 1.1rem;
-      margin: 0;
-    }
-
-    .member-count {
-      font-style: italic;
-      font-size: 0.9rem;
-    }
+  .text-info {
 
     .description {
       margin: 0;
@@ -59,4 +44,3 @@
     background: none;
     padding: 0;
   }
-}

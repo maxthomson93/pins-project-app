@@ -31,16 +31,16 @@
       font-size: 1.2rem;
       font-weight: bold;
       border-radius: 30px;
-      background-color: #00FFAE;
-      color: #1a1a1a;
+      background-color: #52946B;
+      color: #ffffff;
       border: none;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
 
       &:hover {
         background-color: white;
-        color: #00FFAE;
-        border: 2px solid #00FFAE;
+        color: #52946B;
+        border: 2px solid #52946B;
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
       }
     }

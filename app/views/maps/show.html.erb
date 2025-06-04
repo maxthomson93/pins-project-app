@@ -10,24 +10,23 @@
         <div class="text-info">
           <h2><%= @map.name %></h2>
           <p class="description"><%= @map.description %></p>
+          <div class="member-pin-count">
+            <div><i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(@map.users.count) %> </div>
+            <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
+          </div>
         </div>
         <% if current_user && current_user.maps.include?(@map) %>
           <div class="icon-column">
             <div data-membership-target="icon">
-              <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+              <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
             </div>
-            <div class="member-count">
-              <%= number_with_delimiter(@map.users.count) %> members
-            </div>
+            
           </div>
         <% elsif current_user %>
           <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
             <div class="icon-column">
               <div data-membership-target="icon">
                 <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
-              </div>
-              <div class="member-count">
-                <%= number_with_delimiter(@map.users.count) %> members
               </div>
             </div>
           <% end %>
@@ -58,7 +57,7 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">which map do you want to add in?</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <%= simple_form_for @pin, url: pins_path do |f| %>
@@ -69,7 +68,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <%= f.submit "Add Pin", class: 'btn btn-success' %>
+                                <%= f.submit "Add Pin", class: 'button' %>
                               </div>
                             <% end %>
                           </div>

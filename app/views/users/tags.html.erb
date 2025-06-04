@@ -1,14 +1,17 @@
-<div class="container text-center p-3">
-    <h2>What are you interested in?</h2>
-    <div class="tag-container" data-controller="user-preference" data-user-preference-tags-value="<%= @tags.to_json %>">
-        <%= form_with model: current_user, url: tags_user_path(current_user), method: :patch, local: true, id: "tags-form" do |form| %>
-            <%= form.hidden_field :tag_list, id: "user_tag_list" %>
-            <div id="selected-tags" class="mt-3 d-flex flex-wrap"></div>
-            <div id="tag-cloud"></div>
-            <%= form.submit "Save Preferences", class: "button" %>
-        <% end %>
-        <div class="btn">
-            <%= link_to "Skip", owner_maps_path(current_user), class:"text-decoration-none text-black" %>
+<div class="container">
+    <div class="new-map-container text-center">
+    <h1 class="my-4">Welcome to Pins!</h1>
+    <h3 class="mb-4">Before you start exploring, please tell us what you're interested in</h3>
+        <div class="tag-container" data-controller="user-preference" data-user-preference-tags-value="<%= @tags.to_json %>">
+            <%= form_with model: current_user, url: tags_user_path(current_user), method: :patch, local: true, id: "tags-form" do |form| %>
+                <%= form.hidden_field :tag_list, id: "user_tag_list" %>
+                <div id="selected-tags" class="d-flex flex-wrap"></div>
+                <div id="tag-cloud"></div>
+                <%= form.submit "Save Preferences", class: "button" %>
+            <% end %>
+            <div class="btn">
+                <%= link_to "Skip", owner_maps_path(current_user), class:"text-decoration-none text-black" %>
+            </div>
         </div>
     </div>
 </div>

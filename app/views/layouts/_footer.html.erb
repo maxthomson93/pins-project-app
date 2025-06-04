@@ -1,27 +1,97 @@
+<!-- app/views/layouts/_footer.html.erb -->
+<style>
+  .bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    height: 94px;
+    z-index: 1000;
+  }
+
+  .bottom-navbar .nav-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 34px;
+    color: #52946B;
+    background-color: transparent;
+    border-top: 3px solid transparent;
+
+    transition: border-top 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+
+  .bottom-navbar .nav-icon i {
+
+    font-size: 1.4rem;
+  }
+
+
+  .bottom-navbar .nav-icon.active {
+    border-top-color: #52946B;
+  }
+
+
+  .bottom-navbar .nav-icon:hover {
+    transform: scale(1.1);
+  }
+
+
+  @media (max-width: 350px) {
+    .bottom-navbar .nav-icon i {
+      font-size: 1.2rem;
+    }
+    .bottom-navbar {
+      height: 55px;
+    }
+  }
+</style>
+
 <div class="bottom-navbar">
-  <%= link_to(root_path, class: "nav-icon") do %>
-    <i class="fa-solid fa-house" style="color: #52946B; font-size: 1.4rem;"></i>
+  <!-- Home -->
+  <%= link_to root_path, class: "nav-icon #{'active' if current_page?(root_path)}" do %>
+    <i class="fa-solid fa-house"></i>
+    <span class="nav-label">Home</span>
   <% end %>
-  <%= link_to(owner_maps_path, class: "nav-icon") do %>
-    <i class="fa-solid fa-map" style="color: #52946B; font-size: 1.4rem;"></i>
+
+  <!-- My Maps (propietario) -->
+  <%= link_to owner_maps_path, class: "nav-icon #{'active' if current_page?(owner_maps_path)}" do %>
+    <i class="fa-solid fa-map"></i>
+    <span class="nav-label">My Maps</span>
   <% end %>
-  <%= link_to new_map_path, class: "nav-icon" do %>
-    <i class="fa-solid fa-plus" style="color: #52946B; font-size: 1.4rem;"></i>
+
+  <!-- Add a Map -->
+  <%= link_to new_map_path, class: "nav-icon #{'active' if current_page?(new_map_path)}" do %>
+    <i class="fa-solid fa-plus"></i>
+    <span class="nav-label">Add Map</span>
   <% end %>
-  <%= link_to maps_path, class: "nav-icon" do %>
-    <i class="fa-solid fa-magnifying-glass" style="color: #52946B; font-size: 1.4rem;"></i>
+
+  <!-- Search Maps/Communities -->
+  <%= link_to maps_path, class: "nav-icon #{'active' if current_page?(maps_path)}" do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="nav-label">Search</span>
   <% end %>
-  <%= link_to((current_user ? edit_user_registration_path : new_user_session_path), class: "nav-icon") do %>
+
+  <!-- User (o login/registro) -->
+  <%= link_to(
+        (current_user ? edit_user_registration_path : new_user_session_path),
+        class: "nav-icon #{'active' if (current_user && current_page?(edit_user_registration_path)) || (!current_user && current_page?(new_user_session_path))}"
+      ) do %>
+
     <% if current_user %>
-      <i class="fa-solid fa-user" style="color: #52946B; font-size: 1.4rem;"></i>
+      <i class="fa-solid fa-user"></i>
+      <span class="nav-label">Profile</span>
     <% else %>
-      <i class="fa-solid fa-user-plus" style="color: #52946B; font-size: 1.4rem;"></i>
+      <i class="fa-solid fa-user-plus"></i>
+      <span class="nav-label">Login</span>
     <% end %>
   <% end %>
 </div>
-<%# once notifications are created, this block will put a red dot over the icon %>
-<%# <%= link_to((current_user ? maps_path : new_user_session_path), class: "nav-icon", style: "position: relative; display: inline-block;") do %>
-  <%# <i class="fa-solid fa-magnifying-glass" style="color: #52946B; font-size: 1.4rem;"></i> %>
-  <%# <% if current_user && has_new_notifications? %>
-  <%# <i class="fa-solid fa-circle" style="color: red; font-size: 0.5rem; position: absolute; top: 0; right: 0;"></i> %>
-  <%# <% end %>
