@@ -68,6 +68,6 @@ end
   end
 
   def given_tags
-      %w[food nightlife nature culture wellness lifestyle]
+      %w[food fashion nightlife nature culture wellness lifestyle]
   end
 end
