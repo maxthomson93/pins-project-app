@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 // import '${jQuery}';
-import '../jquery.svg3dtagcloud.js';
+import '../3dTagCloud.js';
 
 // Connects to data-controller="user-preference"
 export default class extends Controller {
@@ -14,8 +14,8 @@ export default class extends Controller {
 
     const settings = {
       entries: entries,
-      width: 480,
-      height: 480,
+      width: 360,
+      height: 360,
       radius: '65%',
       radiusMin: 75,
       bgDraw: true,
