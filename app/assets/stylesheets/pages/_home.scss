@@ -1,7 +1,7 @@
 /* Swiper container styles */
 .swiper {
   width: 100%;
-  padding-bottom: 16px;
+  padding-bottom: 8px;
 }
 
 .swiper-wrapper {
@@ -12,25 +12,26 @@
 
 .swiper-slide {
   flex: 0 0 auto;
-  width: 140px;
+  width: 96px;
 }
 
 /* card styling */
 .card-category {
-  height: 140px;
-  background-size: cover;
+  height: 96px;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
-  color: white;
+  background-color: white;
+  color: #ff416c;
+  border-width: 2px;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 0 0 8px rgba(0,0,0,0.7);
   user-select: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-  border-radius: 16px;
+  box-shadow: 0 0 5px #ff416c;
+  border-radius: 50px;
 }
 
 a {
@@ -50,13 +51,36 @@ a {
 }
 
 .banner h1 {
-  color: #CB0404;
-  font-size: 90px;
-  font-weight: bold;
+  font-family: "Pacifico", cursive;
+  color: #ffffff;
+  font-size: 80px;
+  font-weight: bolder;
 }
 
 .banner p {
   font-size: 24px;
   color: #ffffff;
   font-weight: bold;
+}
+
+.banner h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+.cta-container {
+  margin-top: 32px;
+}
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
