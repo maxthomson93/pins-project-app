@@ -3,6 +3,8 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @reviews = @place.reviews.order(created_at: :desc)
+    @map = Map.find(params[:map_id]) if params[:map_id].present?
+    @pin = Pin.new
   end
 
   def upvote

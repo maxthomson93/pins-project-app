@@ -57,7 +57,7 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">which map do you want to add in?</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <%= simple_form_for @pin, url: pins_path do |f| %>
@@ -68,7 +68,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <%= f.submit "Add Pin", class: 'btn btn-success' %>
+                                <%= f.submit "Add Pin", class: 'button' %>
                               </div>
                             <% end %>
                           </div>

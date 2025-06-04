@@ -1,13 +1,13 @@
 <div id="carouselExample" class="carousel slide carousel-absolute">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <%= image_tag "place-show-1.jpg", alt: "text", class:"d-block w-100" %>
+      <%= image_tag(@place.photo_url.presence || "pins_background.png", alt: "text", class: "d-block w-100") %>
     </div>
     <div class="carousel-item">
-      <%= image_tag "place-show-2.jpg", alt: "text", class:"d-block w-100" %>
+      <%= image_tag(@place.photo_url.presence || "pins_background.png", alt: "text", class: "d-block w-100") %>
     </div>
     <div class="carousel-item">
-      <%= image_tag "place-show-3.jpg", alt: "text", class:"d-block w-100" %>
+      <%= image_tag(@place.photo_url.presence || "pins_background.png", alt: "text", class: "d-block w-100") %>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
