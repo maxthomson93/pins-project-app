@@ -1,5 +1,17 @@
 .new-map-container {
+    max-height: 87vh;
+    overflow-y: auto;
 
+    h1 {
+        font-family: "Pacifico", cursive;
+        color: #ff416c;
+        font-size: 40px;
+        font-weight: bolder;
+        margin-bottom: 40px;
+    }
+}
+
+.tags-container {
     h1 {
         font-family: "Pacifico", cursive;
         color: #ff416c;
