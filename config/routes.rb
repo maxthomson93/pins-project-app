@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create]
     member do
       post 'upvote'
-      get :pin_modal
     end
     collection do
       get :search
