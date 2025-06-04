@@ -25,3 +25,31 @@
 .icon-button:focus {
   outline: none;
 }
+
+.button-back {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #90c59e;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-logout {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #FFAAAA;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
