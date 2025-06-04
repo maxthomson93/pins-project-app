@@ -18,7 +18,7 @@ export default class extends Controller {
   if ([...badgeContainer.children].some(badge => badge.dataset.value === tag)) return;
 
     const badge = document.createElement("span");
-    badge.className = "badge rounded-pill text-bg-primary text-white";
+    badge.className = "badge m-1 rounded-pill text-bg-primary text-white";
     badge.style.fontSize = "1em";
     badge.textContent = tag;
     badge.dataset.value = tag;
