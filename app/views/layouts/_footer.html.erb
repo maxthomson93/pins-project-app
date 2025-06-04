@@ -1,63 +1,50 @@
 <!-- app/views/layouts/_footer.html.erb -->
 <style>
-  /* ------------------------------------------------------------
-     ESTILOS DE FOOTER (incrustados en el HTML para copiar/pegar)
-     ------------------------------------------------------------ */
   .bottom-navbar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    /* color de fondo de la barra */
     background-color: #f9f9f9;
-    /* línea superior de separación */
     border-top: 1px solid #e0e0e0;
-    /* flex para centrar íconos horizontalmente */
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    /* dejamos 10px + safe-area debajo de los íconos */
     padding-bottom: calc(10px + env(safe-area-inset-bottom));
-    /* altura mínima de la barra (íconos + margen inferior) */
-    height: 60px;
+    height: 94px;
     z-index: 1000;
   }
 
   .bottom-navbar .nav-icon {
-    /* organizamos icono + texto (si existe) en columna */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    /* espacio entre el icono y el borde inferior */
-    padding-bottom: 10px;
-    /* color por defecto */
+    padding-bottom: 34px;
     color: #52946B;
-    /* fondo transparente para los íconos */
     background-color: transparent;
-    /* borde superior invisible (se mostrará en .active) */
     border-top: 3px solid transparent;
-    /* animación suave para hover/active */
+
     transition: border-top 0.2s ease, transform 0.2s ease;
     text-decoration: none;
   }
 
   .bottom-navbar .nav-icon i {
-    /* tamaño del icono */
+
     font-size: 1.4rem;
   }
 
-  /* Ícono activo: muestra la línea superior */
+
   .bottom-navbar .nav-icon.active {
     border-top-color: #52946B;
   }
 
-  /* Efecto hover: hacemos un pequeño “scale” */
+
   .bottom-navbar .nav-icon:hover {
     transform: scale(1.1);
   }
 
-  /* Ajuste para pantallas muy pequeñas */
+
   @media (max-width: 350px) {
     .bottom-navbar .nav-icon i {
       font-size: 1.2rem;
@@ -79,17 +66,17 @@
     <i class="fa-solid fa-map"></i>
   <% end %>
 
-  <!-- Nuevo mapa -->
+  <!-- New mapa -->
   <%= link_to new_map_path, class: "nav-icon #{'active' if current_page?(new_map_path)}" do %>
     <i class="fa-solid fa-plus"></i>
   <% end %>
 
-  <!-- Buscar mapas/comunidades -->
+  <!-- search mapas/comunidades -->
   <%= link_to maps_path, class: "nav-icon #{'active' if current_page?(maps_path)}" do %>
     <i class="fa-solid fa-magnifying-glass"></i>
   <% end %>
 
-  <!-- Perfil de usuario o login/registro -->
+  <!--usuario o login/registro -->
   <%= link_to((current_user ? edit_user_registration_path : new_user_session_path),
               class: "nav-icon #{'active' if (current_user && current_page?(edit_user_registration_path)) ||
                                             (!current_user && current_page?(new_user_session_path))}") do %>

@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
 
-  /* Aumentamos a 110px para más espacio vertical debajo de los íconos */
+
   height: calc(110px + env(safe-area-inset-bottom));
 
   padding-bottom: env(safe-area-inset-bottom);
@@ -24,7 +24,7 @@
   align-items: center;
   justify-content: flex-end;
 
-  padding-top: 10px;  /* Separamos el ícono de la línea activa */
+  padding-top: 10px;
   padding-bottom: calc(34px + env(safe-area-inset-bottom));
 
   margin: 0;
