@@ -11,8 +11,9 @@ class Owner::MapsController < ApplicationController
 
         @markers = @places.map do |place|
           map = place.pins.first.map
-          map_index = @maps.index(map)
-          color = @colors[map_index % 6]
+          map_index = @maps.find_index { |m| m.id == map.id }
+          # map_index = @maps.index(map)
+          color = @colors[(map_index || 0) % 6]
           {
             lat: place.latitude,
             lng: place.longitude,
