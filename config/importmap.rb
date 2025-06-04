@@ -9,4 +9,4 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 # pin "gmaps" # @0.4.25
 pin "gmaps", to: "gmaps.js"
-pin "3dTagCloud", to: "3dTagCloud.js"
+pin "3dTagCloud", to: "3dTagCloud.js", preload: true
