@@ -3,14 +3,22 @@ class MapsController < ApplicationController
   def index
     status = params[:status] || "communities"
     @status = status
+    @place = Place.new
     if params[:query].present?
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
       # You can use params[:lat] and params[:lng] for map center, or set defaults
-      spots = client.spots_by_query(params[:query])
+      spots = client.spots(35.6895, 139.6917, name: params[:query], radius: 20_000)
 
       @places = spots.map do |spot|
-        Place.new(title: spot.name, latitude: spot.lat, longitude: spot.lng, address: spot.formatted_address, photo_url: spot.photos[0]&.fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
+        photo_url = spot.photos&.first&.fetch_url(400, { api_key: ENV['GOOGLE_API_SERVER_KEY'] }) || image_path("thebeach.jpg")
+        Place.new(
+          title: spot.name,
+          latitude: spot.json_result_object["geometry"]["location"]["lat"],
+          longitude: spot.json_result_object["geometry"]["location"]["lng"],
+          address: spot.json_result_object["vicinity"],
+          photo_url: photo_url
+        )
       end
 
     else

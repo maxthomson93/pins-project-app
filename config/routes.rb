@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :memberships, only: [:create]
     resources :pins, only: [:create]
   end
-  resources :places, only: [:show] do
+  resources :places, only: [:show, :create] do
     resources :reviews, only: [:create]
     member do
       post 'upvote'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
   resources :reviews, only: [:create]
-  
+
   resources :users do
     member do
       get 'tags'

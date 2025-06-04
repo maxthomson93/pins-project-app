@@ -1,10 +1,6 @@
 <div class="place-card" style="display: flex; max-width: 280px; align-items: flex-start;">
-  <% if place.photo_reference.present? %>
-    <img
-      src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=<%= place.photo_reference %>&key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>"
-      alt="<%= place.title %>"
-      style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px; margin-right: 8px;"
-    />
+  <% if place.photo_url.present? %>
+    <%= image_tag place.photo_url, alt: place.title, style: "width: 80px; height: 80px; object-fit: cover; border-radius: 6px; margin-right: 8px;" %>
     <%= link_to "#", class: "btn-location-pin" do %>
       <i class="fa-solid fa-location-pin"></i>
     <% end %>
