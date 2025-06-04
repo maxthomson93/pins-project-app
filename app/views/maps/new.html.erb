@@ -1,15 +1,16 @@
-<div class="container">
-  <div class="mt-5"><h1>Bring a new map into the world!</h1></div>
+<div class="container m-3">
+  <div class="new-map-container">
+  <div class="mt-5 text-center"><h1>Create a new map</h1></div>
   <!-- Title Field -->
   <%= form_with model: @map, local: true do |form| %>
     <div class="my-3">
       <label for="map_name" class="form-label">
-        <h2>Give your map a funky name</h2>
+        <h3>Give your map a name</h3>
       </label>
       <%= form.text_field :name, class: "form-control", required: true %>
     </div>
     <div data-controller="char-counter">
-      <h2>Describe your map</h2>
+      <h3>Describe your map</h3>
       <%= form.text_area :description,
         class: "form-control", rows: 4, maxlength: 300, required: true,
         data: { char_counter_target: "textarea", action: "input->char-counter#onInput" } %>
@@ -18,7 +19,7 @@
       </div>
     </div>
     <div class="my-3">
-      <h2>Choose your tags</h2>
+      <h3>Choose your tags</h3>
       <div id="selected-tags" class="mt-3 d-flex flex-wrap"></div>
       <div class="tag-pills" id="tag-pills">
         <div data-controller="map-tags">
@@ -39,21 +40,21 @@
       <%= form.hidden_field :permission, value: "public_access", data: { sharing_target: "input" } %>
       <div class="d-grid gap-2">
         <button type="button"
-            class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
+            class="btn btn-outline-secondary d-flex align-items-center gap-2"
             data-sharing-target="option"
             data-sharing-value="public_access"
             data-action="click->sharing#select">
           <i class="fa-solid fa-earth-asia"></i> Collaborate with the world
         </button>
         <button type="button"
-            class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
+            class="btn btn-outline-secondary d-flex align-items-center gap-2"
             data-sharing-target="option"
             data-sharing-value="shared"
             data-action="click->sharing#select">
           <i class="fa-solid fa-people-group"></i> Share it with friends
         </button>
         <button type="button"
-            class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2"
+            class="btn btn-outline-secondary d-flex align-items-center gap-2"
             data-sharing-target="option"
             data-sharing-value="private_access"
             data-action="click->sharing#select">
@@ -67,4 +68,5 @@
         </div>
       </div>
       <% end %>
+      </div>
 </div>

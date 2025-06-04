@@ -10,11 +10,11 @@ export default class extends Controller {
     this.inputTarget.value = selectedValue;
 
     this.optionTargets.forEach(el => {
-      el.classList.remove("btn-primary");
+      el.classList.remove("btn-primary", "text-white");
       el.classList.add("btn-outline-secondary");
     });
 
     event.currentTarget.classList.remove("btn-outline-secondary");
-    event.currentTarget.classList.add("btn-primary");
+    event.currentTarget.classList.add("btn-primary", "text-white");
   }
 }
