@@ -68,6 +68,6 @@ end
   end
 
   def given_tags
-      %w[bars beaches beauty cafes cinemas  education fashion halal hikes hobby kosher lgbtq museums miscellaneous nature nightlife parks pet-friendly religious restaurants scenic sightseeing tradition vegan vegetarian wildlife yoga zen]
+      %w[food nightlife nature culture wellness lifestyle]
   end
 end
