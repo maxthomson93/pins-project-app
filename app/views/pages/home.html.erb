@@ -1,5 +1,5 @@
 <div class="body-wrap" style="position: relative;
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= asset_path("pins_background.png") %>');
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= asset_path("saulo-bg.png") %>');
   background-size: cover;
   background-position: center;
   ">
@@ -12,10 +12,10 @@
   <div class="banner" style="position: relative; z-index: 2;">
     <div class="container">
       <h1>Pins!</h1>
-      <h2>Community maps built for sharing</h2>
+      <h2>Create and share maps to bring community to your pocket</h2>
     </div>
     <div class="cta-container">
-      <a href="#" class="cta-button">🚀 Start mapping</a>
+      <a href="<%= user_signed_in? ? owner_maps_path : maps_path %>" class="cta-button">🚀 Start pinning</a>
     </div>
     <h2>Trending Community Maps</h2>
     <div class="swiper mySwiper2">

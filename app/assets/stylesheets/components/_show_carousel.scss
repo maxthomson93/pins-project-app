@@ -1,5 +1,7 @@
 .carousel-absolute {
   position: relative;
+  margin-top: 44px;
+  margin-bottom: 16px;
 }
 
 .text-bottom {
@@ -23,15 +25,20 @@
 .text-bottom p {
   font-size: 16px;
   color: white;
-  opacity: .7;
+  opacity: .9;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .carousel-inner {
   img {
     width: 100%;
-    height: 300px;
+    height: 256px;
     object-fit: cover;
     object-position: center;
   }
+}
+
+.carousel-item .d-block {
+  filter: brightness(80%);
+  border-radius: 5px;
 }

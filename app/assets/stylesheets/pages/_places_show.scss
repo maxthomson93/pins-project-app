@@ -12,6 +12,33 @@
  color: #52946B;
 }
 
-.comments h1 {
-  font-size: 20px;
+.comments h2 {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.comments h3 {
+  font-size: 17px;
+  font-weight: regular;
+}
+
+.places-icons-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #E9EEE9;
+  padding: 14px 14px; /* p-2 */
+}
+
+.fa-route,
+.fa-thumbs-up,
+.fa-square-plus {
+  font-size: 40px !important; // or whatever size you want
+}
+
+.btn-add-pin {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: none;
+  padding: 0;
 }

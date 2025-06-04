@@ -8,6 +8,8 @@
   display: flex;
   gap: 16px;
   overflow-x: scroll;;
+  padding-bottom: 12px;
+
 }
 
 .swiper-slide {
@@ -21,17 +23,17 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: white;
   color: #ff416c;
-  border-width: 2px;
   font-weight: bold;
   font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   user-select: none;
-  box-shadow: 0 0 5px #ff416c;
   border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); // 3D shadow
+  border: 3px solid #ff416c;
+  background: linear-gradient(to right, #ffffff, #e6dbdb);
 }
 
 a {
