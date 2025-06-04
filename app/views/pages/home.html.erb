@@ -14,12 +14,13 @@
       <h1>Create. Share. Pin.</h1>
     </div>
     <h2>Trending Community Maps</h2>
-    <div class="swiper mySwiper">
+    <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
         <% @maps = Map.where(permission: "public_access") %>
-        <% @maps.limit(5).each do |map| %>
+        <% @maps.limit(3).each do |map| %>
+          <% first_place = map.places.first %>
           <div class="swiper-slide">
-            <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('shibuya.jpg')})" do %>
+            <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{first_place&.photo_url.presence || asset_path('tokyo_tower.jpeg')})" do %>
               <%= map.name %>
             <% end %>
           </div>
@@ -31,9 +32,10 @@
     <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
         <% @maps = Map.where(permission: "public_access") %>
-        <% @maps.limit(3).each do |map| %>
+        <% @maps.limit(4).each do |map| %>
+          <% first_place = map.places.first %>
           <div class="swiper-slide">
-            <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{asset_path('tokyo_tower.jpeg')})" do %>
+            <%= link_to map_path(map), class: "card-category", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{first_place&.photo_url.presence || asset_path('tokyo_tower.jpeg')})" do %>
               <%= map.name %>
             <% end %>
           </div>

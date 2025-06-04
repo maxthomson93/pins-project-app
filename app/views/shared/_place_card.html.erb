@@ -1,10 +1,25 @@
-<div class="place-card">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="place-card-infos">
-    <h2>Place Name</h2>
-    <p>Location/Address</p>
-  </div>
-  <%= link_to "#", class:"btn-location-pin" do  %>
-    <i class="fa-solid fa-location-pin"></i>
+<div class="place-card" style="display: flex; max-width: 280px; align-items: flex-start;">
+  <% if place.photo_url.present? %>
+    <%= image_tag place.photo_url, alt: place.title, style: "width: 80px; height: 80px; object-fit: cover; border-radius: 6px; margin-right: 8px;" %>
+    <%= link_to "#", class: "btn-location-pin" do %>
+      <i class="fa-solid fa-location-pin"></i>
+    <% end %>
+  <% else %>
+    <img
+      src="https://via.placeholder.com/200x150?text=No+Image"
+      alt="No image"
+      style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px; margin-right: 8px;"
+    />
   <% end %>
+
+  <div class="place-info" style="flex: 1; display: flex; flex-direction: column;">
+    <h3 style="margin: 0 0 4px 0; font-size: 16px; color: #2a6244; line-height: 1.2;">
+      <%= place.title %>
+    </h3>
+    <% parts = place.address.to_s.split(",") %>
+    <% short_address = parts.length >= 2 ? parts.last(2).join(", ").strip : place.address %>
+    <p style="margin: 0; font-size: 14px; color: #555; line-height: 1.2;">
+      <%= short_address %>
+    </p>
+  </div>
 </div>

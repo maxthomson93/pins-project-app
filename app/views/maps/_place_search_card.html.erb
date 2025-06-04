@@ -1,6 +1,6 @@
 <div class="place-search-card">
   <div class="place-search-img-container">
-    <%= image_tag place.photo_url %>
+    <%= image_tag place.photo_url || 'tokyo_tower.jpeg' %>
   </div>
   <div class="place-search-card-infos">
     <h2><%= place.title %></h2>

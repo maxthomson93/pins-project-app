@@ -8,9 +8,17 @@ class MapsController < ApplicationController
       @maps = Map.where("name ILIKE ?", "%#{params[:query]}%").where(permission: :public_access)
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
       # You can use params[:lat] and params[:lng] for map center, or set defaults
-      spots = client.spots(35.6895, 139.6917,name: params[:query], radius: 20000)
+      spots = client.spots(35.6895, 139.6917, name: params[:query], radius: 20_000)
+
       @places = spots.map do |spot|
-        Place.new(title: spot.name, latitude: spot.json_result_object["geometry"]["location"]["lat"], longitude: spot.json_result_object["geometry"]["location"]["lng"], address: spot.json_result_object["vicinity"], photo_url: spot.photos[0].fetch_url(400, {api_key: ENV['GOOGLE_API_SERVER_KEY']}) )
+        photo_url = spot.photos&.first&.fetch_url(400, { api_key: ENV['GOOGLE_API_SERVER_KEY'] }) || image_path("thebeach.jpg")
+        Place.new(
+          title: spot.name,
+          latitude: spot.json_result_object["geometry"]["location"]["lat"],
+          longitude: spot.json_result_object["geometry"]["location"]["lng"],
+          address: spot.json_result_object["vicinity"],
+          photo_url: photo_url
+        )
       end
 
     else
@@ -37,24 +45,29 @@ class MapsController < ApplicationController
 
   def new
     @map = Map.new
+    @tags = given_tags
   end
 
   def create
     @map = Map.new(map_params)
     @map.user = current_user  # assign user manually
 
-    if @map.save
-      redirect_to @map
-    else
-      render :new, status: :unprocessable_entity
-    end
+  if @map.save
+    redirect_to @map
+  else
+    render :new, status: :unprocessable_entity
   end
+end
 
 
   private
 
   def map_params
-    params.require(:map).permit(:name, :description, :permission)
+    params.require(:map).permit(:name, :description, :permission, :tag_list)
+  end
+
+  def given_tags
+      %w[bars beaches beauty cafes cinemas  education fashion halal hikes hobby kosher lgbtq museums miscellaneous nature nightlife parks pet-friendly religious restaurants scenic sightseeing tradition vegan vegetarian wildlife yoga zen]
   end
 
   def given_tags
