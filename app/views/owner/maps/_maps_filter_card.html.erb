@@ -1,16 +1,62 @@
-<div class="map-filter-card">
-  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
-  <div class="map-filter-card-infos">
-    <%= link_to map_path(map), class:"text-decoration-none" do  %>
-      <h2><%= map.name %></h2>
+<!-- app/views/shared/_map_filter_card.html.erb -->
+
+<div class="map-filter-card" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; margin-bottom: 12px; border-radius: 12px; background-color: #f4fff4; box-shadow: 0 2px 4px rgba(0,0,0,0.06); border-left: 5px solid #4CAF50;">
+  <div class="map-filter-card-infos" style="flex-grow: 1;">
+    <%= link_to map_path(map), class: "text-decoration-none" do %>
+      <h2 style="font-size: 1rem; font-weight: 700; margin-bottom: 4px; color: #2e7d32;">
+        <%= map.name %>
+      </h2>
     <% end %>
-    <p class="description"><%= map.description %></p>
+    <p style="font-size: 0.88rem; color: #6b8e70; margin-bottom: 8px;">
+      <%= map.description %>
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+      <!-- Random avatars -->
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <%
+          # List of image filenames that you have in app/assets/images/
+          images = [
+            "fake_user1.jpeg",
+            "fake_user2.jpeg",
+            "fake_user3.jpeg",
+            "fake_user4.jpeg",
+            "fake_user6.jpeg",
+            "fake_user8.jpeg",
+            "fake_user9.jpeg"
+          ]
+
+          # If there are more users than available images, only show as many as there are in the collection
+          max_to_show = [images.size, map.users.count].min
+          sample_images = images.shuffle.first(max_to_show)
+        %>
+
+        <% sample_images.each do |img_filename| %>
+          <%# Make sure “fake_userX.jpeg” actually exists in app/assets/images/ %>
+          <%= image_tag img_filename,
+                alt: "Collaborator avatar",
+                style: "width: 56px; height: 56px; border-radius: 50%; object-fit: cover;" %>
+        <% end %>
+
+        <span style="font-size: 0.85rem; color: #2e7d32; margin-left: 8px; white-space: nowrap;">
+          <%= number_with_delimiter(map.users.count) %> collaborators
+        </span>
+      </div>
+
+      <!-- Number of pins -->
+      <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
+        <i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i>
+        <%= number_with_delimiter(map.pins.count) %> pins
+      </span>
+    </div>
   </div>
-  <div class="pin-toggle checked <%= color %>-pin" data-action="click->google-maps#filterToggle" data-google-maps-target="pinsToggle" data-map-index="<%= i %>"
-    id="map_<%=i%>" >
-    <i class="fa-solid fa-location-dot map-filter-icon "></i>
-    <%# <i class="fa-regular fa-eye map-filter-icon"></i> %>
-  </div>
-  <div class="member-count text-top">
+
+  <!-- TOGGLE (DO NOT TOUCH) -->
+  <div class="pin-toggle checked <%= color %>-pin"
+       data-action="click->google-maps#filterToggle"
+       data-google-maps-target="pinsToggle"
+       data-map-index="<%= i %>"
+       id="map_<%= i %>">
+    <i class="fa-solid fa-location-dot map-filter-icon"></i>
   </div>
 </div>

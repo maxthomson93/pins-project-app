@@ -8,106 +8,26 @@
   <div id="my-maps-container" class="collapsed">
     <!-- Cabecera (64px de alto) -->
     <div class="toggle-header" onclick="toggleMyMaps()" style="background-color: #E9EEE9;">
-      <span class="tab-text">My Maps</span>
-      <span id="toggle-icon">▲</span>
+      <span class="tab-text" style="color: #52946B;">My Maps</span>
+      <span id="toggle-icon" style="color: #52946B;">▲</span>
     </div>
 
-
-  <div id="my-maps-content">
-    <% colors = ["#1976D2", "#388E3C", "#FBC02D", "#D32F2F", "#7B1FA2", "#0288D1", "#C2185B"] %>
-    <% images = [
-      "fake_user1.jpeg",
-      "fake_user2.jpeg",
-      "fake_user3.jpeg",
-      "fake_user4.jpeg",
-      "fake_user6.jpeg",
-      "fake_user8.jpeg",
-      "fake_user9.jpeg"
-    ] %>
-
-    <% (@maps || []).each_with_index do |map, idx| %>
-      <% color = colors[idx % colors.length] %>
-      <div style="padding: 14px 16px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; gap: 8px;">
-
-        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
-          <div style="flex: 1; padding-right: 12px;">
-            <%= link_to map_path(map), class: "text-decoration-none", style: "text-decoration: none;" do %>
-              <h3 style="margin: 0; font-size: 1.05rem; font-weight: 600; color: #222;"><%= map.name %></h3>
-              <p style="margin: 4px 0 8px; font-size: 0.95rem; color: #666;"><%= map.description.presence || "No description" %></p>
-            <% end %>
-            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.88rem; color: #555;">
-              <i class="fa-solid fa-map-pin" style="color: #1976D2;"></i>
-              <span><%= number_with_delimiter(map.pins.count) %> pins</span>
-            </div>
-          </div>
-
-          <!-- Toggle -->
-          <div class="pin-toggle checked <%= color %>-pin"
-              data-action="click->google-maps#filterToggle"
-              data-google-maps-target="pinsToggle"
-              data-map-index="<%= idx %>"
-              id="map_<%= idx %>"
-              style="cursor: pointer; padding: 8px;">
-            <i class="fa-solid fa-location-dot map-filter-icon" style="font-size: 1.2rem;"></i>
-          </div>
-        </div>
-
-        <!-- Colaboradores -->
-        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
-          <% if map.users.count > 0 %>
-            <% map.users.limit(3).each_with_index do |user, i| %>
-              <img src="<%= asset_path(images[i % images.length]) %>" alt="user" style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.08);" />
-            <% end %>
-            <span style="font-size: 0.85rem; color: #888;"><%= number_with_delimiter(map.users.count) %></span>
-          <% else %>
-            <span style="font-size: 0.85rem; color: #aaa;">No collaborators</span>
+    <!-- Contenido: lista de mapas (altura 60vh) -->
+    <div id="my-maps-content">
+      <div class="container">
+        <% if current_user && current_user.maps %>
+          <% @maps.each_with_index do |map, i| %>
+            <% color = @colors[i % @colors.length ] %>
+            <%= render "maps_filter_card", map: map, i: i, color: color %>
           <% end %>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-
-  <% if (@maps || []).empty? %>
-    <div style="text-align: center; color: #aaa; margin-top: 40px; font-size: 1.1rem;">
-      No maps yet. Create your first map!
     </div>
-  <% end %>
+  </div>
 </div>
-
-
-  <% if (@maps || []).empty? %>
-    <div style="text-align: center; color: #aaa; margin-top: 40px; font-size: 1.1rem;">
-      No maps yet. Create your first map!
-    </div>
-  <% end %>
-</div>
-
-
 
 <!-- JS para alternar collapsed/expanded -->
 <script>
-  function toggleMyMaps() {
-    const container = document.getElementById("my-maps-container");
-    const icon      = document.getElementById("toggle-icon");
-
-    if (container.classList.contains("collapsed")) {
-      container.classList.remove("collapsed");
-      container.classList.add("expanded");
-      icon.textContent = "▼";
-    } else {
-      container.classList.remove("expanded");
-      container.classList.add("collapsed");
-      icon.textContent = "▲";
-    }
-  }
-
-  // Arranca siempre colapsado al cargar la página
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("my-maps-container");
-    container.classList.add("collapsed");
-    document.getElementById("toggle-icon").textContent = "▲";
-  });
-</script>
-<%# <script>
   function toggleMyMaps() {
     const container = document.getElementById("my-maps-container");
     const icon      = document.getElementById("toggle-icon");
@@ -140,7 +60,7 @@
       document.getElementById("toggle-icon").textContent = "▼";
     }
   });
-</script> %>
+</script>
 
 <!-- Estilos embebidos -->
 <style>
