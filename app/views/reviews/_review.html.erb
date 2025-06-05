@@ -7,9 +7,9 @@
   "fake_user8.jpeg",
   "fake_user9.jpeg",
 ] %>
-<% random_image = images.sample %>
+<% image = review.user==User.find_by(email: "test6@example.com") ? "max.jpg" : images.sample %>
 <div class="comment-card">
-  <img src="<%= asset_path(random_image) %>" class="card-trip-user avatar-bordered" />
+  <img src="<%= asset_path(image) %>" class="card-trip-user avatar-bordered" />
   <div class="comment-card-infos">
     <h3><%= review.content %></h3>
     <div class="d-flex gap-3 align-items-center">
