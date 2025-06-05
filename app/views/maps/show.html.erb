@@ -22,35 +22,42 @@
                 "fake_user8.jpeg",
                 "fake_user9.jpeg",
               ] %>
-                <% if @map.users.count >3 %>
-                  <% images.sample(3).each do |img| %>
-                    <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
-                  <% end %>
-                  <span>+ <%= number_with_delimiter(@map.users.count - 3)  %> more collaborators</span>
-                <% else %>
-                  <% images.first(@map.users.count).each do |img| %>
-                    <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
-                  <% end %>
-                  <span><%= number_with_delimiter(@map.users.count) %> collaborators<span>
+              <% if @map.users.count >3 %>
+                <% images.sample(3).each do |img| %>
+                  <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
                 <% end %>
-            </div>
-          </div>
-            <div class="col-2 icon-column">
-              <% if current_user && current_user.maps.include?(@map) %>
-                <div data-membership-target="icon">
-                  <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                <span>+ <%= number_with_delimiter(@map.users.count - 3)  %> more collaborators</span>
+              <% else %>
+                <% images.first(@map.users.count).each do |img| %>
+                  <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
+                <% end %>
+                <span><%= number_with_delimiter(@map.users.count) %> collaborators<span>
+                  <% end %>
                 </div>
-              <% elsif current_user %>
-                <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
+              </div>
+              <div class="col-2 icon-column">
+                <% if current_user && current_user.maps.include?(@map) %>
                   <div data-membership-target="icon">
-                    <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                    <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
                   </div>
+                <% elsif current_user %>
+                  <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
+                    <div data-membership-target="icon">
+                      <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
+              </div>
             </div>
           </div>
           <div class="overflow-scroll-list">
+            <div class="places-icons-container d-flex justify-content-center">
+              <button class="search-new-place"
+              data-controller="modal"
+              data-action="click->modal#open">
+                🔍Search for a New Place
+              </button>
+            </div>
             <% if @map.pins.any? %>
               <ul class="pins-list">
                 <% @map.pins.each do |pin| %>
@@ -100,7 +107,13 @@
               </ul>
             <% else %>
               <div class="no-pins">
-                <%= link_to "No pins yet in this map. Start Searching", maps_path, class: "button" %>
+                <div class="places-icons-container d-flex justify-content-center">
+                  <button class="search-new-place"
+              data-controller="modal"
+              data-action="click->modal#open">
+                    🔍Search for a New Place
+                  </button>
+                </div>
               </div>
             <% end %>
             <% if @map.pins.count < 6 %>
@@ -143,5 +156,6 @@
             <% end %>
           </div>
         </div>
+        <%= render "places/modal" %>
       </div>
     </div>
