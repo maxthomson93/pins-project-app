@@ -24,7 +24,9 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   </head>
   <body>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+    <div class="content">
+      <%= yield %>
+    </div>
+    <div class="footer"><%= render 'layouts/footer' %></div>
   </body>
 </html>

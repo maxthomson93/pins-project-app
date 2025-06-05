@@ -4,7 +4,7 @@
   <div class="g-map-sticky">
     <div id="map" style="width:100%; height:50vh;"></div>
   </div>
-  <div class="container">
+  <div class="container mb-4">
     <div class="pins-list-section">
       <div class="map-show-header">
         <div class="row w-100 flex-grow-1 align-items-center">
@@ -21,33 +21,32 @@
                 "fake_user8.jpeg",
                 "fake_user9.jpeg",
               ] %>
-              <% if @map.users.count >3 %>
-                <% images.sample(3).each do |img| %>
-                  <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
-                <% end %>
-                <span>+ <%= number_with_delimiter(@map.users.count) - 3 %> more collaborators</span>
-              <% else %>
-                <% images.first(@map.users.count).each do |img| %>
-                  <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
-                <% end %>
-                <span><%= number_with_delimiter(@map.users.count) %> collaborators<span>
+                <% if @map.users.count >3 %>
+                  <% images.sample(3).each do |img| %>
+                    <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
                   <% end %>
+                  <span>+ <%= number_with_delimiter(@map.users.count - 3)  %> more collaborators</span>
+                <% else %>
+                  <% images.first(@map.users.count).each do |img| %>
+                    <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
+                  <% end %>
+                  <span><%= number_with_delimiter(@map.users.count) %> collaborators<span>
+                <% end %>
+            </div>
+          </div>
+            <div class="col-2 icon-column">
+              <% if current_user && current_user.maps.include?(@map) %>
+                <div data-membership-target="icon">
+                  <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
                 </div>
-              </div>
-              <div class="col-2 icon-column">
-                <% if current_user && current_user.maps.include?(@map) %>
+              <% elsif current_user %>
+                <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
                   <div data-membership-target="icon">
-                    <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                    <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
                   </div>
-                <% elsif current_user %>
-                  <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
-                    <div data-membership-target="icon">
-                      <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
-                    </div>
-                  <% end %>
                 <% end %>
-                <div class="description"><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
-              </div>
+              <% end %>
+            </div>
             </div>
           </div>
           <div class="overflow-scroll-list">
