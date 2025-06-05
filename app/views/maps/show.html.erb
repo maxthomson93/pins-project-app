@@ -99,21 +99,21 @@
                 data-lat="<%= place.latitude %>"
                 data-lng="<%= place.longitude %>">
                 <div class="row flex-grow-1 align-items-center">
-                  <div class="col-8">
+                  <div class="col-10">
                   <div class="pincard-text">
                     <h2><%= place.title %></h2>
                     <p><%= place.address %></p>
                   </div>
                   </div>
-                  <div class="col-4 p-0">
-                    <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
-                      <%= f.hidden_field :map_id, value: @map.id %>
-                      <%= f.hidden_field :place_id, value: place.id %>
-                      <%= f.hidden_field :redirect_map_id, value: @map.id %>
-                      <div class="icon-container">
-                        <button type="submit" class="btn-add-pin">
-                          <i class="fa-solid fa-square-plus"></i>
-                        </button>
+                  <div class="col-2 p-0">
+                      <div class="icon-column">
+                      <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
+                        <%= f.hidden_field :map_id, value: @map.id %>
+                        <%= f.hidden_field :place_id, value: place.id %>
+                        <%= f.hidden_field :redirect_map_id, value: @map.id %>
+                          <button type="submit" class="btn-add-pin">
+                            <i class="fa-solid fa-square-plus"></i>
+                          </button>
                       </div>
                     <% end %>
                   </div>
