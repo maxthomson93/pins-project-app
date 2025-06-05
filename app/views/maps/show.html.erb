@@ -11,11 +11,31 @@
         <div class="col-10 text-info">
           <h2><%= @map.name %></h2>
           <p class="description"><%= @map.description %></p>
-          <div class="member-pin-count">
-            <div><i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(@map.users.count) %> </div>
-            <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
+           <div class="member-pin-count">
+            
+            <% images = [
+                "fake_user1.jpeg",
+                "fake_user2.jpeg",
+                "fake_user3.jpeg",
+                "fake_user4.jpeg",
+                "fake_user6.jpeg",
+                "fake_user8.jpeg",
+                "fake_user9.jpeg",
+              ] %>
+              <% if @map.users.count >3 %>
+                <% images.sample(3).each do |img| %>
+                  <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
+                <% end %>
+                <span>+ <%= number_with_delimiter(@map.users.count) - 3 %> more collaborators</span>
+              <% else %>
+                <% images.first(@map.users.count).each do |img| %>
+                  <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
+                <% end %>
+                <span><%= number_with_delimiter(@map.users.count) %> collaborators<span>
+              <% end %>
+            </div>
           </div>
-        </div>
+
         <div class="col-2 icon-column">
           <% if current_user && current_user.maps.include?(@map) %>
               <div data-membership-target="icon">
@@ -28,6 +48,7 @@
                 </div>
             <% end %>
           <% end %>
+          <div class="description"><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
         </div>
       </div>
       </div>
@@ -102,8 +123,10 @@
                 <div class="row flex-grow-1 align-items-center">
                   <div class="col-10">
                   <div class="pincard-text">
+                    <%= link_to place_path(place) do %>
                     <h2><%= place.title %></h2>
                     <p><%= place.address %></p>
+                    <% end %>
                   </div>
                   </div>
                   <div class="col-2 p-0">
