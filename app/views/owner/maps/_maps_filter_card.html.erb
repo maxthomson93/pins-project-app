@@ -22,18 +22,22 @@
 
     <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
       <!-- Avatars y número de colaboradores -->
-      <div style="display: flex; align-items: center; gap: 8px;">
+      <div class="d-flex align-items-center">
         <% images = ["fake_user1.jpeg", "fake_user2.jpeg", "fake_user3.jpeg", "fake_user4.jpeg", "fake_user6.jpeg", "fake_user8.jpeg", "fake_user9.jpeg"] %>
-        <% max_to_show = [images.size, map.users.count].min %>
-        <% sample_images = images.shuffle.first(max_to_show) %>
-
-        <% sample_images.each do |img_filename| %>
-          <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" %>
-        <% end %>
-
-        <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
-          <%= number_with_delimiter(map.users.count) %> collaborators
-        </span>
+        <% max_to_show = [3, map.users.count].min %>
+        <% sample_images = images.sample(max_to_show) %>
+        <div class="member-pin-count">
+          <% sample_images.each do |img_filename| %>
+            <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+              margin-right: -19px;
+              border: white 1px solid; padding: 0" %>
+          <% end %>
+          <% if map.users.count >3 %>
+              <span>+ <%= number_with_delimiter(map.users.count - 3)  %> more collaborators</span>
+          <% else %>
+              <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
+          <% end %>
+        </div>
       </div>
 
       <!-- Número de pines -->
