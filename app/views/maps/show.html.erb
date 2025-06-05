@@ -26,7 +26,7 @@
                   <% images.sample(3).each do |img| %>
                     <img src="<%= asset_path(img) %>" class="collaborator-avatar" />
                   <% end %>
-                  <span>+ <%= number_with_delimiter(@map.users.count) - 3 %> more collaborators</span>
+                  <span>+ <%= number_with_delimiter(@map.users.count - 3)  %> more collaborators</span>
                 <% else %>
                   <% images.first(@map.users.count).each do |img| %>
                     <img src="<%= asset_path(img) %>" class="collaborator-avatar" />

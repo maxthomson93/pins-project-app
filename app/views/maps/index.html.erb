@@ -3,7 +3,7 @@
     <div
     id="map"
     style="width: 100%;
-    height: 60vh;"
+    height: 560px;"
     >
     </div>
     <div class="container search-bar-container-index map-list">
@@ -15,11 +15,11 @@
       <% end %>
     </div>
   </div>
-  <div class="container results-container">
+  <div class="container overflow-scroll" style="height: 290px;">
     <ul class="nav nav-tabs mb-4">
       <li class="nav-item">
         <%#= link_to "Communities", maps_path(status: "communities"), class: "nav-link #{'active' if @status == 'communities'}" %>
-        <button class="nav-link active" id="maps-tab" data-bs-toggle="tab" data-bs-target="#maps" type="button" role="tab" aria-controls="maps" aria-selected="true">Maps</button>
+        <button class="nav-link active" id="maps-tab" data-bs-toggle="tab" data-bs-target="#maps" type="button" role="tab" aria-controls="maps" aria-selected="true" style="z-index: 0;">Maps</button>
       </li>
       <li class="nav-item">
         <%#= link_to "Places", maps_path(status: "places"), class: "nav-link #{'active' if @status == 'places'}" %>
@@ -28,16 +28,16 @@
     </ul>
     <div class="tab-content mt-3" id="myTabContent">
       <div class="tab-pane fade show active" id="maps" role="tabpanel" aria-labelledby="maps-tab">
-        <p><%= pluralize(@maps.count, "community") %> found</p>
-        <div class="map-list">
+        <p class="description"><%= pluralize(@maps.count, "community") %> found</p>
+        <div class="map-list mb-5">
           <% @maps.each_with_index do |map, i| %>
             <%= render "maps/maps_index_card", map: map, markers: @markers_by_map[map.id].to_json %>
           <% end %>
         </div>
       </div>
       <div class="tab-pane fade" id="places" role="tabpanel" aria-labelledby="places-tab">
-        <p><%= pluralize(@places.count, "Place") %> found</p>
-        <div id="places-cards" class="">
+        <p class="description"><%= pluralize(@places.count, "Place") %> found</p>
+        <div id="places-cards" class="mb-5">
           <% @places.each do |place| %>
             <%= render "place_search_card", place: place %>
             <%#= render "place_search_card", place: place, pin: Pin.new.tap(&:build_place) %>
