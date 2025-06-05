@@ -7,7 +7,8 @@
   <div class="container">
     <div class="pins-list-section">
       <div class="map-show-header">
-        <div class="text-info">
+        <div class="row w-100 flex-grow-1 align-items-center">
+        <div class="col-10 text-info">
           <h2><%= @map.name %></h2>
           <p class="description"><%= @map.description %></p>
           <div class="member-pin-count">
@@ -15,22 +16,20 @@
             <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
           </div>
         </div>
-        <% if current_user && current_user.maps.include?(@map) %>
-          <div class="icon-column">
-            <div data-membership-target="icon">
-              <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
-            </div>
-            
-          </div>
-        <% elsif current_user %>
-          <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
-            <div class="icon-column">
+        <div class="col-2 icon-column">
+          <% if current_user && current_user.maps.include?(@map) %>
               <div data-membership-target="icon">
-                <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 1rem;"></i>
+                <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
               </div>
-            </div>
+          <% elsif current_user %>
+            <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
+                <div data-membership-target="icon">
+                  <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+      </div>
       </div>
       <div class="overflow-scroll-list">
         <% if @map.pins.any? %>
@@ -39,38 +38,41 @@
               <% place = pin.place %>
               <% if place.present? %>
                 <li class="pin-card">
-                  <%= link_to place_path(place) do %>
+                <div class="row flex-grow-1 align-items-center">
+                  <div class="col-8">
                     <div class="pincard-text">
-                      <h2><%= place.title %></h2>
-                      <p><%= place.address %></p>
+                      <%= link_to place_path(place) do %>
+                          <h2><%= place.title %></h2>
+                          <p><%= place.address %></p>
+                      <% end %>
                     </div>
-                  <% end %>
-                  <div class="icon-container">
-                    <div class="btn-location-pin" data-action="click->google-maps#focusOn"
-                      data-lat="<%= place.latitude %>"
-                      data-lng="<%= place.longitude %>">
-                      <i class="fa-solid fa-arrows-to-circle"></i>
-                    </div>
-                    <div>
-                      <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus"></i></button>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="col-4 p-0">
+                    <div class="icon-container">
+                      <div class="btn-location-pin" data-action="click->google-maps#focusOn"
+                        data-lat="<%= place.latitude %>"
+                        data-lng="<%= place.longitude %>">
+                        <i class="fa-solid fa-arrows-to-circle"></i>
+                      </div>
+                        <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus"></i></button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <%= simple_form_for @pin, url: pins_path do |f| %>
+                                <div class="modal-body">
+                                  <%= f.input :map_id, collection: current_user.maps, label: "Choose a map", as: :select, value_method: :id, label_method: :name, input_html: { class: "form-select" } %>
+                                  <%= f.hidden_field :place_id, value: place.id %>
+                                  <%= f.hidden_field :redirect_map_id, value: @map.id %>
+                                </div>
+                                <div class="modal-footer">
+                                  <%= f.submit "Add Pin", class: 'button' %>
+                                </div>
+                              <% end %>
                             </div>
-                            <%= simple_form_for @pin, url: pins_path do |f| %>
-                              <div class="modal-body">
-                                <%= f.input :map_id, collection: current_user.maps, label: "Choose a map", as: :select, value_method: :id, label_method: :name, input_html: { class: "form-select" } %>
-                                <%= f.hidden_field :place_id, value: place.id %>
-                                <%= f.hidden_field :redirect_map_id, value: @map.id %>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <%= f.submit "Add Pin", class: 'button' %>
-                              </div>
-                            <% end %>
                           </div>
                         </div>
                       </div>
@@ -84,7 +86,7 @@
           </ul>
         <% else %>
           <div class="no-pins">
-            <%= link_to "No pins yet in this map. Start Searching", maps_path, class: "btn btn-primary" %>
+            <%= link_to "No pins yet in this map. Start Searching", maps_path, class: "button" %>
           </div>
         <% end %>
         <% if @map.pins.count < 6 %>
@@ -96,20 +98,26 @@
               <li class="pin-card" data-action="click->google-maps#focusOn"
                 data-lat="<%= place.latitude %>"
                 data-lng="<%= place.longitude %>">
-                <div class="pincard-text">
-                  <h2><%= place.title %></h2>
-                  <p><%= place.address %></p>
-                </div>
-                <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
-                  <%= f.hidden_field :map_id, value: @map.id %>
-                  <%= f.hidden_field :place_id, value: place.id %>
-                  <%= f.hidden_field :redirect_map_id, value: @map.id %>
-                  <div class="icon-container">
-                    <button type="submit" class="btn-add-pin">
-                      <i class="fa-solid fa-square-plus"></i>
-                    </button>
+                <div class="row flex-grow-1 align-items-center">
+                  <div class="col-8">
+                  <div class="pincard-text">
+                    <h2><%= place.title %></h2>
+                    <p><%= place.address %></p>
                   </div>
-                <% end %>
+                  </div>
+                  <div class="col-4 p-0">
+                    <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
+                      <%= f.hidden_field :map_id, value: @map.id %>
+                      <%= f.hidden_field :place_id, value: place.id %>
+                      <%= f.hidden_field :redirect_map_id, value: @map.id %>
+                      <div class="icon-container">
+                        <button type="submit" class="btn-add-pin">
+                          <i class="fa-solid fa-square-plus"></i>
+                        </button>
+                      </div>
+                    <% end %>
+                  </div>
+                  </div>
               </li>
             <% end %>
           </ul>
