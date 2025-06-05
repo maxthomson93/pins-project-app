@@ -1,4 +1,3 @@
-<!-- app/views/maps/show.html.erb -->
 <div data-controller="google-maps"
      data-markers='<%= raw @markers.to_json %>'>
   <div class="g-map-sticky">
@@ -20,7 +19,6 @@
             <div data-membership-target="icon">
               <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
             </div>
-            
           </div>
         <% elsif current_user %>
           <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
@@ -84,7 +82,11 @@
           </ul>
         <% else %>
           <div class="no-pins">
-            <%= link_to "No pins yet in this map. Start Searching", maps_path, class: "btn btn-primary" %>
+            <button class="btn btn-primary"
+        data-controller="modal"
+        data-action="click->modal#open">
+              Search for a Place
+            </button>
           </div>
         <% end %>
         <% if @map.pins.count < 6 %>
@@ -116,5 +118,6 @@
         <% end %>
       </div>
     </div>
+    <%= render "places/modal" %>
   </div>
 </div>

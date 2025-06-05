@@ -16,8 +16,13 @@
   position: absolute;
   left: 15px;
   bottom: 20px;
-  z-index: 1000;  
+  z-index: 1000;
   color: #a7c4b2;
   font-size: 2rem;
   cursor: pointer;
+}
+
+.overflow-scroll-index-list {
+  overflow-y: scroll;
+  max-height: 300px;
 }

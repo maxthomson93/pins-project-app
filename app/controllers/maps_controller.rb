@@ -17,13 +17,15 @@ class MapsController < ApplicationController
             infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) },
             map_index: i,
             icon: {
-              url: helpers.asset_url("pins/pin_main.png"),
+              url: helpers.asset_url("pins/pin_red.png"),
               size: { width: 32, height: 32 },
               scaledSize: { width: 32, height: 32 }
             }
           }
         end
       end
+
+
 
       client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
 

@@ -63,3 +63,18 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   background-color: #f4f4f4;
 }
+
+
+.search-bar-container-show {
+  z-index: 5;
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.search-bar-container-show form {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
