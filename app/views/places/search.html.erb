@@ -1,8 +1,10 @@
 <turbo-frame id="search_results">
   <% @places.each do |place| %>
-    <div class="place-card">
-      <strong><%= place.title %></strong><br>
-      <%= place.address %><br>
+    <li class="pin-card">
+      <div class="pincard-text">
+        <h2><%= place.title %></h2>
+        <p><%= place.address %></p>
+      </div>
       <%= form_with url: places_path, method: :post, data: { turbo_frame: "_top" } do |f| %>
         <%= hidden_field_tag "place[title]", place.title %>
         <%= hidden_field_tag "place[address]", place.address %>
@@ -10,8 +12,11 @@
         <%= hidden_field_tag "place[longitude]", place.longitude %>
         <%= hidden_field_tag "place[photo_url]", place.photo_url %>
         <%= hidden_field_tag :map_id, @map.id %>
-        <%= f.submit "Save", class: "btn" %>
+        <button type="submit" class="btn-add-pin">
+          <i class="fa-solid fa-square-plus" style="color: #52946B; font-size: 30px;"></i>
+        </button>
       <% end %>
     </div>
-  <% end %>
+  </li>
+<% end %>
 </turbo-frame>

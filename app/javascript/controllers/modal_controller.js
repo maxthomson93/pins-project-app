@@ -10,9 +10,9 @@ export default class extends Controller {
     }
   }
 
-  close(event) {
-    event.preventDefault()
-  const modal = bootstrap.Modal.getInstance(this.element);
-  if (modal) modal.hide();
+  static targets = ["modal"];
+
+  close() {
+    this.element.classList.add("hidden"); // Add the 'hidden' class to hide the modal
   }
 }
