@@ -1,19 +1,19 @@
-<div data-controller="google-maps" data-markers="<%= (@markers || []).to_json %>">
-  <div id="search-results">
-    <div class="g-map-sticky">
-      <div
-    id="map"
-    style="width: 100%;
-    height: 60vh;"
-    >
-      </div>
-      <div class="container search-bar-container-index ">
-        <%= form_with url: maps_path, method: :get, local: true do |form| %>
-        <% end %>
-      </div>
+<!-- app/views/owner/maps/index.html.erb -->
+
+<div id="page-wrapper" data-controller="google-maps" data-markers="<%= (@markers || []).to_json %>">
+  <!-- El mapa ocupa toda la pantalla -->
+  <div id="map" style="width: 100%; height: 100vh;"></div>
+
+  <!-- Tarjeta "My Maps" -->
+  <div id="my-maps-container" class="collapsed">
+    <!-- Cabecera (64px de alto) -->
+    <div class="toggle-header" onclick="toggleMyMaps()" style="background-color: #E9EEE9;">
+      <span class="tab-text" style="color: #52946B;">My Maps</span>
+      <span id="toggle-icon" style="color: #52946B;">▲</span>
     </div>
-    <div class="overflow-scroll-list search-bar-container-mb">
-      <!--<p class="p-0"><%#= pluralize(@maps.count, "community") %> found</p> -->
+
+    <!-- Contenido: lista de mapas (altura 60vh) -->
+    <div id="my-maps-content">
       <div class="container">
         <% if current_user && current_user.maps %>
           <% @maps.each_with_index do |map, i| %>
@@ -25,3 +25,97 @@
     </div>
   </div>
 </div>
+
+<!-- JS para alternar collapsed/expanded -->
+<script>
+  function toggleMyMaps() {
+    const container = document.getElementById("my-maps-container");
+    const icon      = document.getElementById("toggle-icon");
+
+    if (container.classList.contains("collapsed")) {
+      container.classList.remove("collapsed");
+      container.classList.add("expanded");
+      icon.textContent = "▼";
+    } else {
+      container.classList.remove("expanded");
+      container.classList.add("collapsed");
+      icon.textContent = "▲";
+    }
+  }
+
+  // Siempre iniciar expandido, sin importar navegación previa
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("my-maps-container");
+    container.classList.remove("collapsed");
+    container.classList.add("expanded");
+    document.getElementById("toggle-icon").textContent = "▼";
+  });
+
+  // También forzar expandido si se navega con Turbo/Hotwire (si aplica)
+  document.addEventListener("turbo:load", () => {
+    const container = document.getElementById("my-maps-container");
+    if (container) {
+      container.classList.remove("collapsed");
+      container.classList.add("expanded");
+      document.getElementById("toggle-icon").textContent = "▼";
+    }
+  });
+</script>
+
+<!-- Estilos embebidos -->
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Contenedor flotante de My Maps */
+  #my-maps-container {
+    position: fixed;
+    left: 0;
+    bottom: 106px;           /* 106px por encima del footer */
+    width: 100%;
+    background-color: white;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: height 0.3s ease;
+    z-index: 9999;
+  }
+
+  /* Cuando está colapsado, solo muestra la cabecera de 64px */
+  #my-maps-container.collapsed {
+    height: 64px; /* Ajustado a 64px para que coincida justo encima del footer */
+  }
+
+  /* Cuando se expande, muestra cabecera + contenido (64px + 35vh) */
+  #my-maps-container.expanded {
+    height: calc(64px + 35vh);
+  }
+
+  /* Cabecera clickeable */
+  .toggle-header {
+    height: 64px; /* Altura real de la cabecera */
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-top: 2px solid #eee;
+  }
+
+  .tab-text {
+    font-size: 1.2rem;
+  }
+
+  /* Contenedor del listado de mapas */
+  #my-maps-content {
+    height: 35vh;        /* La lista ocupará máximo 35vh */
+    overflow-y: auto;
+    padding-bottom: 20px; /* Español: espacio para que el scroll no choque con el footer */
+  }
+</style>

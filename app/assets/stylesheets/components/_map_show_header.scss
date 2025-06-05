@@ -1,6 +1,7 @@
 .map-show-header {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   padding: 10px;
 }
@@ -24,8 +25,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: end;
   gap: 4px;
   flex-shrink: 0;
+
+  .description {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0;
+    text-align: center;
+  }
 }
 
 .member-pin-count {
@@ -35,4 +44,15 @@
   margin: 0;
   font-size: 0.85rem;
   color: #555;
+  span {
+    margin-left: 14px;
+  }
+}
+.collaborator-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: -19px;
+  border: white 1px solid;
 }
