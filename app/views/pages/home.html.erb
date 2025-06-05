@@ -33,18 +33,14 @@
       <div class="swiper-pagination"></div>
     </div>
     <h2>Popular Spots Near You</h2>
-    <div class="swiper mySwiper2">
-      <div class="swiper-wrapper">
-        <% @places = Place.limit(4) %>
-        <% @places.each do |place| %>
-          <div class="swiper-slide">
-            <%= link_to place_path(place), class: "card-category" do %>
-              <span class="truncate"><%= place.title %></span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="swiper-pagination"></div>
+    <div id="vertical_recommendations_list" class="vertical-card-list">
+      <% @places = Place.limit(4) %>
+      <% @places.each do |place| %>
+        <div class="card-item">
+          <%= link_to place_path(place), class: "vertical-ard-category" do %>
+            <span class="truncate"><%= place.title %></span>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
-</div>
