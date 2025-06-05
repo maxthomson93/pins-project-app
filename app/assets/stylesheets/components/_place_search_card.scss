@@ -16,14 +16,16 @@
 }
 
 .place-search-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  width: 120px;
-  padding: 12px; /* Remove padding */
+  width: 120px;/* Remove padding */
 }
 
 .place-search-card img {
-  height: 100%;
-  width: 100% !important;
+  height: 80px;
+  width: 80px !important;
   object-fit: cover;
   box-sizing: border-box;
 }
