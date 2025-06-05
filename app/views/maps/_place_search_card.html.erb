@@ -1,6 +1,6 @@
 <div class="place-search-card">
   <div class="place-search-img-container">
-    <%= image_tag place.photo_url || 'tokyo_tower.jpeg' %>
+    <%= image_tag place.photo_url.presence || asset_path("pins_background.png") %>
   </div>
   <div class="place-search-card-infos">
     <h2><%= place.title %></h2>
@@ -11,12 +11,12 @@
     <i class="fa-solid fa-square-plus fa-plus-green "></i>
   </button>
   <!-- Modal -->
-  <div class="modal fade" id="modal-<%= place.title.parameterize %>" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modal-<%= place.title.parameterize %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Add Place & Pin</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <%= simple_form_for @place, url: places_path, html: { data: { turbo_frame: "_top" } } do |f| %>
           <div class="modal-body">
@@ -30,7 +30,7 @@
                 class: "form-select" %>
           </div>
           <div class="modal-footer">
-            <%= f.submit "Add Place & Pin", class: "btn btn-success" %>
+            <%= f.submit "Add Pin", class: "button" %>
           </div>
         <% end %>
       </div>

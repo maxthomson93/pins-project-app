@@ -1,22 +1,37 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
+
 export default class extends Controller {
   static targets = ["modal"];
 
-  connect() {
-  }
+  connect() {}
 
   open(event) {
-    event.preventDefault()
+    event.preventDefault();
     console.log("MEOW");
 
-    const modal = document.getElementById("search-modal")
+    const modal = document.getElementById("search-modal");
     if (modal) {
-      modal.classList.remove("hidden")
-      modal.classList.add("show")
+      modal.classList.remove("hidden");
+      modal.classList.add("show");
+
+      // Add the backdrop dynamically
+      const backdrop = document.createElement("div");
+      backdrop.className = "modal-backdrop fade show";
+      document.body.appendChild(backdrop);
     }
   }
 
   close() {
-    this.element.classList.add("hidden"); // Add the 'hidden' class to hide the modal
+    const modal = document.getElementById("search-modal");
+    if (modal) {
+      modal.classList.remove("show");
+      modal.classList.add("hidden");
+    }
+
+    // Remove the backdrop
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) {
+      backdrop.remove();
+    }
   }
 }

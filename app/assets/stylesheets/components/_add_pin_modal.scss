@@ -65,3 +65,12 @@
   transform: translate(-50%, -50%);
   z-index: 1050; /* Ensures it appears above other elements */
 }
+
+
+.modal {
+  z-index: 1050; /* Default Bootstrap modal z-index */
+}
+
+.modal-backdrop {
+  z-index: 1040; /* Ensure backdrop is behind the modal */
+}
