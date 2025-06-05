@@ -6,16 +6,16 @@
     height: 60vh;"
     >
     </div>
-    <div class="container search-bar-container-index" class="map-list";>
+    <div class="container search-bar-container-index map-list">
       <%= form_with url: maps_path, method: :get, local: true do |form| %>
         <div class="search-input">
-          <%= form.text_field :query, placeholder: "Find Communities", class: "form-control" %>
+          <%= form.text_field :query, placeholder: "Find Maps and Places", class: "form-control" %>
         </div>
         <%= form.submit "search", class: "button" %>
       <% end %>
     </div>
   </div>
-  <div class="container">
+  <div class="container results-container">
     <ul class="nav nav-tabs mb-4">
       <li class="nav-item">
         <%#= link_to "Communities", maps_path(status: "communities"), class: "nav-link #{'active' if @status == 'communities'}" %>
@@ -36,7 +36,8 @@
         </div>
       </div>
       <div class="tab-pane fade" id="places" role="tabpanel" aria-labelledby="places-tab">
-        <div id="places-cards">
+        <p><%= pluralize(@places.count, "Place") %> found</p>
+        <div id="places-cards" class="">
           <% @places.each do |place| %>
             <%= render "place_search_card", place: place %>
             <%#= render "place_search_card", place: place, pin: Pin.new.tap(&:build_place) %>

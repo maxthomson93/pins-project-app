@@ -8,28 +8,28 @@
     <div class="pins-list-section">
       <div class="map-show-header">
         <div class="row w-100 flex-grow-1 align-items-center">
-        <div class="col-10 text-info">
-          <h2><%= @map.name %></h2>
-          <p class="description"><%= @map.description %></p>
-          <div class="member-pin-count">
-            <div><i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(@map.users.count) %> </div>
-            <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
+          <div class="col-10 text-info">
+            <h2><%= @map.name %></h2>
+            <p class="description"><%= @map.description %></p>
+            <div class="member-pin-count">
+              <div><i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(@map.users.count) %> </div>
+              <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
+            </div>
           </div>
-        </div>
-        <div class="col-2 icon-column">
-          <% if current_user && current_user.maps.include?(@map) %>
+          <div class="col-2 icon-column">
+            <% if current_user && current_user.maps.include?(@map) %>
               <div data-membership-target="icon">
                 <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
               </div>
-          <% elsif current_user %>
-            <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
+            <% elsif current_user %>
+              <%= link_to map_memberships_path(@map), class: "icon-button", data: { turbo_method: :post, action: "click->membership#join" } do %>
                 <div data-membership-target="icon">
                   <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
                 </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
       </div>
       <div class="overflow-scroll-list">
         <% if @map.pins.any? %>
@@ -38,22 +38,22 @@
               <% place = pin.place %>
               <% if place.present? %>
                 <li class="pin-card">
-                <div class="row flex-grow-1 align-items-center">
-                  <div class="col-8">
-                    <div class="pincard-text">
-                      <%= link_to place_path(place) do %>
+                  <div class="row flex-grow-1 align-items-center">
+                    <div class="col-8">
+                      <div class="pincard-text">
+                        <%= link_to place_path(place) do %>
                           <h2><%= place.title %></h2>
                           <p><%= place.address %></p>
-                      <% end %>
-                    </div>
-                  </div>
-                  <div class="col-4 p-0">
-                    <div class="icon-container">
-                      <div class="btn-location-pin" data-action="click->google-maps#focusOn"
-                        data-lat="<%= place.latitude %>"
-                        data-lng="<%= place.longitude %>">
-                        <i class="fa-solid fa-arrows-to-circle"></i>
+                        <% end %>
                       </div>
+                    </div>
+                    <div class="col-4 p-0">
+                      <div class="icon-container">
+                        <div class="btn-location-pin" data-action="click->google-maps#focusOn"
+                          data-lat="<%= place.latitude %>"
+                          data-lng="<%= place.longitude %>">
+                          <i class="fa-solid fa-arrows-to-circle"></i>
+                        </div>
                         <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus"></i></button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
@@ -100,10 +100,10 @@
                 data-lng="<%= place.longitude %>">
                 <div class="row flex-grow-1 align-items-center">
                   <div class="col-8">
-                  <div class="pincard-text">
-                    <h2><%= place.title %></h2>
-                    <p><%= place.address %></p>
-                  </div>
+                    <div class="pincard-text">
+                      <h2><%= place.title %></h2>
+                      <p><%= place.address %></p>
+                    </div>
                   </div>
                   <div class="col-4 p-0">
                     <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
@@ -117,7 +117,7 @@
                       </div>
                     <% end %>
                   </div>
-                  </div>
+                </div>
               </li>
             <% end %>
           </ul>

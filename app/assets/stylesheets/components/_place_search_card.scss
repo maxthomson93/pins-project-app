@@ -1,7 +1,6 @@
 .place-search-card {
   overflow: hidden;
   height: 120px;
-  background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,4 +62,8 @@
   opacity: 0.7;
   margin: 2px 0; /* small margin top and bottom */
   font-style: italic;
+}
+
+.fa-plus-green {
+  color: #52946B;
 }

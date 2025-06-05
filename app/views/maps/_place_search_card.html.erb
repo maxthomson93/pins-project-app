@@ -7,8 +7,8 @@
     <p class="description"><%= place.address %></p>
   </div>
   <!-- Button to trigger modal -->
-  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= place.title.parameterize %>">
-    Pin this Place
+  <button class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#modal-<%= place.title.parameterize %>">
+    <i class="fa-solid fa-square-plus fa-plus-green "></i>
   </button>
   <!-- Modal -->
   <div class="modal fade" id="modal-<%= place.title.parameterize %>" tabindex="-1" aria-hidden="true">
