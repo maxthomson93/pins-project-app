@@ -1,0 +1,22 @@
+<!-- app/views/places/_modal.html.erb -->
+<div id="search-modal"
+     class="modal hidden"
+     data-controller="modal">
+  <div class="modal-content row">
+    <div class="col-12">
+      <button class="modal-close" data-action="click->modal#close"><i class="fa-solid fa-circle-xmark"></i></button>
+      <h2>Search for a Place</h2>
+      <div class="search-bar-container-modal">
+        <%= form_with url: search_places_path, method: :get, data: { turbo_frame: "search_results" } do %>
+          <%= hidden_field_tag :map_id, @map.id %>
+          <%= text_field_tag :query, nil, id: "query", class: "input" %>
+          <%= submit_tag "Search", class: "button-modal" %>
+        <% end %>
+      </div>
+    </div>
+    <turbo-frame id="search_results" class="results">
+      <!-- Search results appear here -->
+    </turbo-frame>
+  </div>
+</div>
+</div>

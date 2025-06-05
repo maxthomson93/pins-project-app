@@ -36,10 +36,35 @@ class PlacesController < ApplicationController
   end
 
 
-private
+  def search
+    @map = Map.find(params[:map_id])
+    client = GooglePlaces::Client.new(ENV['GOOGLE_API_SERVER_KEY'])
 
-def place_params
-  params.require(:place).permit(:title, :address, :latitude, :longitude, :photo_url)
-end
+    spots = client.spots(35.6895, 139.6917, name: params[:query], radius: 20_000)
+
+    @places = spots.map do |spot|
+      photo_url = spot.photos&.first&.fetch_url(400, { api_key: ENV['GOOGLE_API_SERVER_KEY'] }) || view_context.image_path("thebeach.jpg")
+      Place.new(
+        title: spot.name,
+        latitude: spot.json_result_object["geometry"]["location"]["lat"],
+        longitude: spot.json_result_object["geometry"]["location"]["lng"],
+        address: spot.json_result_object["vicinity"],
+        photo_url: photo_url
+      )
+    end
+
+
+    respond_to do |format|
+      format.html
+    end
+
+  end
+
+
+  private
+
+  def place_params
+    params.require(:place).permit(:title, :address, :latitude, :longitude, :photo_url, :map_id)
+  end
 
 end
