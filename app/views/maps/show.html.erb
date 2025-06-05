@@ -9,6 +9,11 @@
         <div class="text-info">
           <h2><%= @map.name %></h2>
           <p class="description"><%= @map.description %></p>
+          <button class="btn btn-primary"
+        data-controller="modal"
+        data-action="click->modal#open">
+            Search for a Place
+          </button>
           <div class="member-pin-count">
             <div><i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(@map.users.count) %> </div>
             <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %></div>
@@ -82,11 +87,6 @@
           </ul>
         <% else %>
           <div class="no-pins">
-            <button class="btn btn-primary"
-        data-controller="modal"
-        data-action="click->modal#open">
-              Search for a Place
-            </button>
           </div>
         <% end %>
         <% if @map.pins.count < 6 %>
