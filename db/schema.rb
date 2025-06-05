@@ -83,11 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_025124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.string "name"
     t.string "photo_url"
-    t.string "google_place_id"
-    t.string "photo_reference"
-    t.index ["google_place_id"], name: "index_places_on_google_place_id"
   end
 
   create_table "reviews", force: :cascade do |t|
