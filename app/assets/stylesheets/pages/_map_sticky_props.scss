@@ -17,8 +17,16 @@
   position: absolute;
   left: 15px;
   bottom: 20px;
-  z-index: 1000;  
+  z-index: 1000;
   color: #a7c4b2;
   font-size: 2rem;
   cursor: pointer;
+}
+
+#places-cards {
+  overflow-y: auto;
+  max-height: 60vh; // Adjust height as needed
+  padding-top: 1rem; // Optional: Add padding to prevent content from touching the top
+
+  padding-bottom: 150px;
 }
