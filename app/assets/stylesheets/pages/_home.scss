@@ -6,10 +6,9 @@
 
 .swiper-wrapper {
   display: flex;
-  gap: 16px;
+  gap: 9px;
   overflow-x: scroll;;
-  padding-bottom: 12px;
-
+  padding-bottom: 6px;
 }
 
 .swiper-slide {
@@ -23,7 +22,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  color: #ff416c;
+  color: #52946B;
   font-weight: bold;
   font-size: 16px;
   display: flex;
@@ -32,7 +31,7 @@
   user-select: none;
   border-radius: 25px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); // 3D shadow
-  border: 3px solid #ff416c;
+  border: 3px solid #52946B;
   background: linear-gradient(to right, #ffffff, #e6dbdb);
 }
 
@@ -49,7 +48,7 @@ a {
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 80px 0;
 }
 
 .banner h1 {
@@ -91,6 +90,42 @@ a {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;   /* number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#vertical_recommendations_list.vertical-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 0px;
+}
+
+#vertical_recommendations_list.vertical-card-list > .card-item {
+  width: 100%;
+}
+
+#vertical_recommendations_list .vertical-ard-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  background: linear-gradient(to right, #ffffff, #e6dbdb);
+  // border: 3px solid #52946B;
+  // border-radius: 8px;
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+  color: #52946B;
+  font-weight: bold;
+  font-size: 16px;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+}
+
+#vertical_recommendations_list .truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
 }
