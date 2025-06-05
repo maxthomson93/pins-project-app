@@ -101,7 +101,12 @@ class MapsController < ApplicationController
       {
         lat: place.latitude,
         lng: place.longitude,
-        infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) }
+        infoWindow: { content: render_to_string(partial: "/shared/place_card", locals: { place: place }) },
+        icon: {
+        url: helpers.asset_url("pins/pin_red.png"),
+        size: { width: 32, height: 32 },
+        scaledSize: { width: 32, height: 32 }
+        }
       }
     end
   end
