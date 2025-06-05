@@ -54,7 +54,7 @@
                         data-lng="<%= place.longitude %>">
                         <i class="fa-solid fa-arrows-to-circle"></i>
                       </div>
-                        <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus"></i></button>
+                        <button type="button" class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-square-plus" style="color: #52946B; font-size: 30px;"></i></button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -91,13 +91,14 @@
         <% end %>
         <% if @map.pins.count < 6 %>
           <div class="map-show-header">
-            <h2>Our Recommendations</h2>
+            <h3>Our Recommendations</h3>
           </div>
           <ul class="pins-list">
             <% Place.all.each do |place| %>
+             <% already_pinned = @map.pins.exists?(place_id: place.id) %>
               <li class="pin-card" data-action="click->google-maps#focusOn"
                 data-lat="<%= place.latitude %>"
-                data-lng="<%= place.longitude %>">
+                data-lng="<%= place.longitude %>">  
                 <div class="row flex-grow-1 align-items-center">
                   <div class="col-10">
                   <div class="pincard-text">
@@ -107,17 +108,21 @@
                   </div>
                   <div class="col-2 p-0">
                       <div class="icon-column">
+                      <% unless already_pinned %>
                       <%= form_with model: Pin.new, url: pins_path, method: :post, class: "inline-form" do |f| %>
                         <%= f.hidden_field :map_id, value: @map.id %>
                         <%= f.hidden_field :place_id, value: place.id %>
                         <%= f.hidden_field :redirect_map_id, value: @map.id %>
-                          <button type="submit" class="btn-add-pin">
-                            <i class="fa-solid fa-square-plus"></i>
-                          </button>
+                        <button type="submit" class="btn-add-pin">
+                          <i class="fa-solid fa-square-plus" style="color: #52946B; font-size: 30px;"></i>
+                        </button>
+                      <% end %>
+                      <% else %>
+                        <button class="btn-add-pin"><i class="fa-solid fa-square-check" style="color: #52946B; font-size: 30px;"></i></button>
+                      <% end %>
                       </div>
-                    <% end %>
                   </div>
-                  </div>
+                </div>
               </li>
             <% end %>
           </ul>
