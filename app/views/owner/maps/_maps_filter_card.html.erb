@@ -1,16 +1,55 @@
-<div class="map-filter-card">
-  <%= image_tag("thebeach.jpeg", class: "map-avatar") %>
-  <div class="map-filter-card-infos">
-    <%= link_to map_path(map), class:"text-decoration-none" do  %>
-      <h2><%= map.name %></h2>
+<div class="map-filter-card" style="
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background-color: #f4fff4;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  border-left: 5px solid #4CAF50;
+  min-height: 130px;
+">
+  <div class="map-filter-card-infos" style="flex-grow: 1; padding-right: 12px;">
+    <%= link_to map_path(map), class: "text-decoration-none" do %>
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 6px; color: #2e7d32;">
+        <%= map.name %>
+      </h2>
     <% end %>
-    <p class="description"><%= map.description %></p>
+    <p style="font-size: 0.9rem; color: #6b8e70; margin: 0 0 10px;">
+      <%= map.description %>
+    </p>
+
+    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <!-- Avatars y número de colaboradores -->
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <% images = ["fake_user1.jpeg", "fake_user2.jpeg", "fake_user3.jpeg", "fake_user4.jpeg", "fake_user6.jpeg", "fake_user8.jpeg", "fake_user9.jpeg"] %>
+        <% max_to_show = [images.size, map.users.count].min %>
+        <% sample_images = images.shuffle.first(max_to_show) %>
+
+        <% sample_images.each do |img_filename| %>
+          <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" %>
+        <% end %>
+
+        <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
+          <%= number_with_delimiter(map.users.count) %> collaborators
+        </span>
+      </div>
+
+      <!-- Número de pines -->
+      <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
+        <i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i>
+        <%= number_with_delimiter(map.pins.count) %> pins
+      </span>
+    </div>
   </div>
-  <div class="pin-toggle checked <%= color %>-pin" data-action="click->google-maps#filterToggle" data-google-maps-target="pinsToggle" data-map-index="<%= i %>"
-    id="map_<%=i%>" >
-    <i class="fa-solid fa-location-dot map-filter-icon "></i>
-    <%# <i class="fa-regular fa-eye map-filter-icon"></i> %>
-  </div>
-  <div class="member-count text-top">
+
+  <!-- Toggle de color -->
+  <div class="pin-toggle checked <%= color %>-pin"
+       data-action="click->google-maps#filterToggle"
+       data-google-maps-target="pinsToggle"
+       data-map-index="<%= i %>"
+       id="map_<%= i %>">
+    <i class="fa-solid fa-location-dot map-filter-icon"></i>
   </div>
 </div>
