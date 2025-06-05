@@ -34,10 +34,6 @@
                 <span><%= number_with_delimiter(@map.users.count) %> collaborators<span>
               <% end %>
             </div>
-
-
-            <%# <div><i class="fa-solid fa-user-group"></i> <%= number_with_delimiter(@map.users.count) %> 
-            <%# <div><i class="fa-solid fa-map-pin"></i> <%= number_with_delimiter(@map.pins.count) %>
           </div>
 
         <div class="col-2 icon-column">
@@ -127,8 +123,10 @@
                 <div class="row flex-grow-1 align-items-center">
                   <div class="col-10">
                   <div class="pincard-text">
+                    <%= link_to place_path(place) do %>
                     <h2><%= place.title %></h2>
                     <p><%= place.address %></p>
+                    <% end %>
                   </div>
                   </div>
                   <div class="col-2 p-0">
