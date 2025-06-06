@@ -18,7 +18,6 @@
     <p style="font-size: 0.9rem; color: #6b8e70; margin: 0 0 10px;">
       <%= map.description %>
     </p>
-
     <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
       <!-- Avatars y número de colaboradores -->
       <div class="d-flex align-items-center">
@@ -26,33 +25,41 @@
         <% max_to_show = [3, map.users.count].min %>
         <% sample_images = images.sample(max_to_show) %>
         <div class="member-pin-count">
-          <% sample_images.each do |img_filename| %>
-            <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+          <% if map.users.count >3 %>
+            <% sample_images.each do |img_filename| %>
+              <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
               margin-right: -19px;
               border: white 1px solid; padding: 0" %>
-          <% end %>
-          <% if map.users.count >3 %>
-              <span>+ <%= number_with_delimiter(map.users.count - 3)  %> more collaborators</span>
-          <% else %>
-              <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
-          <% end %>
-        </div>
-      </div>
-
-      <!-- Número de pines -->
-      <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
-        <i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i>
-        <%= number_with_delimiter(map.pins.count) %> pins
-      </span>
-    </div>
-  </div>
-
-  <!-- Toggle de color -->
-  <div class="pin-toggle checked <%= color %>-pin"
+            <% end %>
+            <span>+ <%= number_with_delimiter(map.users.count - 3)  %> more collaborators</span>
+          <% elsif map.users.count == 1%>
+            <%= image_tag "max.jpg", alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+            margin-right: -19px;
+            border: white 1px solid; padding: 0" %>
+            <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
+              <% else %>
+                <% sample_images.each do |img_filename| %>
+                  <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+          margin-right: -19px;
+          border: white 1px solid; padding: 0" %>
+                <% end %>
+                <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
+                  <% end %>
+                </div>
+              </div>
+              <!-- Número de pines -->
+              <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
+                <i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i>
+                <%= number_with_delimiter(map.pins.count) %> pins
+              </span>
+            </div>
+          </div>
+          <!-- Toggle de color -->
+          <div class="pin-toggle checked <%= color %>-pin"
        data-action="click->google-maps#filterToggle"
-       data-google-maps-target="pinsToggle"
-       data-map-index="<%= i %>"
-       id="map_<%= i %>">
-    <i class="fa-solid fa-location-dot map-filter-icon"></i>
-  </div>
-</div>
+            data-google-maps-target="pinsToggle"
+            data-map-index="<%= i %>"
+            id="map_<%= i %>">
+            <i class="fa-solid fa-location-dot map-filter-icon"></i>
+          </div>
+        </div>
