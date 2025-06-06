@@ -20,8 +20,8 @@
     <h2>Trending Community Maps</h2>
     <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
-        <% @maps = Map.where(permission: "public_access") %>
-        <% @maps.limit(5).each do |map| %>
+        <% @maps = Map.where(permission: "public_access").order(created_at: :desc).limit(5) %>
+        <% @maps.each do |map| %>
           <% first_place = map.places.first %>
           <div class="swiper-slide">
             <%= link_to map_path(map), class: "card-category" do %>
