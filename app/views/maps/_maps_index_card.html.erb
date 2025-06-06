@@ -9,61 +9,71 @@
   border-left: 5px solid #4CAF50;
   min-height: 130px;
 ">
-    <div class="map-filter-card-infos" style="flex-grow: 1; padding-right: 12px;">
-      <%= link_to map_path(map), class: "text-decoration-none" do %>
-        <h2 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 6px; color: #2e7d32;">
+  <div class="map-filter-card-infos" style="flex-grow: 1; padding-right: 12px;">
+    <%= link_to map_path(map), class: "text-decoration-none" do %>
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 6px; color: #2e7d32;">
         <%= map.name %>
-        </h2>
-      <% end %>
-      <p style="font-size: 0.9rem; color: #6b8e70; margin: 0 0 10px;">
-        <%= map.description %>
-      </p>
-      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
+      </h2>
+    <% end %>
+    <p style="font-size: 0.9rem; color: #6b8e70; margin: 0 0 10px;">
+      <%= map.description %>
+    </p>
+    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
       <!-- Avatars y número de colaboradores -->
       <div class="d-flex align-items-center">
         <% images = ["fake_user1.jpeg", "fake_user2.jpeg", "fake_user3.jpeg", "fake_user4.jpeg", "fake_user6.jpeg", "fake_user8.jpeg", "fake_user9.jpeg"] %>
         <% max_to_show = [3, map.users.count].min %>
         <% sample_images = images.sample(max_to_show) %>
         <div class="member-pin-count">
-          <% sample_images.each do |img_filename| %>
-            <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+          <% if map.users.count >3 %>
+            <% sample_images.each do |img_filename| %>
+              <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
               margin-right: -19px;
               border: white 1px solid; padding: 0" %>
-          <% end %>
-          <% if map.users.count >3 %>
-              <span>+ <%= number_with_delimiter(map.users.count - 3)  %> more collaborators</span>
-          <% else %>
-              <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
-          <% end %>
-        </div>
-      </div>
-      <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
-        <i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i>
-        <%= number_with_delimiter(map.pins.count) %> pins
-      </span>
-    </div>
-  </div>
-  <div class="col-2 icon-column">
-    <% if current_user && current_user.maps.include?(map) %>
-      <div class="d-flex gap-3 justify-content-center align-items-center">
-        <!-- <div class="" data-markers="<%= markers %>" data-map-id="<%= map.id %>" data-action="click->google-maps#showOneMap">
+            <% end %>
+            <span>+ <%= number_with_delimiter(map.users.count - 3)  %> more collaborators</span>
+          <% elsif map.users.count == 1 && map.users.first == current_user%>
+            <%= image_tag "max.jpg", alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+            margin-right: -19px;
+            border: white 1px solid; padding: 0" %>
+            <span><%= number_with_delimiter(map.users.count) %> collaborator<span>
+              <% else %>
+                <% sample_images.each do |img_filename| %>
+                  <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
+              margin-right: -19px;
+              border: white 1px solid; padding: 0" %>
+                <% end %>
+                <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
+                  <% end %>
+                </div>
+              </div>
+              <span style="font-size: 0.85rem; color: #2e7d32; white-space: nowrap;">
+                <i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i>
+                <%= number_with_delimiter(map.pins.count) %> pins
+              </span>
+            </div>
+          </div>
+          <div class="col-2 icon-column">
+            <% if current_user && current_user.maps.include?(map) %>
+              <div class="d-flex gap-3 justify-content-center align-items-center">
+                <!-- <div class="" data-markers="<%= markers %>" data-map-id="<%= map.id %>" data-action="click->google-maps#showOneMap">
           <i class="fa-solid fa-arrows-to-circle" style="color: #52946B; font-size: 1rem;"></i>
         </div> -->
-        <div data-membership-target="icon">
-          <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
-        </div>
-      </div>
-    <% elsif current_user %>
-      <div class="d-flex gap-3 justify-content-center align-items-center">
-        <!-- <div class="" data-markers="<%#= markers %>" data-map-id="<%#= map.id %>" data-action="click->google-maps#showOneMap">
+                <div data-membership-target="icon">
+                  <i class="fa-solid fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                </div>
+              </div>
+            <% elsif current_user %>
+              <div class="d-flex gap-3 justify-content-center align-items-center">
+                <!-- <div class="" data-markers="<%#= markers %>" data-map-id="<%#= map.id %>" data-action="click->google-maps#showOneMap">
           <i class="fa-solid fa-arrows-to-circle"></i>
         </div>  -->
-        <%= link_to map_memberships_path(map), method: :post, class: "icon-button", data: { action: "click->membership#join" } do %>
-          <div data-membership-target="icon">
-            <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                <%= link_to map_memberships_path(map), method: :post, class: "icon-button", data: { action: "click->membership#join" } do %>
+                  <div data-membership-target="icon">
+                    <i class="fa-regular fa-bookmark" style="color: #52946B; font-size: 30px;"></i>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
+        </div>
