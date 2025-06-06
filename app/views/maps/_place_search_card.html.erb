@@ -1,38 +1,43 @@
-<div class="place-search-card">
-  <div class="place-search-img-container">
-    <%= image_tag place.photo_url.presence || asset_path("pins_background.png") %>
-  </div>
-  <div class="place-search-card-infos">
-    <h2><%= place.title %></h2>
-    <p class="description"><%= place.address %></p>
-  </div>
-  <!-- Button to trigger modal -->
-  <button class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#modal-<%= place.title.parameterize %>">
-    <i class="fa-solid fa-square-plus fa-plus-green "></i>
-  </button>
-  <!-- Modal -->
-  <div class="modal fade" id="modal-<%= place.title.parameterize %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <%= simple_form_for @place, url: places_path, html: { data: { turbo_frame: "_top" } } do |f| %>
-          <div class="modal-body">
-            <%= f.hidden_field :title, value: place.title %>
-            <%= f.hidden_field :address, value: place.address %>
-            <%= f.hidden_field :latitude, value: place.latitude %>
-            <%= f.hidden_field :longitude, value: place.longitude %>
-            <%= f.hidden_field :photo_url, value: place.photo_url %>
-            <%= select_tag :map_id,
+<div class="pin-card">
+  <div class="row flex-grow-1 align-items-center">
+    <div class="col-10">
+      <div class="pincard-text">
+        <h2><%= place.title %></h2>
+        <p class="description"><%= place.address %></p>
+      </div>
+    </div>
+    <div class="col-2 p-0">
+      <div class="icon-column">
+        <!-- Button to trigger modal -->
+        <button class="btn-add-pin" data-bs-toggle="modal" data-bs-target="#modal-<%= place.title.parameterize %>">
+          <i class="fa-solid fa-square-plus" style="color: #52946B; font-size: 30px;"></i>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-<%= place.title.parameterize %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Select a map to pin to:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <%= simple_form_for @place, url: places_path, html: { data: { turbo_frame: "_top" } } do |f| %>
+                <div class="modal-body">
+                  <%= f.hidden_field :title, value: place.title %>
+                  <%= f.hidden_field :address, value: place.address %>
+                  <%= f.hidden_field :latitude, value: place.latitude %>
+                  <%= f.hidden_field :longitude, value: place.longitude %>
+                  <%= f.hidden_field :photo_url, value: place.photo_url %>
+                  <%= select_tag :map_id,
                 options_from_collection_for_select(current_user.maps, :id, :name),
                 class: "form-select" %>
+                </div>
+                <div class="modal-footer">
+                  <%= f.submit "Add Pin", class: "button" %>
+                </div>
+              <% end %>
+            </div>
           </div>
-          <div class="modal-footer">
-            <%= f.submit "Add Pin", class: "button" %>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
