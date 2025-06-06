@@ -18,7 +18,8 @@ export default class extends Controller {
       lng: 0,
       mapTypeControl: false,
       cameraControl: false,
-      fullscreenControl: false
+      fullscreenControl: false,
+      streetViewControl: false,
     }); // Default to Tokyo coordinates
     this.markers = JSON.parse(this.element.dataset.markers);
 

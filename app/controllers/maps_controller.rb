@@ -109,6 +109,8 @@ class MapsController < ApplicationController
         }
       }
     end
+    places_in_map = @places.pluck(:id) # Get IDs of places in @map
+    @places_not_in_map = Place.where.not(id: places_in_map)
   end
 
   def new

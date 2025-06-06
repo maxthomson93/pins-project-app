@@ -2,10 +2,10 @@
 <div id="search-modal"
      class="modal hidden"
      data-controller="modal">
-  <div class="modal-content row">
+  <div class="modal-content">
     <div class="col-12">
-      <button class="modal-close" data-action="click->modal#close"><i class="fa-solid fa-circle-xmark"></i></button>
-      <h2>Search for a Place</h2>
+      <button class="modal-close" data-action="click->modal#close"><i class="fa-solid fa-xmark"></i></button>
+      <h2 class="d-flex justify-content-center">Search for a Place</h2>
       <div class="search-bar-container-modal">
         <%= form_with url: search_places_path, method: :get, data: { turbo_frame: "search_results" } do %>
           <%= hidden_field_tag :map_id, @map.id %>
@@ -16,6 +16,20 @@
     </div>
     <turbo-frame id="search_results" class="results">
       <!-- Search results appear here -->
+      <div class="container">
+        <h2 class="d-flex justify-content-center">Recommended Places</h2>
+        <% @places_not_in_map.each do |recommended| %>
+          <li class="pin-card">
+            <div class="pincard-text">
+              <h2><%= recommended.title %></h2>
+              <p><%= recommended.address %></p>
+            </div>
+            <button type="submit" class="btn-add-pin">
+              <i class="fa-solid fa-square-plus" style="color: #52946B; font-size: 30px;"></i>
+            </button>
+          </li>
+        <% end %>
+      </div>
     </turbo-frame>
   </div>
 </div>

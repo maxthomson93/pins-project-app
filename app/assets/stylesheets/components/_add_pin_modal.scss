@@ -13,21 +13,26 @@
 }
 
 .modal-content {
+  border-radius: 16px;
   padding-top: 32px;
   max-width: 600px;
   // margin: 0 auto;
 }
 
+.search-results-modal {
+  height: 70vh;
+}
+
 .modal-close {
-  color: #ff4263;
+  color: rgba(0,0,0,0.5);
   position: absolute;
   font-size: 2rem;
   height: 32px;
   width: 32px;
   border: none;
   background: none;
-  right: 10px;
-  top: -8px;
+  right: 9px;
+  top: -3px;
 }
 
 .hidden {
@@ -60,9 +65,9 @@
 .modal.show {
   display: block; /* Ensures the modal is visible */
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
   z-index: 1050; /* Ensures it appears above other elements */
 }
 
