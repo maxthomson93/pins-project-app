@@ -27,19 +27,19 @@
         <div class="member-pin-count">
           <% if map.users.count >3 %>
             <% sample_images.each do |img_filename| %>
-              <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+              <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
               margin-right: -19px;
               border: white 1px solid; padding: 0" %>
             <% end %>
             <span>+ <%= number_with_delimiter(map.users.count - 3)  %> collaborators</span>
           <% elsif map.users.count == 1%>
-            <%= image_tag "max.jpg", alt: "Collaborator avatar", style: "width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+            <%= image_tag "max.jpg", alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
             margin-right: -19px;
             border: white 1px solid; padding: 0" %>
             <span><%= number_with_delimiter(map.users.count) %> collaborators<span>
               <% else %>
                 <% sample_images.each do |img_filename| %>
-                  <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+                  <%= image_tag img_filename, alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
               margin-right: -19px;
               border: white 1px solid; padding: 0" %>
                 <% end %>
