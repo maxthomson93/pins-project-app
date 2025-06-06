@@ -1,5 +1,5 @@
 <div data-controller="google-maps" data-markers="<%= (@markers || []).to_json %>">
-  <div class="g-map-sticky">
+  <div class="g-map-sticky" style="height: fit-content">
     <div
     id="map"
     style="width: 100%;
@@ -15,8 +15,8 @@
       <% end %>
     </div>
   </div>
-  <div class="container overflow-scroll" style="height: 290px;">
-    <ul class="nav nav-tabs mb-4">
+  <div class="container overflow-scroll d-flex flex-column" style="height: 290px;">
+    <ul class="nav nav-tabs sticky-top bg-white mb-4">
       <li class="nav-item">
         <%#= link_to "Communities", maps_path(status: "communities"), class: "nav-link #{'active' if @status == 'communities'}" %>
         <button class="nav-link active" id="maps-tab" data-bs-toggle="tab" data-bs-target="#maps" type="button" role="tab" aria-controls="maps" aria-selected="true" style="z-index: 0;">Maps</button>
@@ -26,7 +26,7 @@
         <button class="nav-link" id="places-tab" data-bs-toggle="tab" data-bs-target="#places" type="button" role="tab" aria-controls="places" aria-selected="false">Places</button>
       </li>
     </ul>
-    <div class="tab-content mt-3" id="myTabContent">
+    <div class="tab-content flex-grow-1" id="myTabContent">
       <div class="tab-pane fade show active" id="maps" role="tabpanel" aria-labelledby="maps-tab">
         <p class="description"><%= pluralize(@maps.count, "community") %> found</p>
         <div class="map-list mb-5">
