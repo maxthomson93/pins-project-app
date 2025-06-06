@@ -31,7 +31,7 @@
               margin-right: -24px;
               border: white 1px solid; padding: 0" %>
             <% end %>
-            <span>+ <%= number_with_delimiter(map.users.count - 3)  %> more collaborators</span>
+            <span> +<%= number_with_delimiter(map.users.count - 3)  %> collaborators</span>
           <% elsif map.users.count == 1 && map.users.first == current_user%>
             <%= image_tag "max.jpg", alt: "Collaborator avatar", style: "width: 35px; height: 35px; border-radius: 50%; object-fit: cover;
             margin-right: -24px;
